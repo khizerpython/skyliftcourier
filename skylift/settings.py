@@ -54,6 +54,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'skylift.urls'
 
+AUTH_USER_MODEL = "my_app.AuthUser" # Webapp auth user model
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -68,6 +70,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'my_app.auth_backends.CustomAuthUserBackend', # Custom user backend to handle failed login attempts
 ]
 
 WSGI_APPLICATION = 'skylift.wsgi.application'
