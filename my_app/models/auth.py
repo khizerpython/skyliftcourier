@@ -6,8 +6,7 @@ from my_app.models.regex import *
 from my_app.models.others import ModelUUIDField, CreatedAndUpdatedModelFields,IsActive
 
 class CustomAuthUserManager(BaseUserManager):
-    def get_query_set(self):
-          return self.filter(department__is_active=True).filter(active=True)
+    
 
     contact_number  = models.IntegerField(max_length=255)
     def create_user(self  ,first_name , last_name, username , email , contact_number ,password = None, **extra_fields):
@@ -75,7 +74,7 @@ class AuthUser(AbstractBaseUser, ModelUUIDField, CreatedAndUpdatedModelFields,Is
     
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ('first_name','last_name' ,'email' ,'contact_number' ,'gender' ,'dob' ,'password')
+    REQUIRED_FIELDS = ('first_name','last_name' ,'email' ,'contact_number' ,'password')
 
     objects = CustomAuthUserManager()
 

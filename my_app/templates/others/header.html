@@ -32,7 +32,26 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'ourtrackrecord' %}" class="nav-link">Our Track Record</a>
       </li>
+      
     </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      {% if request.user.is_autheticated %}
+
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}" class="nav-link">
+          Logout
+        </a> 
+      </li> -->
+
+      {% else %}
+      <li class="nav-item">
+        <a href="{% url 'login_url' %}" class="nav-link"  class="nav-link">
+          Login
+        </a> 
+      </li>
+      {% endif %}
 
   </nav>
   <!-- /.navbar -->

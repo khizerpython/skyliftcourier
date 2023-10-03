@@ -1,6 +1,6 @@
 from django.urls import path, include
-from my_app import urls
-from my_app import views
+
+from my_app.views.others import views
 
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('contactus/', views.ContactUsView.as_view(), name='contactus'),
     path('ourservices/', views.OurServicesView.as_view(), name='ourservices'),
     path('ourtrackrecord/', views.OurTrackRecordView.as_view(), name='ourtrackrecord'),
+    path('login/', include('my_app.views.auth.urls')),
 ]
