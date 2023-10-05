@@ -19,6 +19,7 @@ class CustomLoginView(LoginView):
 
     def form_valid(self, form):
         """Security check complete. Log the user in."""
+        print("@$@##@!$#@%@#%##$#$%")
         auth_login(self.request, form.get_user())
         
         user = form.get_user()
