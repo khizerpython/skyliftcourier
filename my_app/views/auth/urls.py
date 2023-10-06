@@ -4,5 +4,5 @@ from my_app.views.auth import views
 
 
 urlpatterns = [
-    path("login/", views.CustomLoginView.as_view(), name="login_url"),
+    path("", views.CustomLoginView.as_view(), name="login_url"),
 ]

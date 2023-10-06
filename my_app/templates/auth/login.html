@@ -28,10 +28,10 @@
                   <form method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                      <input type="email" class="form-control" placeholder="Email" style="height: 56px ">
+                      <input type="text" class="form-control" placeholder="text" style="height: 56px ">
                       <div class="input-group-append">
                         <div class="input-group-text">
-                          <span class="fas fa-envelope"></span>
+                          <!-- <span class="fas fa-envelope"></span> -->
                         </div>
                       </div>
                     </div>
@@ -48,7 +48,7 @@
                       </div>
                       <!-- /.col -->
                       <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block" style="height: 56px ">Sign In</button>
+                        <button type="submit" value="Login" class="btn btn-primary btn-block" style="height: 56px ">Sign In</button>
                         <p class="mb-1 mt-2">
                           <a href="forgot-password.html" style="padding-left: 27px;">I forgot my password</a>
                         </p>

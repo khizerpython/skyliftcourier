@@ -1,12 +1,28 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login as auth_login
 from django.http.response import HttpResponseRedirect
-
+from django.urls import reverse_lazy
 from my_app.forms.auth import CustomAuthenticationForm
+from django.contrib import messages
 
 
 
 import os
+
+# class CustomLoginView(LoginView):
+#     template_name="auth/login.html"
+#     redirect_authenticated_user = True
+    
+#     def get_success_url(self):
+#         print("Here") 
+#         return reverse_lazy('home')
+        
+    
+#     def form_invalid(self, form):
+#         print("the form is invalid")
+#         messages.error(self.request,'Invalid username or password')
+#         print("the error is:", self.get_context_data(form=form))
+#         return self.render_to_response(self.get_context_data(form=form))
 
 
 class CustomLoginView(LoginView):
