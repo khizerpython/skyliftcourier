@@ -19,6 +19,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.views.generic import View
+from django.contrib.auth.hashers import check_password
 
 from my_app.models import AuthUser
 from my_app.forms.auth import CreateAuthUserForm
@@ -89,6 +90,12 @@ class ListAuthUserView(ListView):
 
         Pass response_kwargs to the constructor of the response class.
         """ 
+        # user_input_password = "Khizer12@#"
+        # user  = AuthUser.objects.get(username="is_hodsed")
+        # print("the user password is :", user.password)
+        # hashed_password = user.password
+        # print(check_password(user_input_password, hashed_password))
+
         extra_context: dict = self._get_extra_context()
         context.update({'page_title':self._page_title})
         context.update(extra_context)
@@ -101,9 +108,14 @@ class CreateAuthUser(View):
 
 
     def post(self, request, *args, **kwargs):
-        form_validation =  CreateAuthUserForm(data=request.POST)
+        data = self.request.body
+        json_data = json.loads(data)
+        print("the data is :", data)
+        print("the data is :", json_data)
+        form_validation =  CreateAuthUserForm(data=json_data)
 
         if form_validation.is_valid():
+            print("Yes form is valid")
 
             # password = User.objects.make_random_password(length=10,allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#')
 
@@ -120,17 +132,16 @@ class CreateAuthUser(View):
 
             # password = result_lower_letter+result_digits+result_prunctuations+result_uppercase_letters
             inst = form_validation.save(commit=True)
-            password = request.POST.get('password')
+            password = json_data.get('password')
+            print("the password is :, ",password)
             inst.set_password(password)
-            inst.is_active = False
-            inst.is_lock = True
+            # inst.is_active = False
+            # inst.is_lock = True
             inst.save()
-            activation_link:str = self._generate_activation_link(inst)
 
             return JsonResponse({"detail": f"AuthUser '{inst.username}' has been created successfully"}, status=200)
         
-        self._generate_event_data_and_insert(line_num=frameinfo.lineno, success=False, errors=form_validation.errors)
-        self._generate_log_data_and_insert(success=False)
+        print("the errors arew :", form_validation.errors)
         return JsonResponse(data={"detail": "Unable to create AuthUser", "errors": dict(form_validation.errors.items()), "errors_div": "create_"}, status=400)
        
  

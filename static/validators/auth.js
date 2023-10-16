@@ -18,7 +18,6 @@ $("#create_authuser_form_id").validate({
             maxlength: 25,
             regex:USERNAME_REGEX,
             required:true,
-            checkusername:true
         
         },
         email: {
@@ -36,46 +35,10 @@ $("#create_authuser_form_id").validate({
             required:true,
         
         },
-        gender: {
+        password: {
             required:true,
-        },
-        dob: {
-            required:true,
-        
-        },
-        employee_id: {
-            minlength:5,
-            // maxlength: 10,
-            regex:EMPLOYEE_ID_REGEX,
-            required:true,
-            checkemployeeid:true
-        
-        },
-        deparment_id: {
-            required:true,
-            checkrole:true,
-            select_choices: _all_departments,
-        
-        },
-        role_id: {
-            required:true,
-            select_choices:_all_roles,
-        
-        },
-        original_role_id: {
-            required:true,
-            select_choices:_all_original_roles
-        
-        },
-        designation_id: {
-            required:true,
-            select_choices:_all_designations,
-        
-        },
-        city_id: {
-            required:true,
-            select_choices:_all_cities,
-        },
+            regex:PASSWORD_REGEX
+        }
     },
     messages: {
         first_name: {
@@ -109,18 +72,12 @@ $("#create_authuser_form_id").validate({
             regex: "Please enter valid contact number",
             
         },
-        employee_id: {
-            minlength:"min length is 5",
-            // maxlength: "max_length is 10 , REACHED",
-            regex: "Please enter valid employee ID. only 0-9 digits (length=5) are allowed",
-            checkemployeeid:"This Employee ID already exists."
-            
-        },
-        deparment_id: {
-            required:"This field is required.",
-            checkrole:"Only hod can be assign more than 2 departments"
-            
-        },
+        password :{
+            required: "This field is required",
+            regex: "Please write a valid password"
+        }      
+        
+
 
 
     },

@@ -11,11 +11,15 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / 'my_app' / 'templates'
 STATIC_CUSTOM_DIR = BASE_DIR / "static"
+
+LOGIN_REDIRECT_URL = reverse_lazy("home")
+LOGIN_URL = 'login_url'
 
 
 # Quick-start development settings - unsuitable for production
@@ -89,16 +93,16 @@ WSGI_APPLICATION = 'skylift.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'courier',
-#         'USER': 'root',
-#         # 'PASSWORD': 'admin',
-#         'HOST':'localhost',
-#         'PORT':'3306',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'courier',
+        'USER': 'root',
+        # 'PASSWORD': 'admin',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
 
 
 # Password validation
@@ -141,6 +145,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = ''
 
 
 STATIC_URL = 'static/'

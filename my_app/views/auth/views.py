@@ -41,5 +41,5 @@ class CustomLoginView(LoginView):
         user = form.get_user()
         
         
-        self._insert_event(user)
+        
         return HttpResponseRedirect(self.get_success_url())

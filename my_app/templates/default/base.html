@@ -38,11 +38,15 @@
   <!-- summernote -->
   <!-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css"> -->
   <link rel="stylesheet" href="{% static '/css/summernote-bs4.min.css' %}">
+  <link rel="stylesheet" href="{% static '/css/form-validation.css' %}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
     {% block content %}
     {% endblock %}
+
+    {% include "others/globals.html" %}
+    {% include 'others/generic_modal.html' %}
 
 
 <!-- jQuery -->
@@ -95,6 +99,10 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="dist/js/pages/dashboard.js"></script> -->
 <script src="{% static '/js/dashboard.js' %}"></script>
+<script src="{% static '/js/constants.js' %}"></script>
+<script src="{% static '/JQuery-Validator/additional-methods.min.js' %}"></script>
+<script src="{% static '/JQuery-Validator/jquery.validate.min.js' %}"></script>
+<script src="{% static '/js/send-request.js' %}"></script>
 
 {% block "extra_scripts" %}
   {% endblock %}

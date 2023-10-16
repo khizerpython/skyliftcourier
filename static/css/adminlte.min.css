@@ -2963,8 +2963,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
     color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #fd7e14;
+    border-color: #fd7e14;
     box-shadow: none
 }
 
@@ -6729,7 +6729,9 @@ a.disabled.mailbox-attachment-close {
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
     border-top-left-radius: calc(.3rem - 1px);
-    border-top-right-radius: calc(.3rem - 1px)
+    border-top-right-radius: calc(.3rem - 1px);
+    background-color: #fd7e14;
+    
 }
 
 .modal-header .close,
@@ -32968,7 +32970,8 @@ html.maximized-card {
     -ms-flex-align: center;
     align-items: center;
     background-color: rgba(0, 0, 0, .7);
-    color: #666f76;
+    color: #C92127;
+    /* color: #666f76; */
     border-radius: .3rem
 }
 
