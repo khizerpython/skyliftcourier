@@ -18,9 +18,10 @@ class CustomAuthUserBackend(backends.BaseBackend):
     def authenticate(self, request, **kwargs):
         username = kwargs.get("username")
         password = kwargs.get("password")
+        
 
         try:
-            user = self.USER_MODEL.objects.get(Q(username=username)) # Getting user
+            user = self.USER_MODEL.objects.get(Q(username=username)) # Getting user           
         except self.USER_MODEL.DoesNotExist:
             return None
         # if user.is_lock: # Return user if lock, forms/auth.py is responsible for error display on frontend 

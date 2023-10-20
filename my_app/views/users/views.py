@@ -23,6 +23,8 @@ from django.contrib.auth.hashers import check_password
 
 from my_app.models import AuthUser
 from my_app.forms.auth import CreateAuthUserForm
+from django.contrib.auth.hashers import make_password
+
 
 import os
 import json
@@ -116,30 +118,18 @@ class CreateAuthUser(View):
 
         if form_validation.is_valid():
             print("Yes form is valid")
+            first_name= form_validation.cleaned_data['first_name']
+            last_name= form_validation.cleaned_data['last_name']
+            username= form_validation.cleaned_data['username']
+            email= form_validation.cleaned_data['email']
+            contact_number= form_validation.cleaned_data['contact_number']
+            password = make_password(form_validation.cleaned_data['password'])
+            print("the password is :", password)
+            user = AuthUser(first_name=first_name, last_name=last_name, username=username, email=email ,contact_number=contact_number,password=password)
+            user.save()
+            
 
-            # password = User.objects.make_random_password(length=10,allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#')
-
-            # lowercase_letters = string.ascii_lowercase
-            # result_lower_letter = ''.join(random.choice(lowercase_letters) for i in range(3))
-            # uppercase_letters = string.ascii_uppercase
-            # result_uppercase_letters = ''.join(random.choice(uppercase_letters) for i in range(4))
-            # digits = string.digits
-            # result_digits = ''.join(random.choice(digits) for i in range(3))
-            # prunctuations = string.punctuation
-            # result_prunctuations = ''.join(random.choice(prunctuations) for i in range(3))
-
-
-
-            # password = result_lower_letter+result_digits+result_prunctuations+result_uppercase_letters
-            inst = form_validation.save(commit=True)
-            password = json_data.get('password')
-            print("the password is :, ",password)
-            inst.set_password(password)
-            # inst.is_active = False
-            # inst.is_lock = True
-            inst.save()
-
-            return JsonResponse({"detail": f"AuthUser '{inst.username}' has been created successfully"}, status=200)
+            return JsonResponse({"detail": f"AuthUser '{username}' has been created successfully"}, status=200)
         
         print("the errors arew :", form_validation.errors)
         return JsonResponse(data={"detail": "Unable to create AuthUser", "errors": dict(form_validation.errors.items()), "errors_div": "create_"}, status=400)

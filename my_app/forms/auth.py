@@ -17,7 +17,7 @@ from django.contrib.auth import get_user_model
 
 
 
-class CustomAuthenticationForm(AuthenticationForm):
+class CustomAuthenticationForm(forms.Form):
 
     username = UsernameField(
         widget=forms.TextInput(attrs={"autofocus": True}),
@@ -72,11 +72,12 @@ class CreateAuthUserForm(forms.ModelForm):
     last_name = forms.CharField(min_length=3, max_length=30, validators=[regex.last_name_regex])
     username = forms.CharField(min_length=3, max_length=25, validators=[regex.username_regex])
     contact_number = forms.CharField(min_length=10,max_length=13,validators=[regex.contact_number_regex])
+    password = forms.CharField(validators=[regex.password_regex])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
     class Meta:
         model = get_user_model()
-        fields = ('first_name', 'last_name', 'username', 'email', 'contact_number',)
+        fields = ('first_name', 'last_name', 'username', 'email', 'contact_number','password',)
 
