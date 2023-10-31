@@ -16,8 +16,9 @@ $("#login_user").on("submit", function (e) {
         if (status) {
             remove_custom_error_classes();
            console.log("the data is :", data);
-           console.log("the redirect is :", data.redirect);
-           window.location.reload(data.redirect)
+           console.log("the redirect is :", data.Redirect);
+           location.replace(data.Redirect);
+        //    window.location.reload(data.redirect)
 
 
             
@@ -25,7 +26,7 @@ $("#login_user").on("submit", function (e) {
             console.log("2e#@#@R#$");
            
         }
-        return false;
+        // return false;
 
     }
 

@@ -72,13 +72,16 @@ class Login(View):
                 login(request, user)
                 url = reverse('home')
                 print("the url is :",url)
-                url = reverse('home')
-                # return redirect('home')
+                
                 # return HttpResponseRedirect(redirect_to=url)
+                # return redirect('aboutus')
                 return JsonResponse({"Status":"Success","Redirect":url})
             else:
                 error_message = "Invalid username or password."
                 print(error_message)
                 return JsonResponse({"Status":"Failure","Message":"Invalid Username or Password!"},)
+            
+
+          
             
             

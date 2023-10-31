@@ -1,0 +1,194 @@
+{% extends 'default/index.html' %}
+{% load static %}
+
+{% block main_body %}
+
+
+<!-- <div class="row"> -->
+<div class="col-lg-12 ">
+
+  <div class="card m-4" style="background-color: antiquewhite; font-family: serif;">
+    <div class="card-body">
+
+      <form id="create_authuser_form_id" data-method="POST" data-url="{% url 'authuser' %}" data-method="POST">
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-3">
+              <div class="form-group">
+                <label>Select Service</label>
+                <select class="form-control">
+                  <option>Select Service</option>
+                  {% for service in services%}
+                  <option value={{service.id}}>{{service.name}}</option>
+                  {% endfor %}
+
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+
+            </div>
+
+
+            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+              <h3 style="margin-top: inherit;">Shipper Details</h3>
+            </div>
+
+
+
+          </div>
+          <div class="row">
+
+            <!-- Shipper Company Name -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_company_name">Company Name</label>
+                <input type="text" name="shipper_company_name" class="form-control" id="create_id_shipper_company_name"
+                  placeholder="Enter Company Name">
+                <div></div>
+              </div>
+            </div>
+
+            <!-- Shipper Contant Person -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_contact_person_name">Contact Person Name</label>
+                <input type="text" name="shipper_contact_person" class="form-control"
+                  id="create_id_shipper_contact_person_name" placeholder="Enter Contact Person Name">
+                <div></div>
+              </div>
+            </div>
+            
+            <!-- Shipper Refrence -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_reference">Reference</label>
+                <input type="text" name="shipper_reference" class="form-control"
+                  id="create_id_shipper_reference" placeholder="Enter Reference">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Shipper Person Address -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_address">Address</label>
+                <input type="text" name="shipper_address" class="form-control" id="create_id_shipper_address"
+                  placeholder="Enter Shipper Address">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Shipper Person State -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_state">State</label>
+                <input type="text" name="shipper_state" class="form-control" id="create_id_shipper_state"
+                  placeholder="Enter Shipper State">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Shipper Person City -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_city">City</label>
+                <input type="text" name="shipper_city" class="form-control" id="create_id_shipper_city"
+                  placeholder="Enter Shipper City">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Shipper Person State Post Code -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_post_code">Postal Code</label>
+                <input type="text" name="shipper_post_code" class="form-control" id="create_id_shipper_post_code"
+                  placeholder="Enter Shipper State Postal Code">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Shipper Person Mobile Number -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_mobile_number">Mobile Number</label>
+                <input type="text" name="shipper_mobile_number" class="form-control" id="create_id_shipper_mobile_number"
+                  placeholder="Enter Shipper Mobile Number">
+                <div></div>
+              </div>
+            </div>
+            <!--Shipper Person Contact Number -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_shipper_phone_number">Phone Number</label>
+                <input type="text" name="shipper_phone_number" class="form-control" id="create_id_shipper_phone_number"
+                  placeholder="Enter Shipper Phone Number">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Shipper Person NTN/CNIC -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_ntn_cnic">NTN/CNIC</label>
+                <input type="text" name="ntn_cnic" class="form-control" id="create_id_ntn_cnic"
+                  placeholder="Enter Shipper NTN/CNIC">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Shipper Person NTN/CNIC -->
+            <div class="col-12">
+              <div class="form-group">
+                <label for="create_id_email_address">Email Address</label>
+                <input type="text" name="email_address" class="form-control" id="create_id_email_address"
+                  placeholder="Enter Email Address">
+                <div></div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <h3 style="margin-top: inherit;">Reciever Details</h3>
+          </div>
+        </div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- /.card-body -->
+<div class="card-footer" cont>
+  <button class="btn btn-primary" style="background: #fd7e14; border-color:#7f3f0b;font-size: large;">Submit</button>
+</div>
+</form>
+</div>
+</div>
+
+</div>
+
+
+
+<!-- </div> -->
+{% endblock %}
