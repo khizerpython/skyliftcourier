@@ -7,7 +7,7 @@
 <!-- <div class="row"> -->
 <div class="col-lg-12 ">
 
-  <div class="card m-4" style="background-color: antiquewhite; font-family: serif;">
+  <div class="card m-4" style="background-color: #f9fbd7; font-family: serif;">
     <div class="card-body">
 
       <form id="create_authuser_form_id" data-method="POST" data-url="{% url 'authuser' %}" data-method="POST">
@@ -34,14 +34,16 @@
             </div>
 
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
-              <h3 style="margin-top: inherit;">Shipper Details</h3>
-            </div>
+            
 
 
 
           </div>
           <div class="row">
+
+            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+              <h3 style="margin-top: inherit;">Shipper Details</h3>
+            </div>
 
             <!-- Shipper Company Name -->
             <div class="col-6">
@@ -62,13 +64,13 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!-- Shipper Refrence -->
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_reference">Reference</label>
-                <input type="text" name="shipper_reference" class="form-control"
-                  id="create_id_shipper_reference" placeholder="Enter Reference">
+                <input type="text" name="shipper_reference" class="form-control" id="create_id_shipper_reference"
+                  placeholder="Enter Reference">
                 <div></div>
               </div>
             </div>
@@ -77,8 +79,10 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_address">Address</label>
-                <input type="text" name="shipper_address" class="form-control" id="create_id_shipper_address"
-                  placeholder="Enter Shipper Address">
+                <!-- <input type="text" name="shipper_address" class="form-control" id="create_id_shipper_address"
+                  placeholder="Enter Shipper Address"> -->
+                <textarea class="form-control" name="shipper_address" rows="1" id="create_id_shipper_address"
+                  placeholder="Enter Shipper Address"></textarea>
                 <div></div>
               </div>
             </div>
@@ -92,7 +96,7 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!--Shipper Person City -->
             <div class="col-6">
               <div class="form-group">
@@ -102,7 +106,7 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!--Shipper Person State Post Code -->
             <div class="col-6">
               <div class="form-group">
@@ -112,51 +116,186 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!--Shipper Person Mobile Number -->
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_mobile_number">Mobile Number</label>
-                <input type="text" name="shipper_mobile_number" class="form-control" id="create_id_shipper_mobile_number"
-                  placeholder="Enter Shipper Mobile Number">
+                <input type="number" name="shipper_mobile_number" class="form-control"
+                  id="create_id_shipper_mobile_number" placeholder="Enter Shipper Mobile Number">
                 <div></div>
               </div>
             </div>
+
             <!--Shipper Person Contact Number -->
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_phone_number">Phone Number</label>
-                <input type="text" name="shipper_phone_number" class="form-control" id="create_id_shipper_phone_number"
+                <input type="number" name="shipper_phone_number" class="form-control" id="create_id_shipper_phone_number"
                   placeholder="Enter Shipper Phone Number">
                 <div></div>
               </div>
             </div>
-            
+
             <!--Shipper Person NTN/CNIC -->
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_ntn_cnic">NTN/CNIC</label>
-                <input type="text" name="ntn_cnic" class="form-control" id="create_id_ntn_cnic"
+                <input type="text" name="shipper_ntn_cnic" class="form-control" id="create_id_shipper_ntn_cnic"
                   placeholder="Enter Shipper NTN/CNIC">
                 <div></div>
               </div>
             </div>
 
-            <!--Shipper Person NTN/CNIC -->
+            <!--Shipper Person Email Address -->
             <div class="col-12">
               <div class="form-group">
-                <label for="create_id_email_address">Email Address</label>
-                <input type="text" name="email_address" class="form-control" id="create_id_email_address"
-                  placeholder="Enter Email Address">
+                <label for="create_id_shipper_email_address">Email Address</label>
+                <input type="text" name="shipper_email_address" class="form-control"
+                  id="create_id_shipper_email_address" placeholder="Enter Email Address">
                 <div></div>
               </div>
             </div>
 
 
           </div>
-          <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
-            <h3 style="margin-top: inherit;">Reciever Details</h3>
+
+          <!-- ====================================== RECIEVER DETAILS ================================================-->
+          
+          <div class="row">
+
+            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+              <h3 style="margin-top: inherit;">Reciever Details</h3>
+            </div>
+
+            <!--Reciever Email Address -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_company_name">Company</label>
+                <input type="text" name="reciever_company_name" class="form-control"
+                  id="create_id_reciever_company_name" placeholder="Enter Company Name">
+                <div></div>
+              </div>
+            </div>
+
+            <!-- Reciever Contant Person -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_contact_person_name">Contact Person Name</label>
+                <input type="text" name="reciever_contact_person" class="form-control"
+                  id="create_id_reciever_contact_person_name" placeholder="Enter Contact Person Name">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Reciever Person Address -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_address">Address</label>
+                <!-- <input type="text" name="reciever_address" class="form-control" id="create_id_reciever_address"
+                  placeholder="Enter reciever Address"> -->
+                <textarea class="form-control" name="reciever_address" rows="1" id="create_id_reciever_address"
+                  placeholder="Enter Reciever Address"></textarea>
+                <div></div>
+              </div>
+            </div>
+
+            <!--Reciever Person Country -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_country">Country</label>
+                <input type="text" name="reciever_country" class="form-control" id="create_id_reciever_country"
+                  placeholder="Enter Reciever Country">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Reciever Person State-->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_state">State</label>
+                <input type="text" name="reciever_state" class="form-control" id="create_id_reciever_state"
+                  placeholder="Enter Reciever State">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Reciever Person City-->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_city">City</label>
+                <input type="text" name="reciever_city" class="form-control" id="create_id_reciever_city"
+                  placeholder="Enter Reciever City">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Reciever Person State Post Code -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_post_code">Postal Code</label>
+                <input type="text" name="reciever_post_code" class="form-control" id="create_id_reciever_post_code"
+                  placeholder="Enter Reciever State Postal Code">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Reciever Person Mobile Number -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_mobile_number">Mobile Number</label>
+                <input type="number" name="reciever_mobile_number" class="form-control"
+                  id="create_id_reciever_mobile_number" placeholder="Enter Reciever Mobile Number">
+                <div></div>
+              </div>
+            </div>
+
+            <!--Reciever Person Contact Number -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_phone_number">Phone Number</label>
+                <input type="number" name="reciever_phone_number" class="form-control" id="create_id_reciever_phone_number"
+                  placeholder="Enter Reciever Phone Number">
+                <div></div>
+              </div>
+            </div>
+            
+            <!--Reciever Person Email -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_email">Email</label>
+                <input type="email" name="reciever_email" class="form-control" id="create_id_reciever_email"
+                  placeholder="Enter Reciever Email">
+                <div></div>
+              </div>
+            </div>
+            
+            
+            <!--Reciever Person Fax -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_reciever_fax">Fax</label>
+                <input type="fax" name="reciever_fax" class="form-control" id="create_id_reciever_fax"
+                  placeholder="Enter Reciever Fax">
+                <div></div>
+              </div>
+            </div>
+
+
+
           </div>
+
+          <!-- Shipment Details -->
+
+          <div class="row">
+
+            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+              <h3 style="margin-top: inherit;">Shipment Details</h3>
+            </div>
+
+          </div>
+
+
         </div>
 
 

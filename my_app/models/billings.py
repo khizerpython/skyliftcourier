@@ -10,3 +10,16 @@ class Service(ModelUUIDField):
 
     def __str__(self) -> str:
         return str(self.name)
+    
+class Payment(ModelUUIDField):
+    name = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return str(self.name)
+    
+class ShipmentType(ModelUUIDField):
+    name = models.CharField(max_length=50)
+    
+    def __str__(self) -> str:
+        return str(self.name)
+
