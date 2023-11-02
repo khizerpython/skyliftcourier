@@ -15,9 +15,11 @@
           <div class="row">
 
             <div class="col-3">
+
+              <!-- Select Service -->
               <div class="form-group">
                 <label>Select Service</label>
-                <select class="form-control">
+                <select name="service" class="form-control">
                   <option>Select Service</option>
                   {% for service in services%}
                   <option value={{service.id}}>{{service.name}}</option>
@@ -293,6 +295,102 @@
               <h3 style="margin-top: inherit;">Shipment Details</h3>
             </div>
 
+            <!-- Payment Types -->
+            <div class="col-3">
+              <div class="form-group">
+                <label>Select Service</label>
+                <select name="payment" class="form-control">
+                  <option>Select Payment</option>
+                  {% for payment in payments %}
+                  <option value={{payment.id}}>{{payment.name}}</option>
+                  {% endfor %}
+
+                </select>
+              </div>
+            </div>
+
+            <!-- Shipment Type -->
+            <div class="col-3">
+              <div class="form-group">
+                <label>Select Service</label>
+                <select name="shipment" class="form-control">
+                  <option>Select Shipment Type</option>
+                  {% for shipment in shipments %}
+                  <option value={{shipment.id}}>{{shipment.name}}</option>
+                  {% endfor %}
+
+                </select>
+              </div>
+            </div>
+
+            <!-- FEDEX number -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_fedex_number">FedEx No</label>
+                <input type="text" name="fedex_number" class="form-control" id="create_id_fedex_number"
+                  placeholder="Enter FedEx Number">
+                <div></div>
+              </div>
+            </div>
+            
+            <!-- Weight -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_weight">Weight</label>
+                <input type="number" name="weight" class="form-control" id="create_id_weight"
+                  placeholder="Enter Weight">
+                <div></div>
+              </div>
+            </div>
+            
+            <!-- Pieces -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_pieces">Peices</label>
+                <input type="number" name="pieces" class="form-control" id="create_id_pieces"
+                  placeholder="Enter Pieces Amount">
+                <div></div>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="row">
+
+            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+              <h3 style="margin-top: inherit;">Dimensions</h3>
+            </div>
+            <!-- Pieces -->
+            <div class="col-3">
+              <div class="form-group">
+                <label for="create_id_pieces">Length</label>
+                <input type="number" name="length[1]" class="form-control" id="create_id_length"
+                  placeholder="Enter length">
+                <div></div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="create_id_pieces">Width</label>
+                <input type="number" name="width[1]" class="form-control" id="create_id_width"
+                  placeholder="Enter width">
+                <div></div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="create_id_pieces">Height</label>
+                <input type="number" name="height[1]" class="form-control" id="create_id_height"
+                  placeholder="Enter height">
+                <div></div>
+              </div>
+            </div>
+            <div class="col-1">
+              <div class="mt-4 text-center">
+                  <i class="bi bi-plus-circle-fill add-asset-id" data-form-id="initiate_asset_movement_workflow" data-include-id="false" style="font-size: 35px;"></i>
+              </div>
+          </div>
+
           </div>
 
 
@@ -330,4 +428,11 @@
 
 
 <!-- </div> -->
+{% endblock %}
+
+{% block "extra_scripts" %}
+
+<script src="{% static '/custom-js/billings/billings.js' %}"></script>
+
+
 {% endblock %}
