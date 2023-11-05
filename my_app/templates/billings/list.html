@@ -36,7 +36,7 @@
             </div>
 
 
-            
+
 
 
 
@@ -133,8 +133,8 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_phone_number">Phone Number</label>
-                <input type="number" name="shipper_phone_number" class="form-control" id="create_id_shipper_phone_number"
-                  placeholder="Enter Shipper Phone Number">
+                <input type="number" name="shipper_phone_number" class="form-control"
+                  id="create_id_shipper_phone_number" placeholder="Enter Shipper Phone Number">
                 <div></div>
               </div>
             </div>
@@ -163,7 +163,7 @@
           </div>
 
           <!-- ====================================== RECIEVER DETAILS ================================================-->
-          
+
           <div class="row">
 
             <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
@@ -211,7 +211,7 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!--Reciever Person State-->
             <div class="col-6">
               <div class="form-group">
@@ -221,7 +221,7 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!--Reciever Person City-->
             <div class="col-6">
               <div class="form-group">
@@ -256,12 +256,12 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_reciever_phone_number">Phone Number</label>
-                <input type="number" name="reciever_phone_number" class="form-control" id="create_id_reciever_phone_number"
-                  placeholder="Enter Reciever Phone Number">
+                <input type="number" name="reciever_phone_number" class="form-control"
+                  id="create_id_reciever_phone_number" placeholder="Enter Reciever Phone Number">
                 <div></div>
               </div>
             </div>
-            
+
             <!--Reciever Person Email -->
             <div class="col-6">
               <div class="form-group">
@@ -271,8 +271,8 @@
                 <div></div>
               </div>
             </div>
-            
-            
+
+
             <!--Reciever Person Fax -->
             <div class="col-6">
               <div class="form-group">
@@ -332,7 +332,7 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!-- Weight -->
             <div class="col-6">
               <div class="form-group">
@@ -342,7 +342,7 @@
                 <div></div>
               </div>
             </div>
-            
+
             <!-- Pieces -->
             <div class="col-6">
               <div class="form-group">
@@ -352,7 +352,7 @@
                 <div></div>
               </div>
             </div>
-            
+
           </div>
 
           <div class="row">
@@ -361,46 +361,237 @@
               <h3 style="margin-top: inherit;">Dimensions</h3>
             </div>
             <!-- Pieces -->
-            <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_pieces">Length</label>
-                <input type="number" name="length[1]" class="form-control" id="create_id_length"
-                  placeholder="Enter length">
-                <div></div>
+            <div class="row first-row" data-next-div-id="second-row">
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Length</label>
+                  <input type="number" name="length_1" class="form-control" id="create_id_length"
+                    placeholder="Enter length">
+                  <div></div>
+                </div>
               </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Width</label>
+                  <input type="number" name="width_1" class="form-control" id="create_id_width"
+                    placeholder="Enter width">
+                  <div></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Height</label>
+                  <input type="number" name="height_1" class="form-control" id="create_id_height"
+                    placeholder="Enter height">
+                  <div></div>
+                </div>
+              </div>
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-plus-circle-fill" data-include-id="false" style="font-size: 35px;"></i>
+                </div>
+              </div>
+
             </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_pieces">Width</label>
-                <input type="number" name="width[1]" class="form-control" id="create_id_width"
-                  placeholder="Enter width">
-                <div></div>
+
+            <!--2nd Pieces -->
+            <div class="row second-row d-none" id="second-row" data-next-div-id="third-row">
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Length</label>
+                  <input type="number" name="length_2" class="form-control" id="create_id_length"
+                    placeholder="Enter length">
+                  <div></div>
+                </div>
               </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Width</label>
+                  <input type="number" name="width_2" class="form-control" id="create_id_width"
+                    placeholder="Enter width">
+                  <div></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Height</label>
+                  <input type="number" name="height_2" class="form-control" id="create_id_height"
+                    placeholder="Enter height">
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-plus-circle-fill" data-include-id="false" style="font-size: 35px;"></i>
+                </div>
+              </div>
+              <!-- minus icon -->
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-dash-circle-fill" data-div-id="second-row" data-include-id="false"
+                    style="font-size: 35px;"></i>
+                </div>
+              </div>
+
             </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_pieces">Height</label>
-                <input type="number" name="height[1]" class="form-control" id="create_id_height"
-                  placeholder="Enter height">
-                <div></div>
+
+            <!--3rd Pieces -->
+            <div class="row third-row d-none" id="third-row" data-next-div-id="fourth-row">
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Length</label>
+                  <input type="number" name="length_3" class="form-control" id="create_id_length"
+                    placeholder="Enter length">
+                  <div></div>
+                </div>
               </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Width</label>
+                  <input type="number" name="width_3" class="form-control" id="create_id_width"
+                    placeholder="Enter width">
+                  <div></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Height</label>
+                  <input type="number" name="height_3" class="form-control" id="create_id_height"
+                    placeholder="Enter height">
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-plus-circle-fill" data-include-id="false" style="font-size: 35px;"></i>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-dash-circle-fill" data-div-id="third-row" data-include-id="false"
+                    style="font-size: 35px;"></i>
+                </div>
+              </div>
+
             </div>
-            <div class="col-1">
-              <div class="mt-4 text-center">
-                  <i class="bi bi-plus-circle-fill add-asset-id" data-form-id="initiate_asset_movement_workflow" data-include-id="false" style="font-size: 35px;"></i>
+
+            <!--4th Pieces -->
+            <div class="row fourth-row d-none" id="fourth-row">
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Length</label>
+                  <input type="number" name="length_4" class="form-control" id="create_id_length"
+                    placeholder="Enter length">
+                  <div></div>
+                </div>
               </div>
-          </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Width</label>
+                  <input type="number" name="width_4" class="form-control" id="create_id_width"
+                    placeholder="Enter width">
+                  <div></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_pieces">Height</label>
+                  <input type="number" name="height_4" class="form-control" id="create_id_height"
+                    placeholder="Enter height">
+                  <div></div>
+                </div>
+              </div>
+
+
+
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-dash-circle-fill" data-div-id="fourth-row" data-include-id="false"
+                    style="font-size: 35px;"></i>
+                </div>
+              </div>
+
+            </div>
+
 
           </div>
+
+          <div class="row" id="invoice_details">
+
+            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+              <h3 style="margin-top: inherit;">Invoice Details</h3>
+            </div>
+
+            <!-- First Invoice Detail -->
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_hs_title">HS Title</label>
+                  <input type="number" name="hs_title" class="form-control" id="create_id_hs_title"
+                    placeholder="Enter HS title">
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="create_id_quantity">Quantity</label>
+                  <input type="number" name="quantity" class="form-control" id="create_id_quantity"
+                    placeholder="Enter Quantity">
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="col-2">
+                <div class="form-group">
+                  <label for="create_id_price">Price</label>
+                  <input type="number" name="price" class="form-control" id="create_id_price"
+                    placeholder="Enter Price">
+                  <div></div>
+                </div>
+              </div>
+              
+              <div class="col-2">
+                <div class="form-group">
+                  <label for="create_id_total">Total</label>
+                  <input type="number" name="total" class="form-control" id="create_id_total"
+                    placeholder="Enter Price">
+                  <div></div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <div class="mt-4 text-center">
+                  <i class="bi bi-plus-circle-fill" data-include-id="false" style="font-size: 35px;"></i>
+                </div>
+              </div>
+
+
+
+          </div>
+
+
+
+
 
 
         </div>
 
 
-
-
     </div>
+
+
+
+
   </div>
+</div>
 
 
 
