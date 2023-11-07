@@ -10,7 +10,7 @@
   <div class="card m-4" style="background-color: #f9fbd7; font-family: serif;">
     <div class="card-body">
 
-      <form id="create_authuser_form_id" data-method="POST" data-url="{% url 'authuser' %}" data-method="POST">
+      <form id="create_billings_form_id" data-method="POST" data-url="{% url 'authuser' %}">
         <div class="card-body">
           <div class="row">
 
@@ -298,7 +298,7 @@
             <!-- Payment Types -->
             <div class="col-3">
               <div class="form-group">
-                <label>Select Service</label>
+                <label>Select Payment</label>
                 <select name="payment" class="form-control">
                   <option>Select Payment</option>
                   {% for payment in payments %}
@@ -312,7 +312,7 @@
             <!-- Shipment Type -->
             <div class="col-3">
               <div class="form-group">
-                <label>Select Service</label>
+                <label>Select Shipment Type</label>
                 <select name="shipment" class="form-control">
                   <option>Select Shipment Type</option>
                   {% for shipment in shipments %}
@@ -454,6 +454,10 @@
 
           </div>
 
+          <div class="card-footer" style="text-align-last: end">
+            <button class="btn btn-primary" style="background: #fd7e14; border-color:#7f3f0b;font-size: large;">Create Air Way bill</button>
+          </div>
+
 
 
 
@@ -484,9 +488,9 @@
 
 </div>
 <!-- /.card-body -->
-<div class="card-footer" cont>
-  <button class="btn btn-primary" style="background: #fd7e14; border-color:#7f3f0b;font-size: large;">Submit</button>
-</div>
+<!-- <div class="card-footer" cont>
+  <button class="btn btn-primary" style="background: #fd7e14; border-color:#7f3f0b;font-size: large;">Create Air Way bill</button>
+</div> -->
 </form>
 </div>
 </div>
@@ -500,6 +504,7 @@
 
 {% block "extra_scripts" %}
 
+<script src="{% static '/validators/billings.js.js' %}"></script>
 <script src="{% static '/custom-js/billings/billings.js' %}"></script>
 
 
