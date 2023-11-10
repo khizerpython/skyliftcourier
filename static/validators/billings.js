@@ -1,6 +1,6 @@
 $("#create_billings_form_id").validate({
     rules: {
-        service: {
+        service_id: {
             required: true,
         },
         shipper_company_name: {
@@ -71,10 +71,10 @@ $("#create_billings_form_id").validate({
             required: true,
         },
         // Shipment details
-        payment: {
+        payment_id: {
             required: true,
         },
-        shipment: {
+        shipment_id: {
             required: true,
         },
         fedex_number: {

@@ -99,8 +99,9 @@ function transformObj(json_obj) {
     }
     // // Create the new object with the "dimensions" property
     var newObj = Object.assign({}, json_obj, { dimensions: dimensions, invoice_details:invoice_details });
-
     console.log(newObj);
+
+    return newObj;
     
 }}
 
@@ -115,7 +116,14 @@ $("#create_billings_form_id").on('submit', function(e){
     const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
     // console.log("the json obj is :",json_obj);
     // console.log("the json obj is :",json_obj.length);
-    var transformFinalObj = transformObj(json_obj)
+    var _data = transformObj(json_obj)
+    console.log("the _data is :",_data);
+
+    const submit_url = $(this).data("url");
+    const submit_method = $(this).data("method");
+
+    var { status, data } =sendRequest(submit_method, submit_url, _data);
+
 
 
     

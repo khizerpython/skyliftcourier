@@ -10,7 +10,7 @@
   <div class="card m-4" style="background-color: #f9fbd7; font-family: serif;">
     <div class="card-body">
 
-      <form id="create_billings_form_id" data-method="POST" data-url="{% url 'authuser' %}">
+      <form id="create_billings_form_id" data-method="POST" data-url="{% url 'airway_bill' %}">
         <div class="card-body">
           <div class="row">
 
@@ -19,7 +19,7 @@
               <!-- Select Service -->
               <div class="form-group">
                 <label>Select Service</label>
-                <select name="service" class="form-control">
+                <select name="service_id" class="form-control">
                   <option>Select Service</option>
                   {% for service in services%}
                   <option value={{service.id}}>{{service.name}}</option>
@@ -113,7 +113,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_post_code">Postal Code</label>
-                <input type="text" name="shipper_post_code" class="form-control" id="create_id_shipper_post_code"
+                <input type="number" name="shipper_post_code" class="form-control" id="create_id_shipper_post_code"
                   placeholder="Enter Shipper State Postal Code">
                 <div></div>
               </div>
@@ -236,7 +236,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_reciever_post_code">Postal Code</label>
-                <input type="text" name="reciever_post_code" class="form-control" id="create_id_reciever_post_code"
+                <input type="number" name="reciever_post_code" class="form-control" id="create_id_reciever_post_code"
                   placeholder="Enter Reciever State Postal Code">
                 <div></div>
               </div>
@@ -299,7 +299,7 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Select Payment</label>
-                <select name="payment" class="form-control">
+                <select name="payment_id" class="form-control">
                   <option>Select Payment</option>
                   {% for payment in payments %}
                   <option value={{payment.id}}>{{payment.name}}</option>
@@ -313,7 +313,7 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Select Shipment Type</label>
-                <select name="shipment" class="form-control">
+                <select name="shipment_id" class="form-control">
                   <option>Select Shipment Type</option>
                   {% for shipment in shipments %}
                   <option value={{shipment.id}}>{{shipment.name}}</option>

@@ -23,3 +23,49 @@ class ShipmentType(ModelUUIDField):
     def __str__(self) -> str:
         return str(self.name)
 
+class AirwayBill(ModelUUIDField,CreatedAndUpdatedModelFields):
+    service_id = models.ForeignKey(Service,on_delete=models.SET_NULL, blank=True, null=True)
+
+    # Tracking Number
+    tracking_number = models.IntegerField(blank=False, null=False, default=1)
+
+    # Shipper table
+    shipper_company_name = models.CharField(max_length=255, blank=False)
+    shipper_contact_person = models.CharField(max_length=255, blank=False)
+    shipper_reference = models.CharField(max_length=255, blank=False)
+    shipper_address = models.CharField(max_length=255, blank=False)
+    shipper_state = models.CharField(max_length=255, blank=False)
+    shipper_city = models.CharField(max_length=255, blank=False)
+    shipper_post_code = models.IntegerField(blank=False)
+    shipper_mobile_number = models.IntegerField(blank=False)
+    shipper_phone_number = models.IntegerField(blank=False)
+    shipper_ntn_cnic = models.CharField(max_length=255, blank=False)
+    shipper_email_address = models.EmailField(max_length=255, blank=False)
+
+    # Reciever table
+    reciever_company_name = models.CharField(max_length=255, blank=False)
+    reciever_contact_person = models.CharField(max_length=255, blank=False)
+    reciever_address = models.CharField(max_length=255, blank=False)
+    reciever_country = models.CharField(max_length=255, blank=False)
+    reciever_state = models.CharField(max_length=255, blank=False)
+    reciever_city = models.CharField(max_length=255, blank=False)
+    reciever_post_code = models.IntegerField(blank=False)
+    reciever_mobile_number = models.IntegerField(blank=False)
+    reciever_phone_number = models.IntegerField(blank=False)
+    reciever_email = models.EmailField(max_length=255, blank=False)
+    reciever_fax = models.CharField(max_length=255, blank=False)
+
+    # Shipment Details
+    payment_id = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True,null=True)
+    shipment_id = models.ForeignKey(ShipmentType, on_delete=models.SET_NULL, blank=True,null=True)
+
+    fedex_number = models.CharField(max_length=255, blank=False)
+    weight = models.IntegerField(blank=False)
+    pieces = models.IntegerField(blank=False)
+
+    # Dimensions and invoice details
+    data = models.JSONField(null=True)
+
+
+
+
