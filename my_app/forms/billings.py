@@ -57,3 +57,5 @@ class BillingsForm(forms.Form):
         self.fields['service_id'].choices = [(str(service.id), str(service)) for service in services]
         self.fields['payment_id'].choices = [(str(payment.id), str(payment)) for payment in payments]
         self.fields['shipment_id'].choices = [(str(shipment.id), str(shipment)) for shipment in shipments]
+
+     
