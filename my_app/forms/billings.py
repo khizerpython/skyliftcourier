@@ -51,11 +51,54 @@ class BillingsForm(forms.Form):
         super(BillingsForm, self).__init__(*args, **kwargs)
         
         # Populate the choices dynamically from the Service model
-        services = Service.objects.all()
-        payments = Payment.objects.all()
-        shipments = ShipmentType.objects.all()
-        self.fields['service_id'].choices = [(str(service.id), str(service)) for service in services]
-        self.fields['payment_id'].choices = [(str(payment.id), str(payment)) for payment in payments]
-        self.fields['shipment_id'].choices = [(str(shipment.id), str(shipment)) for shipment in shipments]
+        self.services = Service.objects.all()
+        self.payments = Payment.objects.all()
+        self.shipments = ShipmentType.objects.all()
+        self.fields['service_id'].choices = [(str(service.id), str(service)) for service in self.services]
+        self.fields['payment_id'].choices = [(str(payment.id), str(payment)) for payment in self.payments]
+        self.fields['shipment_id'].choices = [(str(shipment.id), str(shipment)) for shipment in self.shipments]
 
+    def clean(self):
+        
+        cleaned_data: dict = super().clean()
+
+        service_id = cleaned_data.get('service_id')
+        payment_id = cleaned_data.get('payment_id')
+        shipment_id = cleaned_data.get('shipment_id')
+        if service_id:
+            try:
+                # Fetch the Service instance using the UUID
+                # service_instance = Service.objects.get(id=service_id)
+                service_instance = self.services.get(id=service_id)
+                cleaned_data['service_id'] = service_instance
+            except Service.DoesNotExist:
+                # Handle the case where the Service instance with the given UUID doesn't exist
+                raise forms.ValidationError("Service with the specified UUID does not exist.")
+            
+        if payment_id:    
+            try:
+                # payment_instance = Payment.objects.get(id=payment_id)
+                payment_instance = self.payments.get(id=payment_id)
+                cleaned_data['payment_id'] = payment_instance
+            except Payment.DoesNotExist:
+                raise forms.ValidationError("Payment with the specified UUID does not exist.")
+        
+        if shipment_id:    
+            try:
+                # shipment_instance = ShipmentType.objects.get(id=shipment_id)
+                shipment_instance = self.shipments.get(id=shipment_id)
+                cleaned_data['shipment_id'] = shipment_instance
+            except Payment.DoesNotExist:
+                raise forms.ValidationError("Shipment type with the specified UUID does not exist.")
+
+
+
+        airway_bill = AirwayBill.objects.latest('created_at')
+        if airway_bill is not None:
+            print("the tracking number is :",airway_bill.tracking_number, airway_bill.id)
+            
+            cleaned_data['tracking_number'] = int(airway_bill.tracking_number + 1)
+        else:    
+            cleaned_data['tracking_number'] = int('12345678')
+        return cleaned_data
      

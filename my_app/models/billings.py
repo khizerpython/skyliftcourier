@@ -27,7 +27,7 @@ class AirwayBill(ModelUUIDField,CreatedAndUpdatedModelFields):
     service_id = models.ForeignKey(Service,on_delete=models.SET_NULL, blank=True, null=True)
 
     # Tracking Number
-    tracking_number = models.IntegerField(blank=False, null=False, default=1)
+    tracking_number = models.IntegerField(blank=False, null=False, default=00000000)
 
     # Shipper table
     shipper_company_name = models.CharField(max_length=255, blank=False)

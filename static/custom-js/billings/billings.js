@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    // Your code here
+    console.log("Document is ready!");
+    let table = new DataTable('#airway_bill_datatable_id');
+})
+
 
 function createMinusIcon(_class, _delete){
     var col_div = $('<div>')
@@ -104,6 +110,12 @@ function transformObj(json_obj) {
     return newObj;
     
 }}
+$(document).on('click', '#display-form-id', function(){
+// $("#display-form-id").click(function(){
+    console.log("clicked");
+    var displayFormId = $(this).attr('data-display-form-id')
+    $("#" + displayFormId).removeClass('d-none')
+})
 
 
 $("#create_billings_form_id").on('submit', function(e){
@@ -123,6 +135,14 @@ $("#create_billings_form_id").on('submit', function(e){
     const submit_method = $(this).data("method");
 
     var { status, data } =sendRequest(submit_method, submit_url, _data);
+    if (status){
+        remove_custom_error_classes();
+        $("#reset_create_billing_form_id").trigger("click");
+        
+        
+    }
+
+    
 
 
 
