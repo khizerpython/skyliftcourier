@@ -487,6 +487,7 @@
                         <th>Reciever Name</th>
                         <th>Payment</th>
                         <th>Shipment Type</th>
+                        <th>Details</th>
                         
                         
                     </tr>
@@ -500,6 +501,9 @@
                     <td>{{bill.reciever_contact_person}}</td>
                     <td>{{bill.payment_id}}</td>
                     <td>{{bill.shipment_id}}</td>
+                    <td>
+                      <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}" data-url="{% url 'airway_bill_detail' %}" style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button>
+                    </td>
                   </tr>  
                   
                   {% endfor %}

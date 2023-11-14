@@ -57,7 +57,7 @@ function remove_custom_error_classes() {
     $(".invalid-radio").removeClass("invalid-radio");
 }
 
-
+return_data=''
 function sendRequest(method, url, data) {
     if (typeof method === "undefined" || typeof url === "undefined" || typeof data === "undefined") {
         return { status: false, data: "Invalid request parameters" };

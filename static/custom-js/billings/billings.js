@@ -4,7 +4,6 @@ $(document).ready(function() {
     let table = new DataTable('#airway_bill_datatable_id');
 })
 
-
 function createMinusIcon(_class, _delete){
     var col_div = $('<div>')
     var col1 = col_div.clone().addClass(_class)
@@ -23,7 +22,6 @@ function createInputRow(_id, _name, _type, _placeholder, _class, _title,_delete)
     finalDiv = col1.append(innerDiv.append(label,InputField))
     return finalDiv
   }
-
 
 $(document).on('click', '.bi-plus-circle-fill', function(){
     var dataInvoiceDetails = $(this).attr('data-invoice-details')
@@ -59,7 +57,6 @@ $(document).on('click', '.bi-dash-circle-fill', function(){
     $(this).parent().parent().remove()
     divsWithSameDeleteID.remove()
 })
-
 
 function transformObj(json_obj) {
     // dimensions
@@ -117,7 +114,6 @@ $(document).on('click', '#display-form-id', function(){
     $("#" + displayFormId).removeClass('d-none')
 })
 
-
 $("#create_billings_form_id").on('submit', function(e){
     e.preventDefault();
     e.stopPropagation()
@@ -152,4 +148,48 @@ $("#create_billings_form_id").on('submit', function(e){
 
 })
 
+// get obj html
+function get_obj_html_cm(index, obj) {
+    // for (var [key, value] of Object.entries(obj.data)) 
+    const step = index+1;
+    var temp_div = $("<div>")
+    var temp_span = $("<span>")
+    var return_dom = temp_div.clone().addClass("row")
+    return_dom.append(temp_div.clone().addClass("col-5 d-flex align-items-center").html("<strong>Executed at: </strong>"+ obj.created_at))
+    return_dom.append(temp_div.clone().addClass("col-5 d-flex align-items-center").html("<strong>Executed by: </strong>"+ obj.user_id))
+    return_dom.append(temp_div.clone().addClass("col-5 d-flex align-items-center").html("<strong>Departments: </strong>"+ obj.departments))
+    return_dom.append(temp_div.clone().addClass("col-5 d-flex align-items-center").html("<strong>Designations: </strong>"+ obj.designation))
+    return_dom.append(temp_div.clone().addClass("col-2 d-flex align-items-center").append(temp_span.clone().addClass("badge bg-primary rapid-theme-color").text("Step " + step)))
+    return_dom.append(temp_div.clone().addClass("col-5 d-flex align-items-center").html("<strong>Execution Status: </strong> "+ obj.status_id))
+    
+    
+  }
+  
+  // get carousal html
+  function get_detail_billing_html(data , is_download=false){
+    var parent_div = $("<div>").addClass("carousel slide").attr("data-bs-ride", "carousel").attr("id", "workflowHistoryCarousel");
+    var inner_div = $("<div>").addClass("carousel-inner").css("padding", "1px 2.5rem 1px 2.5rem");
+    
+    data.forEach((obj, index) => {
+        var obj_html = get_obj_html_cm(index, obj); 
+        var carousel_div = $("<div>").addClass("carousel-item").html(obj_html);
+        if(index == 0){
+            carousel_div.addClass("active");
+        }
+        carousel_div.appendTo(inner_div);
+    })
+    
+  }
+
+$(document).on('click',"#get_billing_details_button", function(){
+    console.log("clicked");
+    var billingDetailsId = $(this).attr('data-get-detail-id')
+    var billinDetailsUrl = $(this).attr('data-url')
+    // console.log(billingDetailsId);
+    var {status, data} = sendRequest("POST", billinDetailsUrl, {"id": billingDetailsId});
+
+    console.log("the data here is :",data);
+    var data_in_html = get_detail_billing_html(data);
+    setGenericModal(CASE_ID, data_in_html,true);
+})
 

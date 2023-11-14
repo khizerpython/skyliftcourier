@@ -101,4 +101,15 @@ class BillingsForm(forms.Form):
         else:    
             cleaned_data['tracking_number'] = int('12345678')
         return cleaned_data
-     
+
+
+class BillingsDetail(forms.Form):
+    id = forms.ChoiceField(choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super(BillingsDetail, self).__init__(*args, **kwargs)
+        
+        # Populate the choices dynamically from the AirWayBill model
+        self.bills = AirwayBill.objects.all()
+        
+        self.fields['id'].choices = [(str(bill.id), str(bill.id)) for bill in self.bills]
