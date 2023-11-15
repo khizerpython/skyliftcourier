@@ -169,14 +169,20 @@ function get_obj_html_cm(index, obj) {
   function get_detail_billing_html(data , is_download=false){
     var parent_div = $("<div>").addClass("carousel slide").attr("data-bs-ride", "carousel").attr("id", "workflowHistoryCarousel");
     var inner_div = $("<div>").addClass("carousel-inner").css("padding", "1px 2.5rem 1px 2.5rem");
+    var div = $("<div>")
+    var rowDiv = div.clone().addClass('row')
+    var colDiv =  div.clone().addClass('col-6')
     
     data.forEach((obj, index) => {
-        var obj_html = get_obj_html_cm(index, obj); 
-        var carousel_div = $("<div>").addClass("carousel-item").html(obj_html);
-        if(index == 0){
-            carousel_div.addClass("active");
-        }
-        carousel_div.appendTo(inner_div);
+        console.log(obj,index);
+        console.log(obj.fields.tracking_number);
+        colDiv.clone.html()
+        // var obj_html = get_obj_html_cm(index, obj); 
+        // var carousel_div = $("<div>").addClass("carousel-item").html(obj_html);
+        // if(index == 0){
+        //     carousel_div.addClass("active");
+        // }
+        // carousel_div.appendTo(inner_div);
     })
     
   }
@@ -190,6 +196,6 @@ $(document).on('click',"#get_billing_details_button", function(){
 
     console.log("the data here is :",data);
     var data_in_html = get_detail_billing_html(data);
-    setGenericModal(CASE_ID, data_in_html,true);
+    // setGenericModal(CASE_ID, data_in_html,true);
 })
 
