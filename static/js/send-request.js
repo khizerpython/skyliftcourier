@@ -63,8 +63,6 @@ function sendRequest(method, url, data) {
         return { status: false, data: "Invalid request parameters" };
     }
     let formData = JSON.stringify(data);
-    console.log("the form data is :", formData);
-    console.log("the form data is :", typeof(formData));
     $.ajax({
         type: method,
         url,
@@ -75,7 +73,7 @@ function sendRequest(method, url, data) {
         async: false,
         headers: { "X-CSRFToken": global_csrf_token },
         success: function (data, status, xhr) {
-            console.log("the data is :", data);
+            
             let dec_data = handleSuccess(data);
             return_data = { status: true, data: dec_data }
         },
