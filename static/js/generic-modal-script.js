@@ -13,7 +13,6 @@ function setGenericModal(heading, bodyHTML, large_modal=false) {
     }
 
     const modalDOM = $("#generic-display-modal");
-    console.log(modalDOM);
     modalDOM.find("h5").text(heading);
     modalDOM.find("#generic-display-modal-body-id").html(bodyHTML);
     // $("#generic-display-modal").modal('show');
