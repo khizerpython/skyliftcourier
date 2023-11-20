@@ -12,12 +12,32 @@ function createMinusIcon(_class, _delete) {
     return finalDiv
 }
 
-function createInputRow(_id, _name, _type, _placeholder, _class, _title, _delete) {
+{/* <div class="mt-4 text-center">
+                <i class="bi bi-plus-circle-fill" data-include-id="false" data-invoice-details="false"
+                  style="font-size: 35px;"></i>
+              </div> */}
+
+
+
+function createPlusIcon(_data_invoice_details) {
+    var col_div = $('<div>')
+    var col1 = col_div.clone().addClass("col-1")
+    var innerDiv = col_div.clone().addClass('mt-4 text-center')
+    var ITag = $("<i>").addClass('bi bi-plus-circle-fill').attr('data-include-id',"false").attr('data-invoice-details',_data_invoice_details).css('font-size', '35px')
+    finalDiv = col1.append(innerDiv.append(ITag))
+    return finalDiv
+}
+
+function createInputRow(_id, _name, _type, _placeholder, _class, _title, _delete, _value) {
     var col_div = $('<div>')
     var col1 = col_div.clone().addClass(_class).attr('data-delete-id', _delete)
     var innerDiv = col_div.clone().addClass('form-group')
     var label = $("<label>").attr('for', _id).text(_title)
     var InputField = $("<input>").attr({ 'name': _name, 'type': _type, 'class': 'form-control', 'id': _id, 'placeholder': _placeholder })
+    if (_value !== undefined && _value !== null) {
+        InputField.val(_value); // Set the _value if it exists
+    }
+
     finalDiv = col1.append(innerDiv.append(label, InputField))
     return finalDiv
 }
@@ -26,22 +46,23 @@ $(document).on('click', '.bi-plus-circle-fill', function () {
     var dataInvoiceDetails = $(this).attr('data-invoice-details')
     if (dataInvoiceDetails == 'true') {
         var invoiceLength = $(this).closest('form').find("input#create_id_hs_title").length
+        
         if (invoiceLength < 15) {
-            var row1 = createInputRow(_id = 'create_id_hs_title', _name = 'hs_title', _type = 'text', _placeholder = 'Enter HS title', _class = 'col-3 ', _title = 'HS Title', _delete = 'invoicedetail' + invoiceLength)
-            var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-3', _title = 'Quantity', _delete = 'invoicedetail' + invoiceLength)
-            var row3 = createInputRow(_id = 'create_id_price', _name = 'price', _type = 'number', _placeholder = 'Enter Price', _class = 'col-2', _title = 'Price', _delete = 'invoicedetail' + invoiceLength)
-            var row4 = createInputRow(_id = 'create_id_total', _name = 'total', _type = 'number', _placeholder = 'Enter Total', _class = 'col-2', _title = 'Total', _delete = 'invoicedetail' + invoiceLength)
-            var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'invoicedetail' + invoiceLength)
+            var row1 = createInputRow(_id = 'create_id_hs_title', _name = 'hs_title', _type = 'text', _placeholder = 'Enter HS title', _class = 'col-3 ', _title = 'HS Title', _delete = 'invoicedetail' + invoiceLength+1)
+            var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-3', _title = 'Quantity', _delete = 'invoicedetail' + invoiceLength+1)
+            var row3 = createInputRow(_id = 'create_id_price', _name = 'price', _type = 'number', _placeholder = 'Enter Price', _class = 'col-2', _title = 'Price', _delete = 'invoicedetail' + invoiceLength+1)
+            var row4 = createInputRow(_id = 'create_id_total', _name = 'total', _type = 'number', _placeholder = 'Enter Total', _class = 'col-2', _title = 'Total', _delete = 'invoicedetail' + invoiceLength+1)
+            var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'invoicedetail' + invoiceLength+1)
             $(this).closest('.row').append(row1, row2, row3, row4, MinusIcon)
         }
 
     } else if (dataInvoiceDetails == 'false') {
         var dimentionLength = $(this).closest('form').find("input#create_id_length").length
         if (dimentionLength < 5) {
-            var row1 = createInputRow(_id = 'create_id_length', _name = 'length', _type = 'number', _placeholder = 'Enter length', _class = 'col-3', _title = 'Length', _delete = 'dimension' + dimentionLength)
-            var row2 = createInputRow(_id = 'create_id_width', _name = 'width', _type = 'number', _placeholder = 'Enter width', _class = 'col-3', _title = 'Width', _delete = 'dimension' + dimentionLength)
-            var row3 = createInputRow(_id = 'create_id_height', _name = 'height', _type = 'number', _placeholder = 'Enter height', _class = 'col-3', _title = 'Height', _delete = 'dimension' + dimentionLength)
-            var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'dimension' + dimentionLength)
+            var row1 = createInputRow(_id = 'create_id_length', _name = 'length', _type = 'number', _placeholder = 'Enter length', _class = 'col-3', _title = 'Length', _delete = 'dimension' + dimentionLength+1)
+            var row2 = createInputRow(_id = 'create_id_width', _name = 'width', _type = 'number', _placeholder = 'Enter width', _class = 'col-3', _title = 'Width', _delete = 'dimension' + dimentionLength+1)
+            var row3 = createInputRow(_id = 'create_id_height', _name = 'height', _type = 'number', _placeholder = 'Enter height', _class = 'col-3', _title = 'Height', _delete = 'dimension' + dimentionLength+1)
+            var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'dimension' + dimentionLength+1)
             $(this).closest('.row').append(row1, row2, row3, row4, MinusIcon)
         }
     } else {
@@ -122,11 +143,9 @@ $("#create_billings_form_id").on('submit', function (e) {
     e.preventDefault();
     e.stopPropagation()
 
-    // var $form = $(this);
     var formData = $(this).serializeArray();
     const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
     var _data = transformObj(json_obj)
-
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
 
@@ -134,18 +153,7 @@ $("#create_billings_form_id").on('submit', function (e) {
     if (status) {
         remove_custom_error_classes();
         $("#reset_create_billing_form_id").trigger("click");
-
-
     }
-
-
-
-
-
-
-
-
-
 })
 
 
@@ -286,7 +294,7 @@ function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = 
     console.log(data);
     const filtered_data = data[0].fields
     for (const [key, value] of Object.entries(filtered_data)) {
-        console.log(key);
+        // console.log(key);
         const obj_inst = $("#" + form_id).children().find("[name='" + key + "']");
         if (obj_inst.length > 1) {
             $("#" + form_id).children().find("[name='" + key + "'][value='" + value + "']").prop("checked", true);
@@ -294,6 +302,45 @@ function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = 
         if (key=="data"){
             for(const[innerKey,innerValue] of Object.entries(value)){
                 console.log(key,value);
+                if(innerKey==='dimensions'){
+                    // console.log("dimensions : ",innerValue);
+                    for(const[dimensionKey, dimensionValue] of Object.entries(innerValue)){
+                        // console.log(dimensionKey,dimensionValue);
+                        // console.log(dimensionValue.length);
+                        var row1 = createInputRow(_id = 'create_id_length', _name = 'length', _type = 'number', _placeholder = 'Enter length', _class = 'col-3', _title = 'Length', _delete = 'dimension' + dimensionKey, _value=dimensionValue.length)
+                        var row2 = createInputRow(_id = 'create_id_width', _name = 'width', _type = 'number', _placeholder = 'Enter width', _class = 'col-3', _title = 'Width', _delete = 'dimension' + dimensionKey, _value=dimensionValue.width)
+                        var row3 = createInputRow(_id = 'create_id_height', _name = 'height', _type = 'number', _placeholder = 'Enter height', _class = 'col-3', _title = 'Height', _delete = 'dimension' + dimensionKey, _value=dimensionValue.height)
+                        
+                        if(dimensionKey == 1){
+                            var MinusIcon = createPlusIcon(_data_invoice_details=false)
+                        } else{
+                            var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'dimension' + dimensionKey)
+                        }
+                        
+                        $("#dimensiondiv").closest('.row').append(row1, row2, row3, MinusIcon)
+                    }
+                    
+                }else if(innerKey=='invoice_details'){
+                    // console.log("invoice_details: ",innerValue);
+                    for(const[invoicedetailKey, invoicedetailValue] of Object.entries(innerValue)){
+
+                        var row1 = createInputRow(_id = 'create_id_hs_title', _name = 'hs_title', _type = 'text', _placeholder = 'Enter HS title', _class = 'col-3 ', _title = 'HS Title', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.hs_title)
+                        var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-3', _title = 'Quantity', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.quantity)
+                        var row3 = createInputRow(_id = 'create_id_price', _name = 'price', _type = 'number', _placeholder = 'Enter Price', _class = 'col-2', _title = 'Price', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.price)
+                        var row4 = createInputRow(_id = 'create_id_total', _name = 'total', _type = 'number', _placeholder = 'Enter Total', _class = 'col-2', _title = 'Total', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.total)
+                        if(invoicedetailKey==1){
+                            var MinusIcon = createPlusIcon(_data_invoice_details=true)
+                        } else {
+
+                            var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'invoicedetail' + invoicedetailKey)
+                        }
+                        $("#invoiceDetailsdiv").closest('.row').append(row1, row2, row3, row4, MinusIcon)
+
+                    }
+
+                    
+
+                }
             }
         }
         // else if (quillbot_fields.includes(key)) {
