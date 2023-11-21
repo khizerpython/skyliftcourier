@@ -516,7 +516,7 @@
       </div>
 
       <!-- Update AirWay bill form -->
-      <form class="d-none" id="update_billings_form_id" data-method="POST" data-url="{% url 'airway_bill' %}">
+      <form class="d-none" id="update_billings_form_id" data-method="POST" data-url="{% url 'update_airway_bill' %}">
         <div class="card-body">
           <div class="row">
             <input type="hidden" name="id" class="form-control" 
@@ -525,7 +525,7 @@
               <!-- Select Service -->
               <div class="form-group">
                 <label>Select Service</label>
-                <select name="service_id" class="form-control">
+                <select name="service_id" class="form-control", name="update_service_id">
                   <option>Select Service</option>
                   {% for service in services%}
                   <option value={{service.id}}>{{service.name}}</option>
@@ -547,8 +547,8 @@
             <!-- Shipper Company Name -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_company_name">Company Name</label>
-                <input type="text" name="shipper_company_name" class="form-control" id="create_id_shipper_company_name"
+                <label for="update_id_shipper_company_name">Company Name</label>
+                <input type="text" name="shipper_company_name" class="form-control" id="update_id_shipper_company_name"
                   placeholder="Enter Company Name">
                 <div></div>
               </div>
@@ -557,9 +557,9 @@
             <!-- Shipper Contant Person -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_contact_person_name">Contact Person Name</label>
+                <label for="update_id_shipper_contact_person_name">Contact Person Name</label>
                 <input type="text" name="shipper_contact_person" class="form-control"
-                  id="create_id_shipper_contact_person_name" placeholder="Enter Contact Person Name">
+                  id="update_id_shipper_contact_person_name" placeholder="Enter Contact Person Name">
                 <div></div>
               </div>
             </div>
@@ -567,8 +567,8 @@
             <!-- Shipper Refrence -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_reference">Reference</label>
-                <input type="text" name="shipper_reference" class="form-control" id="create_id_shipper_reference"
+                <label for="update_id_shipper_reference">Reference</label>
+                <input type="text" name="shipper_reference" class="form-control" id="update_id_shipper_reference"
                   placeholder="Enter Reference">
                 <div></div>
               </div>
@@ -577,10 +577,10 @@
             <!--Shipper Person Address -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_address">Address</label>
-                <!-- <input type="text" name="shipper_address" class="form-control" id="create_id_shipper_address"
+                <label for="update_id_shipper_address">Address</label>
+                <!-- <input type="text" name="shipper_address" class="form-control" id="update_id_shipper_address"
                   placeholder="Enter Shipper Address"> -->
-                <textarea class="form-control" name="shipper_address" rows="1" id="create_id_shipper_address"
+                <textarea class="form-control" name="shipper_address" rows="1" id="update_id_shipper_address"
                   placeholder="Enter Shipper Address"></textarea>
                 <div></div>
               </div>
@@ -589,8 +589,8 @@
             <!--Shipper Person State -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_state">State</label>
-                <input type="text" name="shipper_state" class="form-control" id="create_id_shipper_state"
+                <label for="update_id_shipper_state">State</label>
+                <input type="text" name="shipper_state" class="form-control" id="update_id_shipper_state"
                   placeholder="Enter Shipper State">
                 <div></div>
               </div>
@@ -599,8 +599,8 @@
             <!--Shipper Person City -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_city">City</label>
-                <input type="text" name="shipper_city" class="form-control" id="create_id_shipper_city"
+                <label for="update_id_shipper_city">City</label>
+                <input type="text" name="shipper_city" class="form-control" id="update_id_shipper_city"
                   placeholder="Enter Shipper City">
                 <div></div>
               </div>
@@ -609,8 +609,8 @@
             <!--Shipper Person State Post Code -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_post_code">Postal Code</label>
-                <input type="number" name="shipper_post_code" class="form-control" id="create_id_shipper_post_code"
+                <label for="update_id_shipper_post_code">Postal Code</label>
+                <input type="number" name="shipper_post_code" class="form-control" id="update_id_shipper_post_code"
                   placeholder="Enter Shipper State Postal Code">
                 <div></div>
               </div>
@@ -619,9 +619,9 @@
             <!--Shipper Person Mobile Number -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_mobile_number">Mobile Number</label>
+                <label for="update_id_shipper_mobile_number">Mobile Number</label>
                 <input type="number" name="shipper_mobile_number" class="form-control"
-                  id="create_id_shipper_mobile_number" placeholder="Enter Shipper Mobile Number">
+                  id="update_id_shipper_mobile_number" placeholder="Enter Shipper Mobile Number">
                 <div></div>
               </div>
             </div>
@@ -629,9 +629,9 @@
             <!--Shipper Person Contact Number -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_shipper_phone_number">Phone Number</label>
+                <label for="update_id_shipper_phone_number">Phone Number</label>
                 <input type="number" name="shipper_phone_number" class="form-control"
-                  id="create_id_shipper_phone_number" placeholder="Enter Shipper Phone Number">
+                  id="update_id_shipper_phone_number" placeholder="Enter Shipper Phone Number">
                 <div></div>
               </div>
             </div>
@@ -639,8 +639,8 @@
             <!--Shipper Person NTN/CNIC -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_ntn_cnic">NTN/CNIC</label>
-                <input type="text" name="shipper_ntn_cnic" class="form-control" id="create_id_shipper_ntn_cnic"
+                <label for="update_id_ntn_cnic">NTN/CNIC</label>
+                <input type="text" name="shipper_ntn_cnic" class="form-control" id="update_id_shipper_ntn_cnic"
                   placeholder="Enter Shipper NTN/CNIC">
                 <div></div>
               </div>
@@ -649,9 +649,9 @@
             <!--Shipper Person Email Address -->
             <div class="col-12">
               <div class="form-group">
-                <label for="create_id_shipper_email_address">Email Address</label>
+                <label for="update_id_shipper_email_address">Email Address</label>
                 <input type="text" name="shipper_email_address" class="form-control"
-                  id="create_id_shipper_email_address" placeholder="Enter Email Address">
+                  id="update_id_shipper_email_address" placeholder="Enter Email Address">
                 <div></div>
               </div>
             </div>
@@ -670,9 +670,9 @@
             <!--Reciever Email Address -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_company_name">Company</label>
+                <label for="update_id_reciever_company_name">Company</label>
                 <input type="text" name="reciever_company_name" class="form-control"
-                  id="create_id_reciever_company_name" placeholder="Enter Company Name">
+                  id="update_id_reciever_company_name" placeholder="Enter Company Name">
                 <div></div>
               </div>
             </div>
@@ -680,9 +680,9 @@
             <!-- Reciever Contant Person -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_contact_person_name">Contact Person Name</label>
+                <label for="update_id_reciever_contact_person_name">Contact Person Name</label>
                 <input type="text" name="reciever_contact_person" class="form-control"
-                  id="create_id_reciever_contact_person_name" placeholder="Enter Contact Person Name">
+                  id="update_id_reciever_contact_person_name" placeholder="Enter Contact Person Name">
                 <div></div>
               </div>
             </div>
@@ -690,10 +690,10 @@
             <!--Reciever Person Address -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_address">Address</label>
-                <!-- <input type="text" name="reciever_address" class="form-control" id="create_id_reciever_address"
+                <label for="update_id_reciever_address">Address</label>
+                <!-- <input type="text" name="reciever_address" class="form-control" id="update_id_reciever_address"
                   placeholder="Enter reciever Address"> -->
-                <textarea class="form-control" name="reciever_address" rows="1" id="create_id_reciever_address"
+                <textarea class="form-control" name="reciever_address" rows="1" id="update_id_reciever_address"
                   placeholder="Enter Reciever Address"></textarea>
                 <div></div>
               </div>
@@ -702,8 +702,8 @@
             <!--Reciever Person Country -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_country">Country</label>
-                <input type="text" name="reciever_country" class="form-control" id="create_id_reciever_country"
+                <label for="update_id_reciever_country">Country</label>
+                <input type="text" name="reciever_country" class="form-control" id="update_id_reciever_country"
                   placeholder="Enter Reciever Country">
                 <div></div>
               </div>
@@ -712,8 +712,8 @@
             <!--Reciever Person State-->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_state">State</label>
-                <input type="text" name="reciever_state" class="form-control" id="create_id_reciever_state"
+                <label for="update_id_reciever_state">State</label>
+                <input type="text" name="reciever_state" class="form-control" id="update_id_reciever_state"
                   placeholder="Enter Reciever State">
                 <div></div>
               </div>
@@ -722,8 +722,8 @@
             <!--Reciever Person City-->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_city">City</label>
-                <input type="text" name="reciever_city" class="form-control" id="create_id_reciever_city"
+                <label for="update_id_reciever_city">City</label>
+                <input type="text" name="reciever_city" class="form-control" id="update_id_reciever_city"
                   placeholder="Enter Reciever City">
                 <div></div>
               </div>
@@ -732,8 +732,8 @@
             <!--Reciever Person State Post Code -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_post_code">Postal Code</label>
-                <input type="number" name="reciever_post_code" class="form-control" id="create_id_reciever_post_code"
+                <label for="update_id_reciever_post_code">Postal Code</label>
+                <input type="number" name="reciever_post_code" class="form-control" id="update_id_reciever_post_code"
                   placeholder="Enter Reciever State Postal Code">
                 <div></div>
               </div>
@@ -742,9 +742,9 @@
             <!--Reciever Person Mobile Number -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_mobile_number">Mobile Number</label>
+                <label for="update_id_reciever_mobile_number">Mobile Number</label>
                 <input type="number" name="reciever_mobile_number" class="form-control"
-                  id="create_id_reciever_mobile_number" placeholder="Enter Reciever Mobile Number">
+                  id="update_id_reciever_mobile_number" placeholder="Enter Reciever Mobile Number">
                 <div></div>
               </div>
             </div>
@@ -752,9 +752,9 @@
             <!--Reciever Person Contact Number -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_phone_number">Phone Number</label>
+                <label for="update_id_reciever_phone_number">Phone Number</label>
                 <input type="number" name="reciever_phone_number" class="form-control"
-                  id="create_id_reciever_phone_number" placeholder="Enter Reciever Phone Number">
+                  id="update_id_reciever_phone_number" placeholder="Enter Reciever Phone Number">
                 <div></div>
               </div>
             </div>
@@ -762,8 +762,8 @@
             <!--Reciever Person Email -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_email">Email</label>
-                <input type="email" name="reciever_email" class="form-control" id="create_id_reciever_email"
+                <label for="update_id_reciever_email">Email</label>
+                <input type="email" name="reciever_email" class="form-control" id="update_id_reciever_email"
                   placeholder="Enter Reciever Email">
                 <div></div>
               </div>
@@ -773,8 +773,8 @@
             <!--Reciever Person Fax -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_reciever_fax">Fax</label>
-                <input type="fax" name="reciever_fax" class="form-control" id="create_id_reciever_fax"
+                <label for="update_id_reciever_fax">Fax</label>
+                <input type="fax" name="reciever_fax" class="form-control" id="update_id_reciever_fax"
                   placeholder="Enter Reciever Fax">
                 <div></div>
               </div>
@@ -823,8 +823,8 @@
             <!-- FEDEX number -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_fedex_number">FedEx No</label>
-                <input type="text" name="fedex_number" class="form-control" id="create_id_fedex_number"
+                <label for="update_id_fedex_number">FedEx No</label>
+                <input type="text" name="fedex_number" class="form-control" id="update_id_fedex_number"
                   placeholder="Enter FedEx Number">
                 <div></div>
               </div>
@@ -833,8 +833,8 @@
             <!-- Weight -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_weight">Weight</label>
-                <input type="number" name="weight" class="form-control" id="create_id_weight"
+                <label for="update_id_weight">Weight</label>
+                <input type="number" name="weight" class="form-control" id="update_id_weight"
                   placeholder="Enter Weight">
                 <div></div>
               </div>
@@ -843,8 +843,8 @@
             <!-- Pieces -->
             <div class="col-6">
               <div class="form-group">
-                <label for="create_id_pieces">Peices</label>
-                <input type="number" name="pieces" class="form-control" id="create_id_pieces"
+                <label for="update_id_pieces">Peices</label>
+                <input type="number" name="pieces" class="form-control" id="update_id_pieces"
                   placeholder="Enter Pieces Amount">
                 <div></div>
               </div>
@@ -857,38 +857,7 @@
             <div id="dimensiondiv" class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
               <h3 style="margin-top: inherit;">Dimensions</h3>
             </div>
-            <!-- Pieces -->
-
-
-            <!-- <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_pieces">Length</label>
-                <input type="number" name="length" class="form-control" id="create_id_length"
-                  placeholder="Enter length">
-                <div></div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_pieces">Width</label>
-                <input type="number" name="width" class="form-control" id="create_id_width" placeholder="Enter width">
-                <div></div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_pieces">Height</label>
-                <input type="number" name="height" class="form-control" id="create_id_height"
-                  placeholder="Enter height">
-                <div></div>
-              </div>
-            </div>
-            <div class="col-1">
-              <div class="mt-4 text-center">
-                <i class="bi bi-plus-circle-fill" data-include-id="false" data-invoice-details="false"
-                  style="font-size: 35px;"></i>
-              </div>
-            </div> -->
+           
 
 
 
@@ -903,57 +872,16 @@
               <h3 style="margin-top: inherit;">Invoice Details</h3>
             </div>
 
-            <!-- First Invoice Detail -->
-
-            <!-- <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_hs_title">HS Title</label>
-                <input type="text" name="hs_title" class="form-control" id="create_id_hs_title"
-                  placeholder="Enter HS title">
-                <div></div>
-              </div>
-            </div>
-
-            <div class="col-3">
-              <div class="form-group">
-                <label for="create_id_quantity">Quantity</label>
-                <input type="number" name="quantity" class="form-control" id="create_id_quantity"
-                  placeholder="Enter Quantity">
-                <div></div>
-              </div>
-            </div>
-
-            <div class="col-2">
-              <div class="form-group">
-                <label for="create_id_price">Price</label>
-                <input type="number" name="price" class="form-control" id="create_id_price" placeholder="Enter Price">
-                <div></div>
-              </div>
-            </div>
-
-            <div class="col-2">
-              <div class="form-group">
-                <label for="create_id_total">Total</label>
-                <input type="number" name="total" class="form-control" id="create_id_total" placeholder="Enter Price">
-                <div></div>
-              </div>
-            </div>
-
-            <div class="col-1">
-              <div class="mt-4 text-center">
-                <i class="bi bi-plus-circle-fill" data-include-id="false" data-invoice-details="true"
-                  style="font-size: 35px;"></i>
-              </div>
-            </div> -->
+            
 
 
 
           </div>
 
           <div class="card-footer" style="text-align-last: end">
-            <button class="btn btn-primary" style="background: #fd7e14; border-color:#fd790e;font-size: large;">Create
+            <button class="btn btn-primary" style="background: #fd7e14; border-color:#fd790e;font-size: large;">Update
               Air Way bill</button>
-            <button class="btn btn-primary" id="reset_create_billing_form_id" type="reset"
+            <button class="btn btn-primary" id="reset_update_billing_form_id" type="reset"
               style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Reset</button>
           </div>
 

@@ -12,12 +12,6 @@ function createMinusIcon(_class, _delete) {
     return finalDiv
 }
 
-{/* <div class="mt-4 text-center">
-                <i class="bi bi-plus-circle-fill" data-include-id="false" data-invoice-details="false"
-                  style="font-size: 35px;"></i>
-              </div> */}
-
-
 
 function createPlusIcon(_data_invoice_details) {
     var col_div = $('<div>')
@@ -291,22 +285,21 @@ $(document).on('click', "#get_billing_details_button", function () {
 
 
 function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = [], multiple_asset_ids = false) {
-    console.log(data);
     const filtered_data = data[0].fields
+    // console.log("data",data[0].pk);
+    $("#" + form_id).children().find("[name='" + 'id' + "']").val(data[0].pk);
     for (const [key, value] of Object.entries(filtered_data)) {
-        // console.log(key);
+        
+        
         const obj_inst = $("#" + form_id).children().find("[name='" + key + "']");
         if (obj_inst.length > 1) {
             $("#" + form_id).children().find("[name='" + key + "'][value='" + value + "']").prop("checked", true);
         }
         if (key=="data"){
             for(const[innerKey,innerValue] of Object.entries(value)){
-                console.log(key,value);
+                
                 if(innerKey==='dimensions'){
-                    // console.log("dimensions : ",innerValue);
                     for(const[dimensionKey, dimensionValue] of Object.entries(innerValue)){
-                        // console.log(dimensionKey,dimensionValue);
-                        // console.log(dimensionValue.length);
                         var row1 = createInputRow(_id = 'create_id_length', _name = 'length', _type = 'number', _placeholder = 'Enter length', _class = 'col-3', _title = 'Length', _delete = 'dimension' + dimensionKey, _value=dimensionValue.length)
                         var row2 = createInputRow(_id = 'create_id_width', _name = 'width', _type = 'number', _placeholder = 'Enter width', _class = 'col-3', _title = 'Width', _delete = 'dimension' + dimensionKey, _value=dimensionValue.width)
                         var row3 = createInputRow(_id = 'create_id_height', _name = 'height', _type = 'number', _placeholder = 'Enter height', _class = 'col-3', _title = 'Height', _delete = 'dimension' + dimensionKey, _value=dimensionValue.height)
@@ -321,7 +314,6 @@ function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = 
                     }
                     
                 }else if(innerKey=='invoice_details'){
-                    // console.log("invoice_details: ",innerValue);
                     for(const[invoicedetailKey, invoicedetailValue] of Object.entries(innerValue)){
 
                         var row1 = createInputRow(_id = 'create_id_hs_title', _name = 'hs_title', _type = 'text', _placeholder = 'Enter HS title', _class = 'col-3 ', _title = 'HS Title', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.hs_title)
@@ -343,19 +335,7 @@ function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = 
                 }
             }
         }
-        // else if (quillbot_fields.includes(key)) {
-        //     var hidden_input = $("#" + form_id + " input[name=" + key + "]");
-        //     hidden_input.val(value); // Setting hidden field with value
-        //     const quill_data_attr_value = hidden_input.data("quill-field");
-        //     $("#" + form_id).children().find("[data-input-field-id=" + quill_data_attr_value + "]").children(".ql-editor").html(value)
-        // }
-        // else if (hidden_fields.includes(key)) {
-        //     if (value != "") {
-        //         var hidden_input = $("#" + form_id + " input[name=" + key + "]");
-        //         hidden_input.val(value); // Setting hidden field with value
-        //         hidden_input.parent().parent().removeClass("d-none");
-        //     }
-        // }
+        
         else {
             obj_inst.val(value);
         }
@@ -384,3 +364,21 @@ $(document).on('click', "#update_airway_bill_button", function(e){
 
 })
 
+
+$("#update_billings_form_id").on('submit', function (e) {
+    e.preventDefault();
+    e.stopPropagation()
+
+    var formData = $(this).serializeArray();
+    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
+    var _data = transformObj(json_obj)
+    const submit_url = $(this).data("url");
+    const submit_method = $(this).data("method");
+    console.log(_data);
+
+    var { status, data } = sendRequest(submit_method, submit_url, _data);
+    if (status) {
+        remove_custom_error_classes();
+        $("#reset_create_billing_form_id").trigger("click");
+    }
+})

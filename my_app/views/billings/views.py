@@ -39,6 +39,28 @@ class AirwayBillView(View):
             print("the errors are :",form_validation.errors)
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "initiate_"}, status=401)
 
+class UpdateAirwayBillView(View):
+    
+    def post(self,request):
+        data=json.loads(request.body)
+        dimension = data.get('dimensions')
+        id = data.get('id')
+        invoice_details = data.get('invoice_details')
+        form_validation = BillingsForm(data)
+        if form_validation.is_valid():
+            obj = AirwayBill.objects.get(id=id)
+            if obj:
+                form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
+                tracking_number = form_validation.cleaned_data.get('tracking_number')
+                obj.service_id = form_validation.cleaned_data.get('service_id')
+                return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} has been updated successfully"}, status=200)
+            else:
+                return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} not found"}, status=401)
+        else:
+            print("the errors are :",form_validation.errors)
+            return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "initiate_"}, status=401)
+
+
 class GetSpecificBillingDetails(View):
 
     def custom_serializer(self, obj):
