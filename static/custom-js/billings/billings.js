@@ -134,6 +134,7 @@ $(document).on('click', '#display-table-id', function () {
 })
 
 $("#create_billings_form_id").on('submit', function (e) {
+    console.log("clicked");
     e.preventDefault();
     e.stopPropagation()
 
@@ -142,6 +143,7 @@ $("#create_billings_form_id").on('submit', function (e) {
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
+    console.log(submit_method,submit_url,_data);
 
     var { status, data } = sendRequest(submit_method, submit_url, _data);
     if (status) {

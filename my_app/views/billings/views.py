@@ -4,7 +4,7 @@ from django.http.response import JsonResponse
 from django.core import serializers
 
 from my_app.models.billings import *
-from my_app.forms.billings import BillingsForm , BillingsDetail
+from my_app.forms.billings import BillingsForm , BillingsDetail, BillingsUpdateForm
 import json
 import datetime
 
@@ -27,6 +27,7 @@ class AirwayBillView(View):
     
     def post(self,request):
         data=json.loads(request.body)
+        print("the data in create is :", data)
         dimension = data.get('dimensions')
         invoice_details = data.get('invoice_details')
         form_validation = BillingsForm(data)
@@ -43,22 +44,55 @@ class UpdateAirwayBillView(View):
     
     def post(self,request):
         data=json.loads(request.body)
+        print(data)
         dimension = data.get('dimensions')
         id = data.get('id')
         invoice_details = data.get('invoice_details')
-        form_validation = BillingsForm(data)
+        
+        form_validation = BillingsUpdateForm(data)
         if form_validation.is_valid():
+            print("~!##@$#$#$%#@")
             obj = AirwayBill.objects.get(id=id)
+            tracking_number = obj.tracking_number
             if obj:
-                form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
-                tracking_number = form_validation.cleaned_data.get('tracking_number')
+                obj.data = {'dimensions': dimension, 'invoice_details': invoice_details}
                 obj.service_id = form_validation.cleaned_data.get('service_id')
+                obj.shipper_company_name = form_validation.cleaned_data.get('shipper_company_name')
+                obj.shipper_contact_person = form_validation.cleaned_data.get('shipper_contact_person')
+                obj.shipper_reference = form_validation.cleaned_data.get('shipper_reference')
+                obj.shipper_address = form_validation.cleaned_data.get('shipper_address')
+                obj.shipper_state = form_validation.cleaned_data.get('shipper_state')
+                obj.shipper_city = form_validation.cleaned_data.get('shipper_city')
+                obj.shipper_post_code = form_validation.cleaned_data.get('shipper_post_code')
+                obj.shipper_mobile_number = form_validation.cleaned_data.get('shipper_mobile_number')
+                obj.shipper_phone_number = form_validation.cleaned_data.get('shipper_phone_number')
+                obj.shipper_ntn_cnic = form_validation.cleaned_data.get('shipper_ntn_cnic')
+                obj.shipper_email_address = form_validation.cleaned_data.get('shipper_email_address')
+                # reciever
+                obj.reciever_company_name = form_validation.cleaned_data.get('reciever_company_name')
+                obj.reciever_contact_person = form_validation.cleaned_data.get('reciever_contact_person')
+                obj.reciever_address = form_validation.cleaned_data.get('reciever_address')
+                obj.reciever_country = form_validation.cleaned_data.get('reciever_country')
+                obj.reciever_state = form_validation.cleaned_data.get('reciever_state')
+                obj.reciever_city = form_validation.cleaned_data.get('reciever_city')
+                obj.reciever_post_code = form_validation.cleaned_data.get('reciever_post_code')
+                obj.reciever_mobile_number = form_validation.cleaned_data.get('reciever_mobile_number')
+                obj.reciever_phone_number = form_validation.cleaned_data.get('reciever_phone_number')
+                obj.reciever_email = form_validation.cleaned_data.get('reciever_email')
+                obj.reciever_fax = form_validation.cleaned_data.get('reciever_fax')
+                obj.payment_id = form_validation.cleaned_data.get('payment_id')
+                obj.shipment_id = form_validation.cleaned_data.get('shipment_id')
+                obj.fedex_number = form_validation.cleaned_data.get('fedex_number')
+                obj.weight = form_validation.cleaned_data.get('weight')
+                obj.pieces = form_validation.cleaned_data.get('pieces')
+                obj.save()
+                
                 return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} has been updated successfully"}, status=200)
             else:
                 return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} not found"}, status=401)
         else:
             print("the errors are :",form_validation.errors)
-            return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "initiate_"}, status=401)
+            return JsonResponse({"detail": f"Air way bill with tracking ID {id} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "update_"}, status=401)
 
 
 class GetSpecificBillingDetails(View):
