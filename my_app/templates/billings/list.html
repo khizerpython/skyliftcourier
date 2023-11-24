@@ -471,9 +471,9 @@
 
       <!-- Data table -->
 
-      <div class="tab-pane fade show active d-none" id="bordered-pending" role="tabpanel" aria-labelledby="pending-tab">
+      <div class="tab-pane fade show active d-none" id="bordered-pending" role="tabpanel" aria-labelledby="pending-tab" data-url="{% url 'list_airway_bills_json' %}">
         <div class="table-responsive" style="margin-top: 4%;">
-          <table id="airway_bill_datatable_id" class="table table-striped datatable display">
+          <table id="airway_bill_datatable_id" class="table table-striped datatable display" data-url="{% url 'list_airway_bills_json' %}">
             <thead>
               <tr>
                 <th>Tracking Number</th>

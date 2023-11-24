@@ -75,6 +75,7 @@ function sendRequest(method, url, data) {
         success: function (data, status, xhr) {
             
             let dec_data = handleSuccess(data);
+            
             return_data = { status: true, data: dec_data }
         },
         error: function (jqXhr, textStatus, errorMessage) {

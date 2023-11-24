@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http.response import JsonResponse
 from django.core import serializers
+from django.urls import reverse
 
 from my_app.models.billings import *
 from my_app.forms.billings import BillingsForm , BillingsDetail, BillingsUpdateForm
@@ -147,3 +148,49 @@ class GetDataToUpdateSpecificBill(View):
 
     def post(self, request, *args, **kwargs):
         return self._get(request, *args, **kwargs)
+    
+class ListOfAirwayBillsJsonFormat(View):
+
+    def _merge_objects(self, data: list, airway_bills) -> dict:
+        
+        return_data: dict = {}
+
+        def iterate_object(obj_id: str):
+            
+            workflow_queryset_inst = airway_bills.get(id=obj_id)
+            for key, value in return_data.get(obj_id, {}).items():
+                print(key,value)
+                if key == "service_id":
+                    return_data[obj_id][key] = workflow_queryset_inst.service_id.name
+                elif key == "payment_id":    
+                    return_data[obj_id][key] = workflow_queryset_inst.payment_id.name
+                elif key == "shipment_id":    
+                    return_data[obj_id][key] = workflow_queryset_inst.shipment_id.name
+                    
+           
+            return_data[obj_id]["detail_url"] = reverse("airway_bill_detail")
+            return_data[obj_id]["update_url"] = reverse("get_specific_bill_to_update")
+            # return_data[obj_id]["reject_url"] = reverse("reject_asset_movement_workflow")
+            # return_data[obj_id]["download_url"] = reverse("get_data_of_asset_movement_workflow_json")
+            # return_data[obj_id]["get_data_url"] = reverse("get_data_for_reinitiate_asset_movement_workflow")
+            # return_data[obj_id]["show_history_url"] = reverse("get_data_of_asset_movement_workflow_json")
+            # return_data[obj_id]["get_asset_ids"] = reverse("get_asset_ids")
+
+        for obj_from_list in data:
+            obj_id: str = obj_from_list.get("pk", "")
+            if obj_id not in return_data:
+                return_data[obj_id] = obj_from_list.get("fields", {})
+                return_data[obj_id]["service_id"] = "" # Initializing key to avoid RuntimeError `dictionary changed size during iteration`
+                return_data[obj_id]["payment_id"] = "" # Initializing key to avoid RuntimeError `dictionary changed size during iteration`
+                return_data[obj_id]["shipment_id"] = "" # Initializing key to avoid RuntimeError `dictionary changed size during iteration`
+                iterate_object(obj_id)
+        print("the return data is :", return_data)        
+
+        return return_data
+
+    def get(self, request, *args, **kwargs):
+        airway_bills = AirwayBill.objects.all()
+        serialize_workflows: list = json.loads(serializers.serialize("json", queryset=airway_bills))
+        workflows_dict: dict = self._merge_objects(serialize_workflows, airway_bills)
+        print(workflows_dict)
+        return JsonResponse(data=workflows_dict, status=200)    

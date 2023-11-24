@@ -134,7 +134,6 @@ $(document).on('click', '#display-table-id', function () {
 })
 
 $("#create_billings_form_id").on('submit', function (e) {
-    console.log("clicked");
     e.preventDefault();
     e.stopPropagation()
 
@@ -143,7 +142,6 @@ $("#create_billings_form_id").on('submit', function (e) {
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
-    console.log(submit_method,submit_url,_data);
 
     var { status, data } = sendRequest(submit_method, submit_url, _data);
     if (status) {
@@ -288,7 +286,6 @@ $(document).on('click', "#get_billing_details_button", function () {
 
 function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = [], multiple_asset_ids = false) {
     const filtered_data = data[0].fields
-    // console.log("data",data[0].pk);
     $("#" + form_id).children().find("[name='" + 'id' + "']").val(data[0].pk);
     for (const [key, value] of Object.entries(filtered_data)) {
         
@@ -352,11 +349,9 @@ $(document).on('click', "#update_airway_bill_button", function(e){
     e.preventDefault();
     var UpdateAirWayBillId = $(this).attr("data-get-update-bill-id")
     var billingUpdateUrl = $(this).attr('data-url')
-    console.log(billingUpdateUrl);
     var DISPLAY_FORM_ID = $(this).attr('data-update-form-id')
     var { status, data } = sendRequest("POST", billingUpdateUrl, { "id": UpdateAirWayBillId });
-    // console.log("the data is :",typeof(data));
-    // console.log("the data is :",data.data);
+    
     
     $(this).closest('table').parents('.tab-pane').addClass('d-none')
     $("#" + DISPLAY_FORM_ID).removeClass('d-none')
@@ -376,11 +371,87 @@ $("#update_billings_form_id").on('submit', function (e) {
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
-    console.log(_data);
 
     var { status, data } = sendRequest(submit_method, submit_url, _data);
     if (status) {
         remove_custom_error_classes();
         $("#reset_create_billing_form_id").trigger("click");
+        $(this).addClass('d-none')
+        
+        $("#bordered-pending").removeClass('d-none')
+        refresh_pending_workflow_table("airway_bill_datatable_id")
     }
 })
+
+{/* <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
+                    data-url="{% url 'airway_bill_detail' %}"
+                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button> */}
+
+// Refresh Data Table
+function create_detail_button(key, value, datatable_id) {
+    
+    var temp_div = $("<button>").text('Details');
+    temp_div.css({'background':'#fd7e14', 'border-color':'#fd790e', 'font-size':'large'});
+    temp_div.addClass("btn btn-primary");
+    // temp_div.attr("id", key)
+    temp_div.attr("id", 'get_billing_details_button')
+    temp_div.attr("data-get-detail-id", key)
+    temp_div.attr("data-url", value.detail_url)
+    
+    return temp_div;
+}
+
+{/* <button class="btn btn-primary" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
+                    data-url="{% url 'get_specific_bill_to_update' %}" data-update-form-id="update_billings_form_id"
+                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Update</button> */}
+
+function create_update_button(key, value, datatable_id) {
+
+    var temp_div = $("<button>").text('Update');
+    temp_div.css({'background':'#7a3a05', 'border-color':'#7f3f0b', 'font-size':'large'});
+    temp_div.addClass("btn btn-primary");
+    // temp_div.attr("id", key)
+    temp_div.attr("id", 'update_airway_bill_button')
+    temp_div.attr("data-get-update-bill-id", key)
+    temp_div.attr("data-url", value.update_url)
+    temp_div.attr("data-update-form-id", "update_billings_form_id")
+    
+    return temp_div;
+}                    
+
+
+
+function reconstruct_pending_workflow_table(datatable_id, obj) {
+    console.log(obj);
+    console.log(typeof(obj));
+    
+    for (const [key, value] of Object.entries(obj)) {
+        console.log(key);
+        console.log("the value is :",value);
+        
+        var temp_tr = $('<tr>'); 
+        var temp_td = $('<td>');
+        temp_tr.append(temp_td.clone().append(value.tracking_number))
+        temp_tr.append(temp_td.clone().append(value.service_id))
+        temp_tr.append(temp_td.clone().append(value.shipper_contact_person))
+        temp_tr.append(temp_td.clone().append(value.reciever_contact_person))
+        temp_tr.append(temp_td.clone().append(value.payment_id))
+        temp_tr.append(temp_td.clone().append(value.shipment_id))
+        temp_tr.append(temp_td.clone().append(create_detail_button(key, value, datatable_id)))
+        temp_tr.append(temp_td.clone().append(create_update_button(key, value, datatable_id)))
+        
+        $("#"+datatable_id).DataTable().row.add(temp_tr).draw();
+        
+    }
+}
+
+function refresh_pending_workflow_table(datatable_id){
+    var datatable_inst = $("#"+datatable_id);
+    var datatable_url = datatable_inst.data("url");
+    console.log(datatable_url);
+    var {status, data} = sendRequest("GET", datatable_url, {});
+    // console.log("the data here is :", data);
+    // console.log("the data type here is :",typeof(data));
+    datatable_inst.DataTable().clear().draw();
+    reconstruct_pending_workflow_table(datatable_id, data)
+}
