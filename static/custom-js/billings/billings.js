@@ -422,13 +422,8 @@ function create_update_button(key, value, datatable_id) {
 
 
 function reconstruct_pending_workflow_table(datatable_id, obj) {
-    console.log(obj);
-    console.log(typeof(obj));
     
-    for (const [key, value] of Object.entries(obj)) {
-        console.log(key);
-        console.log("the value is :",value);
-        
+    for (const [key, value] of Object.entries(obj)) { 
         var temp_tr = $('<tr>'); 
         var temp_td = $('<td>');
         temp_tr.append(temp_td.clone().append(value.tracking_number))
@@ -448,10 +443,7 @@ function reconstruct_pending_workflow_table(datatable_id, obj) {
 function refresh_pending_workflow_table(datatable_id){
     var datatable_inst = $("#"+datatable_id);
     var datatable_url = datatable_inst.data("url");
-    console.log(datatable_url);
     var {status, data} = sendRequest("GET", datatable_url, {});
-    // console.log("the data here is :", data);
-    // console.log("the data type here is :",typeof(data));
     datatable_inst.DataTable().clear().draw();
     reconstruct_pending_workflow_table(datatable_id, data)
 }
