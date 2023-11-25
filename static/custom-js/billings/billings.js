@@ -125,15 +125,19 @@ $(document).on('click', '#display-form-id', function () {
     // $("#display-form-id").click(function(){
     var displayFormId = $(this).attr('data-display-form-id')
     var hiddenTalbeId = $(this).attr('data-hidden-table-id')
+    var hiddenUpdateId = $(this).attr('data-hidden-update-form-id')
     $("#" + displayFormId).removeClass('d-none')
     $("#" + hiddenTalbeId).addClass('d-none')
+    $("#" + hiddenUpdateId).addClass('d-none')
 })
 $(document).on('click', '#display-table-id', function () {
     // $("#display-form-id").click(function(){
     var displayTableId = $(this).attr('data-display-table-id')
     var hiddenFormId = $(this).attr('data-hidden-form-id')
+    var hiddenUpdateId = $(this).attr('data-hidden-update-form-id')
     $("#" + displayTableId).removeClass('d-none')
     $("#" + hiddenFormId).addClass('d-none')
+    $("#" + hiddenUpdateId).addClass('d-none')
 })
 
 $("#create_billings_form_id").on('submit', function (e) {
