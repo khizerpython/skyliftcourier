@@ -99,10 +99,13 @@ function transformObj(json_obj) {
     var quantity = json_obj.quantity
     var price = json_obj.price
     var total = json_obj.total
-    if (hs_title.length != 0 && hs_title.length == quantity.length && hs_title.length == price.length && hs_title.length == total.length) {
+    
+    // if (hs_title.length != 0 && hs_title.length == quantity.length && hs_title.length == price.length && hs_title.length == total.length) {
+    
+    if (total.length != 0 && total.length == quantity.length && total.length == price.length) {
         // Creating Invoice Details dict
         invoice_details = {}
-        var arrayLength = json_obj.hs_title.length
+        var arrayLength = json_obj.quantity.length
         for (var i = 0; i < arrayLength; i++) {
             invoice_details[i + 1] = {
                 "hs_title": json_obj.hs_title[i],
@@ -138,7 +141,7 @@ $("#create_billings_form_id").on('submit', function (e) {
     e.stopPropagation()
 
     var formData = $(this).serializeArray();
-    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
+    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title']);
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
@@ -147,6 +150,7 @@ $("#create_billings_form_id").on('submit', function (e) {
     if (status) {
         remove_custom_error_classes();
         $("#reset_create_billing_form_id").trigger("click");
+        refresh_pending_workflow_table("airway_bill_datatable_id")
     }
 })
 

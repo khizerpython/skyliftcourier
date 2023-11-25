@@ -92,11 +92,7 @@ class ListAuthUserView(ListView):
 
         Pass response_kwargs to the constructor of the response class.
         """ 
-        # user_input_password = "Khizer12@#"
-        # user  = AuthUser.objects.get(username="is_hodsed")
-        # print("the user password is :", user.password)
-        # hashed_password = user.password
-        # print(check_password(user_input_password, hashed_password))
+        
 
         extra_context: dict = self._get_extra_context()
         context.update({'page_title':self._page_title})
@@ -112,26 +108,21 @@ class CreateAuthUser(View):
     def post(self, request, *args, **kwargs):
         data = self.request.body
         json_data = json.loads(data)
-        print("the data is :", data)
-        print("the data is :", json_data)
         form_validation =  CreateAuthUserForm(data=json_data)
 
         if form_validation.is_valid():
-            print("Yes form is valid")
             first_name= form_validation.cleaned_data['first_name']
             last_name= form_validation.cleaned_data['last_name']
             username= form_validation.cleaned_data['username']
             email= form_validation.cleaned_data['email']
             contact_number= form_validation.cleaned_data['contact_number']
             password = make_password(form_validation.cleaned_data['password'])
-            print("the password is :", password)
             user = AuthUser(first_name=first_name, last_name=last_name, username=username, email=email ,contact_number=contact_number,password=password)
             user.save()
             
 
             return JsonResponse({"detail": f"AuthUser '{username}' has been created successfully"}, status=200)
         
-        print("the errors arew :", form_validation.errors)
         return JsonResponse(data={"detail": "Unable to create AuthUser", "errors": dict(form_validation.errors.items()), "errors_div": "create_"}, status=400)
        
  

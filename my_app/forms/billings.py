@@ -99,9 +99,7 @@ class BillingsForm(forms.Form):
             airway_bill = AirwayBill.objects.latest('created_at')
         except ObjectDoesNotExist:
             airway_bill = None
-        if airway_bill is not None:
-            print("the tracking number is :",airway_bill.tracking_number, airway_bill.id)
-            
+        if airway_bill is not None:            
             cleaned_data['tracking_number'] = int(airway_bill.tracking_number + 1)
         else:    
             cleaned_data['tracking_number'] = int('12345678')
@@ -201,13 +199,4 @@ class BillingsUpdateForm(forms.Form):
             except Payment.DoesNotExist:
                 raise forms.ValidationError("Shipment type with the specified UUID does not exist.")
 
-
-
-        # airway_bill = AirwayBill.objects.latest('created_at')
-        # if airway_bill is not None:
-        #     print("the tracking number is :",airway_bill.tracking_number, airway_bill.id)
-            
-        #     cleaned_data['tracking_number'] = int(airway_bill.tracking_number + 1)
-        # else:    
-        #     cleaned_data['tracking_number'] = int('12345678')
         return cleaned_data

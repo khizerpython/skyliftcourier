@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager
 from django.apps import apps
 from my_app.models.regex import *
-
+from my_app.models.auth import AuthUser
 from my_app.models.others import ModelUUIDField, CreatedAndUpdatedModelFields,IsActive
 
 class Service(ModelUUIDField):
@@ -25,6 +25,7 @@ class ShipmentType(ModelUUIDField):
 
 class AirwayBill(ModelUUIDField,CreatedAndUpdatedModelFields):
     service_id = models.ForeignKey(Service,on_delete=models.SET_NULL, blank=True, null=True)
+    user_id = models.ForeignKey(AuthUser, on_delete=models.SET_NULL, blank=True, null=True)
 
     # Tracking Number
     tracking_number = models.IntegerField(blank=False, null=False, default=00000000)

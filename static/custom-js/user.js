@@ -4,9 +4,7 @@ remove_custom_error_classes();
 $("#create_authuser_form_id").on("submit", function (e) {
     e.preventDefault();
     e.stopPropagation()
-    console.log("clicked");
     if ($("#create_authuser_form_id").valid()) {
-        console.log("gg");
         var $form = $(this);
         var formData = $(this).serializeArray();
         const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
@@ -22,7 +20,6 @@ $("#create_authuser_form_id").on("submit", function (e) {
 
             
             $("#create_authuser_form_id")[0].reset();
-            console.log("2e#@#@R#$");
            
         }
         return false;

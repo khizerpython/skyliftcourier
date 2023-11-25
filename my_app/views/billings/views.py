@@ -13,10 +13,11 @@ class AirwayBillView(View):
 
     def get(self, request):
         # <view logic>
+        user = self.request.user
         services = Service.objects.all()
         payments = Payment.objects.all()
         shipments = ShipmentType.objects.all()
-        airway_bills = AirwayBill.objects.all()
+        airway_bills = AirwayBill.objects.filter(user_id=user)
 
         context = {
             'services': services,
@@ -28,34 +29,32 @@ class AirwayBillView(View):
     
     def post(self,request):
         data=json.loads(request.body)
-        print("the data in create is :", data)
         dimension = data.get('dimensions')
         invoice_details = data.get('invoice_details')
         form_validation = BillingsForm(data)
         if form_validation.is_valid():
             form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
+            form_validation.cleaned_data['user_id'] = self.request.user
             tracking_number = form_validation.cleaned_data.get('tracking_number')
             AirwayBill.objects.create(**form_validation.cleaned_data)
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} has been initiated successfully"}, status=200)
         else:
-            print("the errors are :",form_validation.errors)
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "initiate_"}, status=401)
 
 class UpdateAirwayBillView(View):
     
     def post(self,request):
         data=json.loads(request.body)
-        print(data)
         dimension = data.get('dimensions')
         id = data.get('id')
         invoice_details = data.get('invoice_details')
         
         form_validation = BillingsUpdateForm(data)
         if form_validation.is_valid():
-            print("~!##@$#$#$%#@")
             obj = AirwayBill.objects.get(id=id)
             tracking_number = obj.tracking_number
             if obj:
+                obj.user_id = self.request.user
                 obj.data = {'dimensions': dimension, 'invoice_details': invoice_details}
                 obj.service_id = form_validation.cleaned_data.get('service_id')
                 obj.shipper_company_name = form_validation.cleaned_data.get('shipper_company_name')
@@ -92,7 +91,6 @@ class UpdateAirwayBillView(View):
             else:
                 return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} not found"}, status=401)
         else:
-            print("the errors are :",form_validation.errors)
             return JsonResponse({"detail": f"Air way bill with tracking ID {id} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "update_"}, status=401)
 
 
@@ -159,7 +157,6 @@ class ListOfAirwayBillsJsonFormat(View):
             
             workflow_queryset_inst = airway_bills.get(id=obj_id)
             for key, value in return_data.get(obj_id, {}).items():
-                print(key,value)
                 if key == "service_id":
                     return_data[obj_id][key] = workflow_queryset_inst.service_id.name
                 elif key == "payment_id":    
@@ -184,13 +181,12 @@ class ListOfAirwayBillsJsonFormat(View):
                 return_data[obj_id]["payment_id"] = "" # Initializing key to avoid RuntimeError `dictionary changed size during iteration`
                 return_data[obj_id]["shipment_id"] = "" # Initializing key to avoid RuntimeError `dictionary changed size during iteration`
                 iterate_object(obj_id)
-        print("the return data is :", return_data)        
 
         return return_data
 
     def get(self, request, *args, **kwargs):
-        airway_bills = AirwayBill.objects.all()
+        user = self.request.user
+        airway_bills = AirwayBill.objects.filter(user_id=user)
         serialize_workflows: list = json.loads(serializers.serialize("json", queryset=airway_bills))
         workflows_dict: dict = self._merge_objects(serialize_workflows, airway_bills)
-        print(workflows_dict)
         return JsonResponse(data=workflows_dict, status=200)    

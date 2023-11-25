@@ -27,18 +27,20 @@
             
                   <form id="login_user" data-method="post" data-url="{% url 'login_url' %}">
                     {% csrf_token %}
+                    <p>Username</p>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" name="username" placeholder="Username" style="height: 56px ">
-                      <div></div>
+                      <!-- <div></div> -->
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-envelope"></span>
                         </div>
                       </div>
                     </div>
+                    <p>Username</p>
                     <div class="input-group mb-3">
                       <input type="password" class="form-control" name="password" placeholder="Password" style="height: 56px ">
-                      <div></div>
+                      <!-- <div></div> -->
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-lock"></span>
@@ -55,9 +57,9 @@
                     <!-- /.col -->
                     <div class="col-4">
                       <!-- <button type="submit"  class="btn btn-primary btn-block" style="height: 56px ">Sign In</button> -->
-                      <p class="mb-1 mt-2">
+                      <!-- <p class="mb-1 mt-2">
                         <a href="forgot-password.html" style="padding-left: 27px;">I forgot my password</a>
-                      </p>
+                      </p> -->
                     </div>
 
                     <div class="col-4">
