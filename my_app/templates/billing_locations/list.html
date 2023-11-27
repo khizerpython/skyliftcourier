@@ -1,0 +1,113 @@
+{% extends 'default/index.html' %}
+{% load static %}
+
+{% block main_body %}
+
+
+<!-- <div class="row"> -->
+<div class="col-lg-12 ">
+
+  <div class="card m-4" style="background-color: #f9fbd7; font-family: serif;">
+    <div class="card-body">
+      <button class="btn btn-primary" id="display-form-id" data-display-form-id="create_billings_form_id"
+        data-hidden-table-id="bordered-pending" data-hidden-update-form-id="update_billings_form_id"
+        style="background: #fd7e14; border-color:#fd790e;font-size: large;">Back</button>
+      
+
+      
+
+      <!-- Data table -->
+
+      <div class="tab-pane fade show active" id="bordered-pending" role="tabpanel" aria-labelledby="pending-tab" data-url="{% url 'list_airway_bills_json' %}">
+        <div class="table-responsive" style="margin-top: 4%;">
+          <table id="airway_bill_datatable_id" class="table table-striped datatable display" data-url="{% url 'list_airway_bills_json' %}">
+            <thead>
+              <tr>
+                <th>Tracking Number</th>
+                <th>Service</th>
+                <th>Shipper Name</th>
+                <th>Reciever Name</th>
+                <th>Payment</th>
+                <th>Shipment Type</th>
+                <th>Details</th>
+                <th>Update</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for bill in airway_bills %}
+              <tr>
+                <td>{{bill.tracking_number}}</td>
+                <td>{{bill.service_id}}</td>
+                <td>{{bill.shipper_contact_person}}</td>
+                <td>{{bill.reciever_contact_person}}</td>
+                <td>{{bill.payment_id}}</td>
+                <td>{{bill.shipment_id}}</td>
+                <td>
+                  <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
+                    data-url="{% url 'airway_bill_detail' %}"
+                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button>
+                </td>
+                <td>
+                  <button class="btn btn-primary" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
+                    data-url="{% url 'get_specific_bill_to_update' %}" data-update-form-id="update_billings_form_id"
+                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Update</button>
+                </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+    </div>
+    <!-- End Div card body -->
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- /.card-body -->
+<!-- <div class="card-footer" cont>
+  <button class="btn btn-primary" style="background: #fd7e14; border-color:#7f3f0b;font-size: large;">Create Air Way bill</button>
+  <button class="btn btn-primary" style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Reset</button>
+</div> -->
+
+</div>
+</div>
+
+</div>
+
+
+
+<!-- </div> -->
+{% endblock %}
+
+{% block "extra_scripts" %}
+
+<!-- <script src="{% static '/validators/billings.js' %}"></script> -->
+<script src="{% static '/custom-js/billings/billings.js' %}"></script>
+
+
+{% endblock %}

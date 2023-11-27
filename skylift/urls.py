@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('my_app.views.others.urls')),
     path('', include('my_app.views.users.urls')),
     path('', include('my_app.views.billings.urls')),
+    path('', include('my_app.views.locations.urls')),
     
 ]
 
