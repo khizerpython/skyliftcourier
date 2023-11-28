@@ -391,9 +391,6 @@ $("#update_billings_form_id").on('submit', function (e) {
     }
 })
 
-{/* <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
-                    data-url="{% url 'airway_bill_detail' %}"
-                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button> */}
 
 // Refresh Data Table
 function create_detail_button(key, value, datatable_id) {
@@ -409,9 +406,6 @@ function create_detail_button(key, value, datatable_id) {
     return temp_div;
 }
 
-{/* <button class="btn btn-primary" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
-                    data-url="{% url 'get_specific_bill_to_update' %}" data-update-form-id="update_billings_form_id"
-                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Update</button> */}
 
 function create_update_button(key, value, datatable_id) {
 

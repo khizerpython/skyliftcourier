@@ -30,7 +30,7 @@
                 <th>Payment</th>
                 <th>Shipment Type</th>
                 <th>Details</th>
-                <th>Update</th>
+                <th>Add Location</th>
 
 
               </tr>
@@ -50,9 +50,9 @@
                     style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button>
                 </td>
                 <td>
-                  <button class="btn btn-primary" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
-                    data-url="{% url 'get_specific_bill_to_update' %}" data-update-form-id="update_billings_form_id"
-                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Update</button>
+                  <button class="btn btn-primary" id="add_airway_bill_location_button" data-bill-id="{{bill.id}}"
+                    data-url="{% url 'get_specific_bill_to_update' %}" data-tracking-number="{{bill.tracking_number}}"
+                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Add Location</button>
                 </td>
               </tr>
 
@@ -107,7 +107,8 @@
 {% block "extra_scripts" %}
 
 <!-- <script src="{% static '/validators/billings.js' %}"></script> -->
-<script src="{% static '/custom-js/billings/billings.js' %}"></script>
+
+<script src="{% static '/custom-js/billingslocations/billingslocation.js' %}"></script>
 
 
 {% endblock %}
