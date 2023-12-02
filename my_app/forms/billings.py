@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from my_app.constants import USERNAME_REGEX
 from my_app.models import regex
 from django.contrib.auth import get_user_model
-from my_app.models import Service,ShipmentType,AirwayBill,Payment
+from my_app.models import Service,ShipmentType,AirwayBill,Payment,AirwayBillLocation
 
 class BillingsForm(forms.Form):
     service_id = forms.ChoiceField(choices=[])
@@ -68,8 +68,6 @@ class BillingsForm(forms.Form):
         shipment_id = cleaned_data.get('shipment_id')
         if service_id:
             try:
-                # Fetch the Service instance using the UUID
-                # service_instance = Service.objects.get(id=service_id)
                 service_instance = self.services.get(id=service_id)
                 cleaned_data['service_id'] = service_instance
             except Service.DoesNotExist:
@@ -200,3 +198,32 @@ class BillingsUpdateForm(forms.Form):
                 raise forms.ValidationError("Shipment type with the specified UUID does not exist.")
 
         return cleaned_data
+
+class BillingLocationForm(forms.Form):
+    name = forms.CharField(required=True)
+    airway_bill_id = forms.ChoiceField(choices=[])
+
+
+    def __init__(self, *args, **kwargs):
+        super(BillingLocationForm, self).__init__(*args, **kwargs)
+        
+        # Populate the choices dynamically from the Service model
+        self.airway_bill_ids = AirwayBill.objects.all()
+        
+        self.fields['airway_bill_id'].choices = [(str(bill.id), str(bill)) for bill in self.airway_bill_ids]
+
+    def clean(self):
+        
+        cleaned_data: dict = super().clean()
+        airway_bill_id = cleaned_data.get('airway_bill_id')    
+
+        if airway_bill_id:
+            try:
+                airway_bill_instance = self.airway_bill_ids.get(id=airway_bill_id)
+                cleaned_data['airway_bill_id'] = airway_bill_instance
+            except Service.DoesNotExist:
+                # Handle the case where the Service instance with the given UUID doesn't exist
+                raise forms.ValidationError("AirWayBill with the specified UUID does not exist.")
+        
+class GetBillingsLocationDetailsForm(forms.Form):
+    airway_bill_id = forms.UUIDField(required=True)

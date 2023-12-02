@@ -28,9 +28,11 @@
                 <th>Shipper Name</th>
                 <th>Reciever Name</th>
                 <th>Payment</th>
-                <th>Shipment Type</th>
+                <!-- <th>Shipment Type</th> -->
                 <th>Details</th>
+                <th>Locations</th>
                 <th>Add Location</th>
+                
 
 
               </tr>
@@ -43,17 +45,23 @@
                 <td>{{bill.shipper_contact_person}}</td>
                 <td>{{bill.reciever_contact_person}}</td>
                 <td>{{bill.payment_id}}</td>
-                <td>{{bill.shipment_id}}</td>
+                <!-- <td>{{bill.shipment_id}}</td> -->
                 <td>
                   <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
                     data-url="{% url 'airway_bill_detail' %}"
                     style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button>
                 </td>
                 <td>
+                  <button class="btn btn-primary" id="airway_bill_location_details_button" data-bill-id="{{bill.id}}" data-method="POST"
+                    data-url="{% url 'airway_bill_locations_details' %}" data-tracking-number="{{bill.tracking_number}}"
+                    style="background: #cd6510; border-color:#dc6b0f;font-size: large;">Locations</button>
+                </td>
+                <td>
                   <button class="btn btn-primary" id="add_airway_bill_location_button" data-bill-id="{{bill.id}}"
-                    data-url="{% url 'get_specific_bill_to_update' %}" data-tracking-number="{{bill.tracking_number}}"
+                    data-url="{% url 'airway_bill_locations' %}" data-tracking-number="{{bill.tracking_number}}"
                     style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Add Location</button>
                 </td>
+                
               </tr>
 
               {% endfor %}
@@ -106,9 +114,10 @@
 
 {% block "extra_scripts" %}
 
-<!-- <script src="{% static '/validators/billings.js' %}"></script> -->
+<script src="{% static '/validators/billings_location.js' %}"></script>
 
 <script src="{% static '/custom-js/billingslocations/billingslocation.js' %}"></script>
+<script src="{% static '/custom-js/billings/billings.js' %}"></script>
 
 
 {% endblock %}

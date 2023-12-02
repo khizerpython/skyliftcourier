@@ -167,11 +167,6 @@ class ListOfAirwayBillsJsonFormat(View):
            
             return_data[obj_id]["detail_url"] = reverse("airway_bill_detail")
             return_data[obj_id]["update_url"] = reverse("get_specific_bill_to_update")
-            # return_data[obj_id]["reject_url"] = reverse("reject_asset_movement_workflow")
-            # return_data[obj_id]["download_url"] = reverse("get_data_of_asset_movement_workflow_json")
-            # return_data[obj_id]["get_data_url"] = reverse("get_data_for_reinitiate_asset_movement_workflow")
-            # return_data[obj_id]["show_history_url"] = reverse("get_data_of_asset_movement_workflow_json")
-            # return_data[obj_id]["get_asset_ids"] = reverse("get_asset_ids")
 
         for obj_from_list in data:
             obj_id: str = obj_from_list.get("pk", "")
