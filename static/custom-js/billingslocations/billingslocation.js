@@ -20,7 +20,7 @@ $(document).on('click','#add_airway_bill_location_button' ,function(){
     const TrackingNumber = $(this).attr('data-tracking-number') 
 
     form = CreateForm(BILLID,URL)
-    setGenericModal(TrackingNumber, form, true);
+    setGenericModal('Tracking Number : ' +   TrackingNumber, form, true);
     $('#create_airway_bill_location_form').validate()
 })
 
@@ -32,7 +32,7 @@ $(document).on('submit', "#create_airway_bill_location_form", function () {
     var { status, data } = sendRequest("POST", billinDetailsUrl, json_obj);
 
     var data_in_html = get_detail_billing_html(data);
-    setGenericModal("Abc", data_in_html, true);
+    setGenericModal("Success", data_in_html, true);
 })
 
 function locationDetailsModal(data){

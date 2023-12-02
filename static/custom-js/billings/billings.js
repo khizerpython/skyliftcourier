@@ -288,7 +288,7 @@ $(document).on('click', "#get_billing_details_button", function () {
     var { status, data } = sendRequest("POST", billinDetailsUrl, { "id": billingDetailsId });
 
     var data_in_html = get_detail_billing_html(data);
-    setGenericModal("Abc", data_in_html, true);
+    setGenericModal("Airway Bill Details", data_in_html, true);
 })
 
 
