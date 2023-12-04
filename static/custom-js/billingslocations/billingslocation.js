@@ -76,7 +76,7 @@ $(document).on('click', "#delete_location_button", function () {
     // setGenericModal("Locations", data_in_html, true);
 })
 
-function get_detail_billing_html(data, is_download = false) {
+function get_detail_billing_html_for_pdf_download(data, is_download = false) {
 
     var final_div = $("<div>").addClass('carousel-item')
 
@@ -92,8 +92,8 @@ function get_detail_billing_html(data, is_download = false) {
 
     // Top two values
     
-    var ServiceType = $("<div>").addClass('col-6').css('letter-spacing','0.04px').text("<strong><b>Service Type: </b></strong>" + parsed_data.service_id)
-    var TrackingIdDiv = $("<div>").addClass('col-6').html("<strong><b>Tracking Number: </b></strong>" + parsed_data.tracking_number)
+    var ServiceType = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Service Type: </b></strong>" + parsed_data.service_id)
+    var TrackingIdDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Tracking Number: </b></strong>" + parsed_data.tracking_number)
 
     // Shipper Details Heading
     var ShipperDetailsHeading = $("<div>").addClass('row-12').css({
@@ -103,55 +103,58 @@ function get_detail_billing_html(data, is_download = false) {
         'letter-spacing':'0.04px'
     }).html("<h3><b>Shipper Details </b></h3>")
 
-    var ShipperCompanyNameDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Company Name: </b></strong>" + parsed_data.shipper_company_name)
-    var ShipperContactPersonDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Contact Person: </b></strong>" + parsed_data.shipper_contact_person)
-    var ShipperRefrenceDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Refrence: </b></strong>" + parsed_data.shipper_reference)
-    var ShipperAddressDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Address: </b></strong>" + parsed_data.shipper_address)
-    var ShipperStateDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper State: </b></strong>" + parsed_data.reciever_state)
-    var ShipperCityDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper City: </b></strong>" + parsed_data.shipper_city)
-    var ShipperPostalCodeDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Postal Code: </b></strong>" + parsed_data.shipper_post_code)
-    var ShipperMobileNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Mobile Number: </b></strong>" + parsed_data.shipper_mobile_number)
-    var ShipperPhoneNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Phone Number: </b></strong>" + parsed_data.shipper_phone_number)
+    var ShipperCompanyNameDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Company Name: </b></strong>" + parsed_data.shipper_company_name)
+    var ShipperContactPersonDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Contact Person: </b></strong>" + parsed_data.shipper_contact_person)
+    var ShipperRefrenceDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Refrence: </b></strong>" + parsed_data.shipper_reference)
+    var ShipperAddressDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Address: </b></strong>" + parsed_data.shipper_address)
+    var ShipperStateDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper State: </b></strong>" + parsed_data.reciever_state)
+    var ShipperCityDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper City: </b></strong>" + parsed_data.shipper_city)
+    var ShipperPostalCodeDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Postal Code: </b></strong>" + parsed_data.shipper_post_code)
+    var ShipperMobileNumberDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Mobile Number: </b></strong>" + parsed_data.shipper_mobile_number)
+    var ShipperPhoneNumberDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Phone Number: </b></strong>" + parsed_data.shipper_phone_number)
     var ShipperNTNOrCNICNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper NTN/CNIC: </b></strong>" + parsed_data.shipper_ntn_cnic)
-    var ShipperEmailAddressDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Email Address: </b></strong>" + parsed_data.shipper_email_address)
+    var ShipperEmailAddressDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipper Email Address: </b></strong>" + parsed_data.shipper_email_address)
 
     // Reciever Details
     var RecieverDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
         'background-color': '#fd7e14',
         'margin': '23px',
+        'letter-spacing':'0.04px'
     }).html("<h3><b>Reciever Details </b></h3>")
 
-    var RecieverCompanyNameDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Company Name: </b></strong>" + parsed_data.reciever_company_name)
-    var RecieverContactPersonDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Contact Person: </b></strong>" + parsed_data.reciever_contact_person)
-    var RecieverAddressDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Address: </b></strong>" + parsed_data.reciever_address)
-    var RecieverCountryDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Country: </b></strong>" + parsed_data.reciever_country)
-    var RecieverStateDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever State: </b></strong>" + parsed_data.reciever_state)
-    var RecieverCityDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever City: </b></strong>" + parsed_data.reciever_city)
-    var RecieverPostalCodeDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Postal Code: </b></strong>" + parsed_data.reciever_post_code)
-    var RecieverMobileNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Mobile Number: </b></strong>" + parsed_data.reciever_mobile_number)
-    var RecieverPhoneNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Phone Number: </b></strong>" + parsed_data.reciever_phone_number)
-    var RecieverEmailDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Email Address: </b></strong>" + parsed_data.reciever_email)
-    var RecieverFaxDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Fax: </b></strong>" + parsed_data.reciever_fax)
+    var RecieverCompanyNameDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Company Name: </b></strong>" + parsed_data.reciever_company_name)
+    var RecieverContactPersonDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Contact Person: </b></strong>" + parsed_data.reciever_contact_person)
+    var RecieverAddressDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Address: </b></strong>" + parsed_data.reciever_address)
+    var RecieverCountryDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Country: </b></strong>" + parsed_data.reciever_country)
+    var RecieverStateDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever State: </b></strong>" + parsed_data.reciever_state)
+    var RecieverCityDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever City: </b></strong>" + parsed_data.reciever_city)
+    var RecieverPostalCodeDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Postal Code: </b></strong>" + parsed_data.reciever_post_code)
+    var RecieverMobileNumberDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Mobile Number: </b></strong>" + parsed_data.reciever_mobile_number)
+    var RecieverPhoneNumberDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Phone Number: </b></strong>" + parsed_data.reciever_phone_number)
+    var RecieverEmailDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Email Address: </b></strong>" + parsed_data.reciever_email)
+    var RecieverFaxDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Reciever Fax: </b></strong>" + parsed_data.reciever_fax)
 
     // Reciever Details
     var ShipmentDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
         'background-color': '#fd7e14',
         'margin': '23px',
+        'letter-spacing':'0.04px'
     }).html("<h3><b>Shipment Details </b></h3>")
 
-    var PaymentDiv = $("<div>").addClass('col-6').html("<strong><b>Payment Type: </b></strong>" + parsed_data.payment_id)
-    var shipmentDiv = $("<div>").addClass('col-6').html("<strong><b>Shipment Type: </b></strong>" + parsed_data.shipment_id)
-    var FedExDiv = $("<div>").addClass('col-6').html("<strong><b>FedEx Number: </b></strong>" + parsed_data.fedex_number)
-    var WeightDiv = $("<div>").addClass('col-6').html("<strong><b>Weight: </b></strong>" + parsed_data.weight)
-    var PiecesDiv = $("<div>").addClass('col-6').html("<strong><b>Pieces: </b></strong>" + parsed_data.pieces)
+    var PaymentDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Payment Type: </b></strong>" + parsed_data.payment_id)
+    var shipmentDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Shipment Type: </b></strong>" + parsed_data.shipment_id)
+    var FedExDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>FedEx Number: </b></strong>" + parsed_data.fedex_number)
+    var WeightDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Weight: </b></strong>" + parsed_data.weight)
+    var PiecesDiv = $("<div>").addClass('col-6').css('letter-spacing','0.04px').html("<strong><b>Pieces: </b></strong>" + parsed_data.pieces)
 
     // Dimensions and InvoiceDetails
     var DimensionsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
         'background-color': '#fd7e14',
         'margin': '23px',
+        'letter-spacing':'0.04px'
     }).html("<h3><b>Dimensions </b></h3>")
     
     
@@ -159,16 +162,17 @@ function get_detail_billing_html(data, is_download = false) {
         'text-align': 'center',
         'background-color': '#fd7e14',
         'margin': '23px',
+        'letter-spacing':'0.04px'
     }).html("<h3><b>Invoice Details </b></h3>")
     
     for (const [key, value] of Object.entries(parsed_data.data)) {
         if (key == 'dimensions') {
             for (const [innerkey, innervalue] of Object.entries(value)) {
-                var Dimensions = $("<div>").addClass('col-3').html("<h3><b>Dimensions "+ innerkey +" </b></h3>")
+                var Dimensions = $("<div>").addClass('col-3').css('letter-spacing','0.04px').html("<h3><b>Dimensions "+ innerkey +" </b></h3>")
                 rowDiv5.append(Dimensions)
-                rowDiv5.append(colDiv.clone().html("<strong><b>Length: </b></strong>" + innervalue.length))
-                rowDiv5.append(colDiv.clone().html("<strong><b>Width: </b></strong>" + innervalue.width))
-                rowDiv5.append(colDiv.clone().html("<strong><b>Height: </b></strong>" + innervalue.height))
+                rowDiv5.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>Length: </b></strong>" + innervalue.length))
+                rowDiv5.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>Width: </b></strong>" + innervalue.width))
+                rowDiv5.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>Height: </b></strong>" + innervalue.height))
                 rowDiv5.append($("<hr>").addClass('col-12'))
             }
         }
@@ -177,10 +181,10 @@ function get_detail_billing_html(data, is_download = false) {
             for (const [innerkey, innervalue] of Object.entries(value)) {
                 var InvoiceDetails = $("<div>").addClass('col-3').html("<h3><b>Invoice Detail "+ innerkey +" </b></h3>")
                 rowDiv6.append(InvoiceDetails)
-                rowDiv6.append(colDiv.clone().html("<strong><b>HS Title: </b></strong>" + innervalue.hs_title))
-                rowDiv6.append(colDiv.clone().html("<strong><b>Price: </b></strong>" + innervalue.price))
-                rowDiv6.append(colDiv.clone().html("<strong><b>Quantity: </b></strong>" + innervalue.quantity))
-                rowDiv6.append(colDiv.clone().html("<strong><b>Total: </b></strong>" + innervalue.total))
+                rowDiv6.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>HS Title: </b></strong>" + innervalue.hs_title))
+                rowDiv6.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>Price: </b></strong>" + innervalue.price))
+                rowDiv6.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>Quantity: </b></strong>" + innervalue.quantity))
+                rowDiv6.append(colDiv.clone().css('letter-spacing','0.04px').html("<strong><b>Total: </b></strong>" + innervalue.total))
                 rowDiv6.append($("<hr>").addClass('col-12'))
             }
         }
@@ -194,7 +198,7 @@ function get_detail_billing_html(data, is_download = false) {
     rowDiv4.append(PaymentDiv, shipmentDiv, FedExDiv, WeightDiv, PiecesDiv)
     
     final_div.append(rowDiv1, ShipperDetailsHeading, rowDiv2, RecieverDetailsHeading, rowDiv3, ShipmentDetailsHeading, rowDiv4, DimensionsHeading, rowDiv5, InvoiceDetailsHeading, rowDiv6)
-    return final_div.css({'letter-spacing':'0.01px'})
+    return final_div.css({'letter-spacing':'0.04px'})
 
 }
 
@@ -253,7 +257,7 @@ $(document).on('click', "#download_billing_details_button", function () {
     var trackingId = $(this).attr('data-tracking-id')
     var { status, data } = sendRequest("POST", billinDetailsUrl, { "id": billingDetailsId });
 
-    var data_in_html = get_detail_billing_html(data);
+    var data_in_html = get_detail_billing_html_for_pdf_download(data);
     var html = $(data_in_html);
     
     var carouselItemsArray = html
