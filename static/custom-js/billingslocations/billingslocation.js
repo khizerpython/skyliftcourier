@@ -89,6 +89,11 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     var rowDiv5 = temp_div.clone().addClass('row')
     var rowDiv6 = temp_div.clone().addClass('row')
     var parsed_data = JSON.parse(data)
+    var WebHeading = $("<div>").addClass('row-12').css({
+        'text-align': 'center',
+        'background-color': '#fd7e14',
+        'margin': '23px',
+    }).html("<h3><b>Sky Lift Courier </b></h3>")
 
     // Top two values
     
@@ -203,23 +208,24 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
 }
 
 function termsAndConditions(){
-    var rowDiv = $("<div>").addClass('row')
-    var Definitionheading = $("<h3>").text('1. Definition : ')
-    var Consignmentheading = $("<h3>").text('2. Consignment Note : ')
-    var PartiesAndSubContractingheading = $("<h3>").text('3. Parties and Sub-contracting : ')
-    var CommonCarrierheading = $("<h3>").text('4. Common Carrier : ')
-    var Variationsheading = $("<h3>").text('5. Variations : ')
-    var LiabilitiesNotAssumedheading = $("<h3>").text('6. Liabilities Not Assumed:')
-    var ConsignmentAcceptableforTransportheading = $("<h3>").text('7. Consignment Acceptable for Transport:')
-    var UnacceptableGoodsheading = $("<h3>").text('8. Unacceptable Goods : ')
-    var WarrantiesbytheConsignorheading = $("<h3>").text('9. Warranties by the Consignor : ')
-    var CustomsClearanceheading = $("<h3>").text('10. Customs Clearance : ')
-    var Chargesheading = $("<h3>").text('11. Charges : ')
-    var MethodsofTransportheading = $("<h3>").text('12. Methods of Transport : ')
-    var Insuranceheading = $("<h3>").text('13. Insurance : ')
-    var Deliveryheading = $("<h3>").text('14. Delivery : ')
-    var Lienheading = $("<h3>").text('15. Lien : ')
-    var Claimheading = $("<h3>").text('16. Claim : ')
+    var rowDiv = $("<div>")
+    var innerDiv = $("<div>").addClass('row')
+    var Definitionheading = $("<h4>").text('1. Definition : ')
+    var Consignmentheading = $("<h4>").text('2. Consignment Note : ')
+    var PartiesAndSubContractingheading = $("<h4>").text('3. Parties and Sub-contracting : ')
+    var CommonCarrierheading = $("<h4>").text('4. Common Carrier : ').css('margin-right', '10em')
+    var Variationsheading = $("<h4>").text('5. Variations : ')
+    var LiabilitiesNotAssumedheading = $("<h4>").text('6. Liabilities Not Assumed:')
+    var ConsignmentAcceptableforTransportheading = $("<h4>").text('7. Consignment Acceptable for Transport:')
+    var UnacceptableGoodsheading = $("<h4>").text('8. Unacceptable Goods : ').css('margin-right', '10em')
+    var WarrantiesbytheConsignorheading = $("<h4>").text('9. Warranties by the Consignor : ')
+    var CustomsClearanceheading = $("<h4>").text('10. Customs Clearance : ').css('margin-right', '10em')
+    var Chargesheading = $("<h4>").text('11. Charges : ').css('margin-right', '20em')
+    var MethodsofTransportheading = $("<h4>").text('12. Methods of Transport : ').css('margin-right', '10em')
+    var Insuranceheading = $("<h4>").text('13. Insurance : ').css('margin-right', '20em')
+    var Deliveryheading = $("<h4>").text('14. Delivery : ').css('margin-right', '20em')
+    var Lienheading = $("<h4>").text('15. Lien : ').css('margin-right', '20em')
+    var Claimheading = $("<h4>").text('16. Claim : ').css({'margin-right': '20em'})
 
 
     var defContent = $('<p>').css('letter-spacing','0.06px').text('"SkyLiftCourier" refers to SKYLIFTCOURIER (whether acting directly or through agents). "Consignor" or "Shipper" is the sender of goods for transport. "Consignment" includes goods, parcels, or packages tendered by the Consignor to SkyliftCourier.')
@@ -238,13 +244,34 @@ function termsAndConditions(){
     var DeliveryContent = $('<p>').css('letter-spacing','0.06px').text('Delivery is authorized to the address on the Consignment Note.')
     var LienContent = $('<p>').css('letter-spacing','0.06px').text('SkyliftCourier has the right of detention on goods for sums due.')
     var ClaimsContent = $('<p>').css('letter-spacing','0.06px').text('Claims must be made in writing within 7 days, contingent on payment of transport charges.')
+
+    var defheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Definitionheading,defContent)
+    var consignmentheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Consignmentheading,consignmentContent)
+    var partiesheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(PartiesAndSubContractingheading,PartiesAndSubContractingContent)
+    var commoncarrierheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(CommonCarrierheading,CommonCarrierContent)
+    var variationheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Variationsheading, VariationsContent)
+    var liabilitiesheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(LiabilitiesNotAssumedheading, LiabilitiesNotAssumedContent)
+    var consignmentAcceptableheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(ConsignmentAcceptableforTransportheading,ConsignmentAcceptableforTransportContent)
+    var unacceptablegoodsheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(UnacceptableGoodsheading,UnacceptableGoodsContent)
+    var warrantiesheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(WarrantiesbytheConsignorheading,WarrantiesbytheConsignorContent)
+    var customclearanceheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(CustomsClearanceheading,CustomsClearanceContent)
+    var chargesheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Chargesheading, ChargesContent)
+    var motheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(MethodsofTransportheading,MethodsofTransportContent)
+    var insuranceheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Insuranceheading, InsuranceContent)
+    var deliveryheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Deliveryheading, DeliveryContent)
+    var lienheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Lienheading, LienContent)
+    var claimheadingDiv = innerDiv.clone().css('letter-spacing','0.06px').append(Claimheading, ClaimsContent)
+
+    rowDiv.append(defheadingDiv,consignmentheadingDiv,partiesheadingDiv,commoncarrierheadingDiv,variationheadingDiv,liabilitiesheadingDiv,consignmentAcceptableheadingDiv,
+        unacceptablegoodsheadingDiv,warrantiesheadingDiv,customclearanceheadingDiv,chargesheadingDiv,motheadingDiv,insuranceheadingDiv,deliveryheadingDiv,lienheadingDiv,
+        claimheadingDiv)
+    
    
-   
-    rowDiv.append(Definitionheading,defContent, Consignmentheading,consignmentContent, PartiesAndSubContractingheading,
-        PartiesAndSubContractingContent,CommonCarrierheading,CommonCarrierContent,Variationsheading, VariationsContent,LiabilitiesNotAssumedheading, LiabilitiesNotAssumedContent
-        , ConsignmentAcceptableforTransportheading,ConsignmentAcceptableforTransportContent, UnacceptableGoodsheading,UnacceptableGoodsContent,WarrantiesbytheConsignorheading,
-        WarrantiesbytheConsignorContent, CustomsClearanceheading,CustomsClearanceContent, Chargesheading, ChargesContent, MethodsofTransportheading,MethodsofTransportContent,
-        Insuranceheading, InsuranceContent,Deliveryheading, DeliveryContent, Lienheading, LienContent, Claimheading, ClaimsContent)
+    // rowDiv.append(Definitionheading,defContent, Consignmentheading,consignmentContent, PartiesAndSubContractingheading,
+    //     PartiesAndSubContractingContent,CommonCarrierheading,CommonCarrierContent,Variationsheading, VariationsContent,  LiabilitiesNotAssumedheading, LiabilitiesNotAssumedContent
+    //     , ConsignmentAcceptableforTransportheading,ConsignmentAcceptableforTransportContent, UnacceptableGoodsheading,UnacceptableGoodsContent,WarrantiesbytheConsignorheading,
+    //     WarrantiesbytheConsignorContent, CustomsClearanceheading,CustomsClearanceContent, Chargesheading, ChargesContent, MethodsofTransportheading,MethodsofTransportContent,
+    //     Insuranceheading, InsuranceContent,Deliveryheading, DeliveryContent, Lienheading, LienContent, Claimheading, ClaimsContent)
     return rowDiv
     
 }
@@ -274,15 +301,14 @@ $(document).on('click', "#download_billing_details_button", function () {
     );
     var totalstr = "";
     for (var i = 0; i < carouselItemsArray.length; i++) {
-        totalstr +=  carouselItemsArray[i].innerHTML ;
+        totalstr += "<br><br><br>" + carouselItemsArray[i].innerHTML + "<br><br><br>";
     }
-    totalstr = totalstr.replace(/(<strong>|<b>)(.*?)<\/(strong|b)>/g, function(match, p1, p2, p3) {
-        return p1 + p2.replace(/ /g, '&nbsp;') + '</' + p3 + '>';
+    // totalstr = totalstr.replace(/(<strong>|<b>)(.*?)<\/(strong|b)>/g, function(match, p1, p2, p3) {
+    //     return p1 + p2.replace(/ /g, '&nbsp;') + '</' + p3 + '>';
         
-    });
+    // });
     var termsContent = termsAndConditions();
     totalstr += termsContent[0].outerHTML;
-    console.log(totalstr);
     
     doc.html(totalstr, {
         callback: () => {
