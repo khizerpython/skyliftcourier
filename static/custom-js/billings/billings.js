@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 function createMinusIcon(_class, _delete) {
     var col_div = $('<div>')
-    var col1 = col_div.clone().addClass(_class)
+    var col1 = col_div.clone().addClass(_class).attr('data-delete-id', _delete)
     var innerDiv = col_div.clone().addClass('mt-4 text-center')
     var ITag = $("<i>").addClass('"bi bi-dash-circle-fill').attr('data-delete-id', _delete).css('font-size', '35px')
     finalDiv = col1.append(innerDiv.append(ITag))
@@ -14,7 +14,7 @@ function createMinusIcon(_class, _delete) {
 
 
 function createPlusIcon(_data_invoice_details) {
-    var col_div = $('<div>')
+    var col_div = $('<div>').attr('data-delete-id','nothing')
     var col1 = col_div.clone().addClass("col-1")
     var innerDiv = col_div.clone().addClass('mt-4 text-center')
     var ITag = $("<i>").addClass('bi bi-plus-circle-fill').attr('data-include-id',"false").attr('data-invoice-details',_data_invoice_details).css('font-size', '35px')
@@ -383,6 +383,7 @@ $("#update_billings_form_id").on('submit', function (e) {
     var { status, data } = sendRequest(submit_method, submit_url, _data);
     if (status) {
         remove_custom_error_classes();
+        $('[data-delete-id]').remove();
         $("#reset_create_billing_form_id").trigger("click");
         $(this).addClass('d-none')
         
@@ -449,3 +450,10 @@ function refresh_pending_workflow_table(datatable_id){
     datatable_inst.DataTable().clear().draw();
     reconstruct_pending_workflow_table(datatable_id, data)
 }
+
+
+$("#reset_create_billing_form_id").on('click',function(e){
+    e.preventDefault();
+    $(this).closest('form')[0].reset();
+    $('[data-delete-id]').remove();
+})

@@ -12,12 +12,12 @@
     <h5 class="text-center display-4">Track Your Shipment</h5>
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <form action="simple-results.html">
+            <form data-method="POST" id="show_home_billing_location" data-url="{% url 'home' %}">
                 <div class="input-group">
-                    <input type="search" class="form-control form-control-lg"
+                    <input type="text" name="tracking_number" class="form-control form-control-lg"
                         placeholder="Enter your tracking number Here">
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-lg btn-default">
+                        <button class="btn btn-lg btn-default">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -62,7 +62,7 @@
             <div class="card-body">
                 <img src="{% static '/image/front_page_images/frontpagecardimages/aboutusimg.jpg' %}" alt=""
                 class="card-img-top">
-                <button class="btn m-4" style="background-color: #fd7e14; align-self: center;"> About Us</button>    
+                <button class="btn m-4" style="background-color: #fd7e14; align-self: center;"><a style="color: #ffff;" href="{% url 'aboutus' %}">About Us</a></button>    
 
             </div>
         </div>
@@ -74,7 +74,7 @@
                 class="card-img-top">
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p> -->
-                <button class="btn m-4" style="background-color: #fd7e14;"> Our Track Record</button>    
+                <button class="btn m-4" style="background-color: #fd7e14;"><a style="color: #ffff;" href="{% url 'ourtrackrecord' %}">Our Track Record</a> </button>    
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
             <div class="card-body">
                 <img src="{% static '/image/front_page_images/frontpagecardimages/contactusimg.jpg' %}" alt=""
                 class="card-img-top">
-                <button class="btn m-4" style="background-color: #fd7e14;"> Contact Us</button>        
+                <button class="btn m-4" style="background-color: #fd7e14;"><a style="color: #ffff;" href="{% url 'contactus' %}">Contact Us</a></button>        
 
             </div>
         </div>
@@ -92,5 +92,11 @@
 
 
 
+
+{% endblock %}
+
+{% block "extra_scripts" %}
+
+<script src="{% static '/custom-js/home/home.js' %}"></script>
 
 {% endblock %}

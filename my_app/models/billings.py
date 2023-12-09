@@ -72,4 +72,4 @@ class AirwayBill(ModelUUIDField,CreatedAndUpdatedModelFields):
 
 class AirwayBillLocation(ModelUUIDField,CreatedAndUpdatedModelFields):
     name = models.CharField(max_length=400, blank=False)
-    airway_bill_id = models.ForeignKey(AirwayBill, on_delete=models.SET_NULL, blank=True, null=True)
+    airway_bill_id = models.ForeignKey(AirwayBill, on_delete=models.SET_NULL, blank=True, null=True, related_name='locations')
