@@ -1,7 +1,17 @@
-$("#create_billings_form_id").validate({
+$.validator.addMethod("select_choices", function (value, element, args) {
+    if (value.length == 0) return true;
+    if (typeof value == "string") {
+        value = [value]
+    }
+    let verified = value.every((val) => args.indexOf(val) >= 0);
+    return verified;
+}, "Please select correct option");
+
+var vaildationrules = {
     rules: {
         service_id: {
             required: true,
+            select_choices:_all_services
         },
         shipper_company_name: {
             required: true,
@@ -73,9 +83,11 @@ $("#create_billings_form_id").validate({
         // Shipment details
         payment_id: {
             required: true,
+            select_choices:_all_payments
         },
         shipment_id: {
             required: true,
+            select_choices:_all_shipments
         },
         fedex_number: {
             required: true,
@@ -169,4 +181,7 @@ $("#create_billings_form_id").validate({
     },
     errorClass: "invalid-feedback",
     validClass: "valid-feedback",
-})
+}
+
+$("#create_billings_form_id").validate(vaildationrules)
+$("#update_billings_form_id").validate(vaildationrules)

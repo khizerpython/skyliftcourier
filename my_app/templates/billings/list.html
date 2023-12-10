@@ -1,5 +1,6 @@
 {% extends 'default/index.html' %}
 {% load static %}
+{% load query_filter %}
 
 {% block main_body %}
 
@@ -34,6 +35,7 @@
                   <option value={{service.id}}>{{service.name}}</option>
                   {% endfor %}
                 </select>
+                <div></div>
               </div>
             </div>
             <div class="col-4">
@@ -306,6 +308,7 @@
                   {% endfor %}
 
                 </select>
+                <div></div>
               </div>
             </div>
 
@@ -320,6 +323,7 @@
                   {% endfor %}
 
                 </select>
+                <div></div>
               </div>
             </div>
 
@@ -535,6 +539,7 @@
                   <option value={{service.id}}>{{service.name}}</option>
                   {% endfor %}
                 </select>
+                <div></div>
               </div>
             </div>
             <div class="col-4">
@@ -807,6 +812,7 @@
                   {% endfor %}
 
                 </select>
+                <div></div>
               </div>
             </div>
 
@@ -821,6 +827,7 @@
                   {% endfor %}
 
                 </select>
+                <div></div>
               </div>
             </div>
 
@@ -941,8 +948,18 @@
 {% endblock %}
 
 {% block "extra_scripts" %}
+<script>
+  let _payments = "{{ payments|get_value_list_in_qs:'id'|safe }}"
+    const _all_payments = JSON.parse(_payments.replaceAll("'", '"'));
+  
+  let _shipments = "{{ shipments|get_value_list_in_qs:'id'|safe }}"
+  const _all_shipments = JSON.parse(_shipments.replaceAll("'", '"'));
+  
+  let _services = "{{ services|get_value_list_in_qs:'id'|safe }}"
+  const _all_services = JSON.parse(_services.replaceAll("'", '"'));
+</script>
 
-<!-- <script src="{% static '/validators/billings.js' %}"></script> -->
+<script src="{% static '/validators/billings.js' %}"></script>
 <script src="{% static '/custom-js/billings/billings.js' %}"></script>
 
 

@@ -121,6 +121,7 @@ function transformObj(json_obj) {
 
     }
 }
+
 $(document).on('click', '#display-form-id', function () {
     // $("#display-form-id").click(function(){
     var displayFormId = $(this).attr('data-display-form-id')
@@ -130,6 +131,7 @@ $(document).on('click', '#display-form-id', function () {
     $("#" + hiddenTalbeId).addClass('d-none')
     $("#" + hiddenUpdateId).addClass('d-none')
 })
+
 $(document).on('click', '#display-table-id', function () {
     // $("#display-form-id").click(function(){
     var displayTableId = $(this).attr('data-display-table-id')
@@ -143,6 +145,7 @@ $(document).on('click', '#display-table-id', function () {
 $("#create_billings_form_id").on('submit', function (e) {
     e.preventDefault();
     e.stopPropagation()
+    if ($("#create_billings_form_id").valid()) {
 
     var formData = $(this).serializeArray();
     const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title']);
@@ -156,9 +159,8 @@ $("#create_billings_form_id").on('submit', function (e) {
         $("#reset_create_billing_form_id").trigger("click");
         refresh_pending_workflow_table("airway_bill_datatable_id")
     }
+}
 })
-
-
 
 // build dynamically billings details modal
 function get_detail_billing_html(data, is_download = false) {
@@ -291,7 +293,6 @@ $(document).on('click', "#get_billing_details_button", function () {
     setGenericModal("Airway Bill Details", data_in_html, true);
 })
 
-
 function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = [], multiple_asset_ids = false) {
     const filtered_data = data[0].fields
     $("#" + form_id).children().find("[name='" + 'id' + "']").val(data[0].pk);
@@ -373,6 +374,7 @@ $(document).on('click', "#update_airway_bill_button", function(e){
 $("#update_billings_form_id").on('submit', function (e) {
     e.preventDefault();
     e.stopPropagation()
+    if ($("#update_billings_form_id").valid()) {
 
     var formData = $(this).serializeArray();
     const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
@@ -390,6 +392,7 @@ $("#update_billings_form_id").on('submit', function (e) {
         $("#bordered-pending").removeClass('d-none')
         refresh_pending_workflow_table("airway_bill_datatable_id")
     }
+}
 })
 
 
