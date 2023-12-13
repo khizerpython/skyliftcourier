@@ -15,8 +15,11 @@ $("#login_user").on("submit", function (e) {
            location.replace(data.Redirect);    
             $("#login_user")[0].reset();
            
+        } else{
+           
+            $(".error_div").text(data.Message).css({'color':"#C92127"})
         }
-        // return false;
+        return false;
 
     }
 

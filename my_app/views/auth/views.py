@@ -37,7 +37,7 @@ class Login(View):
                 return JsonResponse({"Status":"Success","Redirect":url})
             else:
                 error_message = "Invalid username or password."
-                return JsonResponse({"Status":"Failure","Message":"Invalid Username or Password!"},)
+                return JsonResponse(data = {"Status":"Failure","Message":"Invalid Username or Password!"},status=400)
             
 
           
