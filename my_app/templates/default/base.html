@@ -7,41 +7,32 @@
   
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- <link rel="stylesheet" href="{% static '/css/fonts.googleapis.css' %}"> -->
-  <!-- Font Awesome -->
-  <!-- <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"> -->
+  <link rel="stylesheet" href="{% static '/css/font.googleapis.css' %}">
   <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
   <link rel="stylesheet" href="{% static '/css/customcss/custom.css' %}">
   <link rel="stylesheet" href="{% static '/css/boostrap icons/bootstrap-icons.css' %}">
 
   <!-- Datatable -->
-  <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.7/datatables.min.css" rel="stylesheet">
+  <link href="{% static '/css/datatables.min.css' %}" rel="stylesheet">
   <!-- Ionicons -->
-  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
   <link rel="stylesheet" href="{% static '/css/ionicons.min.css' %}">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <!-- <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+  
   <link rel="stylesheet" href="{% static '/css/tempusdominus-bootstrap-4.min.css' %}">
 
 
   <!-- iCheck -->
-  <!-- <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css"> -->
   <link rel="stylesheet" href="{% static '/css/icheck-bootstrap.min.css' %}">
   <!-- JQVMap -->
-  <!-- <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css"> -->
+  
   <link rel="stylesheet" href="{% static '/css/jqvmap.min.css' %}">
   <!-- Theme style -->
-  <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
+  
   <link rel="stylesheet" href="{% static '/css/adminlte.min.css' %}">
   <!-- overlayScrollbars -->
-  <!-- <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
   <link rel="stylesheet" href="{% static '/css/OverlayScrollbars.min.css'%}">
   <!-- Daterange picker -->
-  <!-- <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css"> -->
   <link rel="stylesheet" href="{% static '/css/daterangepicker.css' %}">
   <!-- summernote -->
-  <!-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css"> -->
   <link rel="stylesheet" href="{% static '/css/summernote-bs4.min.css' %}">
   <link rel="stylesheet" href="{% static '/css/form-validation.css' %}">
 </head>
@@ -67,7 +58,7 @@
 <!-- Bootstrap 4 -->
 <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
-<script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.7/datatables.min.js"></script>
+<script src="{% static '/js/datatables.min.js' %}"></script>
 <!-- ChartJS -->
 <!-- <script src="plugins/chart.js/Chart.min.js"></script> -->
 <script src="{% static '/js/Chart.min.js' %}"></script>
@@ -88,22 +79,16 @@
 <!-- <script src="plugins/daterangepicker/daterangepicker.js"></script> -->
 <script src="{% static '/js/daterangepicker.js' %}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<!-- <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> -->
 <script src="{% static '/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 <!-- Summernote -->
-<!-- <script src="plugins/summernote/summernote-bs4.min.js"></script> -->
 <script src="{% static '/js/summernote-bs4.min.js' %}"></script>
 <!-- overlayScrollbars -->
-<!-- <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
 <script src="{% static '/js/jquery.overlayScrollbars.min.js' %}"></script>
 <!-- AdminLTE App -->
 <!-- <script src="dist/js/adminlte.js"></script> -->
 <script src="{% static '/js/adminlte.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
-<!-- <script src="dist/js/demo.js"></script> -->
-<!-- <script src="{% static '/js/demo.js' %}"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="dist/js/pages/dashboard.js"></script> -->
 <script src="{% static '/js/dashboard.js' %}"></script>
 <script src="{% static '/js/constants.js' %}"></script>
 <script src="{% static '/JQuery-Validator/additional-methods.min.js' %}"></script>

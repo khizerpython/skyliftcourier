@@ -79,6 +79,7 @@ $(document).on('click', "#delete_location_button", function () {
 function get_detail_billing_html_for_pdf_download(data, is_download = false) {
 
     var final_div = $("<div>").addClass('carousel-item')
+    var break_tag = $("<br>")
 
     var temp_div = $("<div>")
     var colDiv = $("<div>").addClass('col-3')
@@ -194,6 +195,12 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
             }
         }
     }
+    var termsAndConditionsHeading = $("<div>").addClass('row-12').css({
+        'text-align': 'center',
+        'background-color': '#fd7e14',
+        'margin': '23px',
+        'letter-spacing':'0.04px'
+    }).html("<h3><b>Terms and Conditions </b></h3>")
 
     rowDiv1.append(ServiceType, TrackingIdDiv)
     rowDiv2.append(ShipperCompanyNameDiv, ShipperContactPersonDiv, ShipperRefrenceDiv, ShipperAddressDiv,
@@ -202,13 +209,19 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
         RecieverMobileNumberDiv, RecieverPhoneNumberDiv, RecieverEmailDiv, RecieverFaxDiv)
     rowDiv4.append(PaymentDiv, shipmentDiv, FedExDiv, WeightDiv, PiecesDiv)
     
-    final_div.append(rowDiv1, ShipperDetailsHeading, rowDiv2, RecieverDetailsHeading, rowDiv3, ShipmentDetailsHeading, rowDiv4, DimensionsHeading, rowDiv5, InvoiceDetailsHeading, rowDiv6)
+    final_div.append(rowDiv1, ShipperDetailsHeading, rowDiv2, RecieverDetailsHeading, rowDiv3, ShipmentDetailsHeading, rowDiv4, DimensionsHeading, rowDiv5, InvoiceDetailsHeading, rowDiv6,break_tag,break_tag, termsAndConditionsHeading)
     return final_div.css({'letter-spacing':'0.04px'})
 
 }
 
 function termsAndConditions(){
     var rowDiv = $("<div>")
+    var termsAndConditionsHeading = $("<div>").addClass('row-12').css({
+        'text-align': 'center',
+        'background-color': '#fd7e14',
+        'margin': '23px',
+        'letter-spacing':'0.04px'
+    }).html("<h3><b>Terms and Conditions </b></h3>")
     var innerDiv = $("<div>").addClass('row')
     var Definitionheading = $("<h4>").text('1. Definition : ')
     var Consignmentheading = $("<h4>").text('2. Consignment Note : ')

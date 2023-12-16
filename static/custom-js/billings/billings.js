@@ -140,6 +140,7 @@ $(document).on('click', '#display-table-id', function () {
     $("#" + displayTableId).removeClass('d-none')
     $("#" + hiddenFormId).addClass('d-none')
     $("#" + hiddenUpdateId).addClass('d-none')
+    $('#update_billings_form_id [data-delete-id]').remove();
 })
 
 $("#create_billings_form_id").on('submit', function (e) {
