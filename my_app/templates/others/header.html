@@ -53,9 +53,17 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout_url' %}" class="nav-link">
+        <!-- <a class="nav-link" href="{% url 'logout_url' %}" class="nav-link">
           Logout
-        </a>
+        </a> -->
+        <form id="signout_form" action="{% url 'logout_url' %}" method="POST">
+          {% csrf_token %}
+          <a class="nav-link" href="#"
+            onclick="javascript: $('#signout_form').submit();">
+            <!-- <i class="bi bi-box-arrow-right"></i> -->
+            <span>Log Out</span>
+          </a>
+        </form>
       </li>
 
       {% else %}
