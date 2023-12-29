@@ -162,7 +162,7 @@ LOGGING = {
         'file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'filename': STATICFILES_DIRS + 'productionerror.log',  # Update this path
+            'filename': STATIC_CUSTOM_DIR / 'productionerror.log',  # Update this path
         },
     },
     'loggers': {
