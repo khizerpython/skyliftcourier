@@ -32,7 +32,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy("home")
 SECRET_KEY = 'django-insecure-ukv9ot_5=3^k6tref!z05s=*f0w)r*6(xs!xy*u7ml2n-db&7h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
