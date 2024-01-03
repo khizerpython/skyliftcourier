@@ -96,7 +96,6 @@ WSGI_APPLICATION = 'skylift.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-print(os.environ.get('DB_NAME'))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

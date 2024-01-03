@@ -74,15 +74,14 @@ $(document).on('click', '.bi-dash-circle-fill', function () {
 
 function transformObj(json_obj) {
     // dimensions
-    var _length = json_obj.length
+    var dimension_length = json_obj.length
     var width = json_obj.width
     var height = json_obj.height
 
-
-    if (_length.length != 0 && _length.length === width.length && _length.length === height.length) {
+    if (dimension_length.length != 0 && dimension_length.length === width.length && dimension_length.length === height.length) {
         // Creating Dimensions dict
         dimensions = {}
-        var arrayLength = _length.length
+        var arrayLength = dimension_length.length
         for (var i = 0; i < arrayLength; i++) {
             dimensions[i + 1] = {
                 "length": json_obj.length[i],
@@ -90,9 +89,6 @@ function transformObj(json_obj) {
                 "height": json_obj.height[i]
             };
         }
-
-
-
     }
     // Invoice details
     var hs_title = json_obj.hs_title
@@ -143,14 +139,14 @@ $(document).on('click', '#display-table-id', function () {
     $('#update_billings_form_id [data-delete-id]').remove();
 })
 
-$("#create_billings_form_id").on('submit', async function (e) {
+$("#create_billings_form_id").on('submit', function (e) {
     e.preventDefault();
     e.stopPropagation()
     if ($("#create_billings_form_id").valid()) {
 
     var formData = $(this).serializeArray();
-    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title']);
-    var _data = await transformObj(json_obj)
+    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title','quantity','price','total','width','length','height']);
+    var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
 
