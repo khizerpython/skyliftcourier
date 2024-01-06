@@ -69,6 +69,7 @@ class UpdateAirwayBillView(View):
         
         form_validation = BillingsUpdateForm(data)
         if form_validation.is_valid():
+            print("yes update billing form is valid")
             obj = AirwayBill.objects.get(id=id)
             tracking_number = obj.tracking_number
             if obj:
@@ -109,6 +110,7 @@ class UpdateAirwayBillView(View):
             else:
                 return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} not found"}, status=401)
         else:
+            print("in update form the errors are :",form_validation.errors)
             return JsonResponse({"detail": f"Air way bill with tracking ID {id} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "update_"}, status=401)
 
 
