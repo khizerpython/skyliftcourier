@@ -74,6 +74,7 @@ $(document).on('click', '.bi-dash-circle-fill', function () {
 
 function transformObj(json_obj) {
     // dimensions
+    console.log("the json obj is :",json_obj);
     var dimension_length = json_obj.length
     var width = json_obj.width
     var height = json_obj.height
@@ -374,11 +375,10 @@ $("#update_billings_form_id").on('submit', function (e) {
     if ($("#update_billings_form_id").valid()) {
 
     var formData = $(this).serializeArray();
-    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = []);
+    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title','quantity','price','total','width','length','height']);
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
-
     var { status, data } = sendRequest(submit_method, submit_url, _data);
     if (status) {
         remove_custom_error_classes();
