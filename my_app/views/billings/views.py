@@ -38,9 +38,13 @@ class AirwayBillView(View):
         if form_validation.is_valid():
             print("ÿes form is valid")
             form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
+            print("the data in here is :",form_validation.cleaned_data['data'])
             form_validation.cleaned_data['user_id'] = self.request.user
+            print("the user in here is :",form_validation.cleaned_data['user_id'])
             tracking_number = form_validation.cleaned_data.get('tracking_number')
+            print("the tracking number in here is :",tracking_number)
             AirwayBill.objects.create(**form_validation.cleaned_data)
+            print('air way bill created')
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} has been initiated successfully"}, status=200)
         else:
             print("the errors are form_validation.errors",form_validation.errors)
