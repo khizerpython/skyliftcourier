@@ -31,9 +31,12 @@ class AirwayBillView(View):
         data=json.loads(request.body)
         print(data)
         dimension = data.get('dimensions')
+        print("the dimensions are :",dimension)
         invoice_details = data.get('invoice_details')
+        print("the invoice_details are :",invoice_details)
         form_validation = BillingsForm(data)
         if form_validation.is_valid():
+            print("ÿes form is valid")
             form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
             form_validation.cleaned_data['user_id'] = self.request.user
             tracking_number = form_validation.cleaned_data.get('tracking_number')
