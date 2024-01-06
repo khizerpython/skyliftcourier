@@ -22,8 +22,8 @@ class BillingsForm(forms.Form):
     shipper_state = forms.CharField(max_length=255, required=True)
     shipper_city = forms.CharField(max_length=255, required=True)
     shipper_post_code = forms.IntegerField(required=True)
-    shipper_mobile_number = forms.IntegerField(required=True)
-    shipper_phone_number = forms.IntegerField(required=True)
+    shipper_mobile_number = forms.CharField(max_length=20,required=True)
+    shipper_phone_number = forms.CharField(max_length=20,required=True)
     shipper_ntn_cnic = forms.CharField(max_length=255, required=True)
     shipper_email_address = forms.EmailField(max_length=255, required=True)
 
@@ -35,8 +35,8 @@ class BillingsForm(forms.Form):
     reciever_state = forms.CharField(max_length=255, required=True)
     reciever_city = forms.CharField(max_length=255, required=True)
     reciever_post_code = forms.IntegerField(required=True)
-    reciever_mobile_number = forms.IntegerField(required=True)
-    reciever_phone_number = forms.IntegerField(required=True)
+    reciever_mobile_number = forms.CharField(max_length=20,required=True)
+    reciever_phone_number = forms.CharField(max_length=20,required=True)
     reciever_email = forms.EmailField(max_length=255, required=True)
     reciever_fax = forms.CharField(max_length=255, required=True)
 
