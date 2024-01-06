@@ -3,6 +3,7 @@ from django.views.generic import View
 from django.http.response import JsonResponse
 from django.core import serializers
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 
 from my_app.models.billings import *
 from my_app.forms.billings import BillingsForm , BillingsDetail, BillingsUpdateForm
@@ -36,14 +37,22 @@ class AirwayBillView(View):
         print("the invoice_details are :",invoice_details)
         form_validation = BillingsForm(data)
         if form_validation.is_valid():
-            print("ÿes form is valid")
+
             form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
-            print("the data in here is :",form_validation.cleaned_data['data'])
+
             form_validation.cleaned_data['user_id'] = self.request.user
-            print("the user in here is :",form_validation.cleaned_data['user_id'])
+
             tracking_number = form_validation.cleaned_data.get('tracking_number')
-            print("the tracking number in here is :",tracking_number)
-            AirwayBill.objects.create(**form_validation.cleaned_data)
+
+            # AirwayBill.objects.create(**form_validation.cleaned_data)
+            airway_bill = AirwayBill(**form_validation.cleaned_data)
+            try:
+                airway_bill.full_clean()
+                airway_bill.save()
+                # Continue with success handling
+            except ValidationError as e:
+                # Handle validation errors here
+                print(f"Validation Error: {e}")
             print('air way bill created')
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} has been initiated successfully"}, status=200)
         else:
