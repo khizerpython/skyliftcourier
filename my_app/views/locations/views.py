@@ -7,7 +7,8 @@ from django.urls import reverse
 from my_app.models.billings import AirwayBillLocation,AirwayBill
 from my_app.forms.billings import BillingsForm , BillingsDetail, BillingsUpdateForm, BillingLocationForm,GetBillingsLocationDetailsForm
 import json
-import datetime
+from django.template.loader import render_to_string , get_template
+
 
 class AirwayBillLocationView(View):
 
@@ -84,3 +85,29 @@ class AirwayBillLocationDeleteView(View):
 
         def post(self, request, *args, **kwargs):
             return self._get(request, *args, **kwargs)
+
+class DownloadAirwayBillView(View):
+
+    def get(self, request, bill_id):
+        bill = AirwayBill.objects.get(id=bill_id)
+        context_dict = {
+            'bill':bill
+        }
+        html_content = render_to_string('billing_locations/download_billings.html', context_dict)
+        return JsonResponse({'html_content': html_content})
+        
+        # return render(request,template_name='billing_locations/download_billings.html',context=context_dict)
+class DownloadAirwayBillView(View):
+
+    def get(self, request, bill_id):
+        bill = AirwayBill.objects.get(id=bill_id)
+        context_dict = {
+            'bill':bill
+        }
+        # html_content = render_to_string('billing_locations/download_billings.html', context_dict)
+        # return JsonResponse({'html_content': html_content})
+        
+        return render(request,template_name='billing_locations/download_billings.html',context=context_dict)
+
+        
+    

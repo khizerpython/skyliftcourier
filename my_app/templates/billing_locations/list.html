@@ -64,9 +64,12 @@
                     style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Add Location</button>
                 </td>
                 <td>
-                  <button class="btn btn-primary" id="download_billing_details_button" data-get-detail-id="{{bill.id}}" data-tracking-id="{{bill.tracking_number}}"
-                    data-url="{% url 'airway_bill_detail' %}"
-                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Download</button>
+                  <!-- <li><a href="{% url 'download_airway_bill' bill.id %}">Download</a></li> -->
+                  <!-- <button class="btn btn-primary" id="download_billing_details_button" data-get-detail-id="{{bill.id}}" data-tracking-id="{{bill.tracking_number}}"
+                    data-url="{% url 'download_airway_bill' bill.id %}"
+                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Download</button> -->
+                  <button class="btn btn-primary" 
+                    style="background: #fd7e14; border-color:#fd790e;font-size: large;"><a href="{% url 'download_airway_bill' bill.id %}" target="_blank" style="color: white;">Download</a></button>
                 </td>
                 
               </tr>

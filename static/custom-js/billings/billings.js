@@ -43,11 +43,12 @@ $(document).on('click', '.bi-plus-circle-fill', function () {
         
         if (invoiceLength < 15) {
             var row1 = createInputRow(_id = 'create_id_hs_title', _name = 'hs_title', _type = 'text', _placeholder = 'Enter HS title', _class = 'col-3 ', _title = 'HS Title', _delete = 'invoicedetail' + invoiceLength+1)
-            var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-3', _title = 'Quantity', _delete = 'invoicedetail' + invoiceLength+1)
+            var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-2', _title = 'Quantity', _delete = 'invoicedetail' + invoiceLength+1)
             var row3 = createInputRow(_id = 'create_id_price', _name = 'price', _type = 'number', _placeholder = 'Enter Price', _class = 'col-2', _title = 'Price', _delete = 'invoicedetail' + invoiceLength+1)
             var row4 = createInputRow(_id = 'create_id_total', _name = 'total', _type = 'number', _placeholder = 'Enter Total', _class = 'col-2', _title = 'Total', _delete = 'invoicedetail' + invoiceLength+1)
+            var row5 = createInputRow(_id = 'create_id_hs_code', _name = 'hs_code', _type = 'text', _placeholder = 'Enter HS code', _class = 'col-2', _title = 'HS code', _delete = 'invoicedetail' + invoiceLength+1)
             var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'invoicedetail' + invoiceLength+1)
-            $(this).closest('.row').append(row1, row2, row3, row4, MinusIcon)
+            $(this).closest('.row').append(row1,row5, row2, row3, row4, MinusIcon)
         }
 
     } else if (dataInvoiceDetails == 'false') {
@@ -74,7 +75,6 @@ $(document).on('click', '.bi-dash-circle-fill', function () {
 
 function transformObj(json_obj) {
     // dimensions
-    console.log("the json obj is :",json_obj);
     var dimension_length = json_obj.length
     var width = json_obj.width
     var height = json_obj.height
@@ -92,7 +92,6 @@ function transformObj(json_obj) {
         }
     }
     // Invoice details
-    var hs_title = json_obj.hs_title
     var quantity = json_obj.quantity
     var price = json_obj.price
     var total = json_obj.total
@@ -106,6 +105,7 @@ function transformObj(json_obj) {
         for (var i = 0; i < arrayLength; i++) {
             invoice_details[i + 1] = {
                 "hs_title": json_obj.hs_title[i],
+                "hs_code": json_obj.hs_code[i],
                 "quantity": json_obj.quantity[i],
                 "price": json_obj.price[i],
                 "total": json_obj.total[i]
@@ -146,7 +146,7 @@ $("#create_billings_form_id").on('submit', function (e) {
     if ($("#create_billings_form_id").valid()) {
 
     var formData = $(this).serializeArray();
-    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title','quantity','price','total','width','length','height']);
+    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title','hs_code','quantity','price','total','width','length','height']);
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");
@@ -196,7 +196,7 @@ function get_detail_billing_html(data, is_download = false) {
     var ShipperMobileNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Mobile Number: </b></strong>" + parsed_data.shipper_mobile_number)
     var ShipperPhoneNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Phone Number: </b></strong>" + parsed_data.shipper_phone_number)
     var ShipperNTNOrCNICNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper NTN/CNIC: </b></strong>" + parsed_data.shipper_ntn_cnic)
-    var ShipperEmailAddressDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Email Address: </b></strong>" + parsed_data.shipper_email_address)
+    // var ShipperEmailAddressDiv = $("<div>").addClass('col-6').html("<strong><b>Shipper Email Address: </b></strong>" + parsed_data.shipper_email_address)
 
     // Reciever Details
     var RecieverDetailsHeading = $("<div>").addClass('row-12').css({
@@ -215,7 +215,7 @@ function get_detail_billing_html(data, is_download = false) {
     var RecieverMobileNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Mobile Number: </b></strong>" + parsed_data.reciever_mobile_number)
     var RecieverPhoneNumberDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Phone Number: </b></strong>" + parsed_data.reciever_phone_number)
     var RecieverEmailDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Email Address: </b></strong>" + parsed_data.reciever_email)
-    var RecieverFaxDiv = $("<div>").addClass('col-6').html("<strong><b>Reciever Fax: </b></strong>" + parsed_data.reciever_fax)
+    var RecieverFaxDiv = $("<div>").addClass('col-6').html("<strong><b>EORI Number: </b></strong>" + parsed_data.eori_number)
 
     // Reciever Details
     var ShipmentDetailsHeading = $("<div>").addClass('row-12').css({
@@ -226,7 +226,7 @@ function get_detail_billing_html(data, is_download = false) {
 
     var PaymentDiv = $("<div>").addClass('col-6').html("<strong><b>Payment Type: </b></strong>" + parsed_data.payment_id)
     var shipmentDiv = $("<div>").addClass('col-6').html("<strong><b>Shipment Type: </b></strong>" + parsed_data.shipment_id)
-    var FedExDiv = $("<div>").addClass('col-6').html("<strong><b>FedEx Number: </b></strong>" + parsed_data.fedex_number)
+    // var FedExDiv = $("<div>").addClass('col-6').html("<strong><b>FedEx Number: </b></strong>" + parsed_data.fedex_number)
     var WeightDiv = $("<div>").addClass('col-6').html("<strong><b>Weight: </b></strong>" + parsed_data.weight)
     var PiecesDiv = $("<div>").addClass('col-6').html("<strong><b>Pieces: </b></strong>" + parsed_data.pieces)
 
@@ -261,6 +261,7 @@ function get_detail_billing_html(data, is_download = false) {
                 var InvoiceDetails = $("<div>").addClass('col-3').html("<h3><b>Invoice Detail "+ innerkey +" </b></h3>")
                 rowDiv6.append(InvoiceDetails)
                 rowDiv6.append(colDiv.clone().html("<strong><b>HS Title: </b></strong>" + innervalue.hs_title))
+                rowDiv6.append(colDiv.clone().html("<strong><b>HS Code: </b></strong>" + innervalue.hs_code))
                 rowDiv6.append(colDiv.clone().html("<strong><b>Price: </b></strong>" + innervalue.price))
                 rowDiv6.append(colDiv.clone().html("<strong><b>Quantity: </b></strong>" + innervalue.quantity))
                 rowDiv6.append(colDiv.clone().html("<strong><b>Total: </b></strong>" + innervalue.total))
@@ -271,10 +272,10 @@ function get_detail_billing_html(data, is_download = false) {
 
     rowDiv1.append(ServiceType, TrackingIdDiv)
     rowDiv2.append(ShipperCompanyNameDiv, ShipperContactPersonDiv, ShipperRefrenceDiv, ShipperAddressDiv,
-        ShipperStateDiv, ShipperCityDiv, ShipperPostalCodeDiv, ShipperMobileNumberDiv, ShipperPhoneNumberDiv, ShipperNTNOrCNICNumberDiv, ShipperEmailAddressDiv)
+        ShipperStateDiv, ShipperCityDiv, ShipperPostalCodeDiv, ShipperMobileNumberDiv, ShipperPhoneNumberDiv, ShipperNTNOrCNICNumberDiv)
     rowDiv3.append(RecieverCompanyNameDiv, RecieverContactPersonDiv, RecieverAddressDiv, RecieverCountryDiv, RecieverStateDiv, RecieverCityDiv, RecieverPostalCodeDiv,
         RecieverMobileNumberDiv, RecieverPhoneNumberDiv, RecieverEmailDiv, RecieverFaxDiv)
-    rowDiv4.append(PaymentDiv, shipmentDiv, FedExDiv, WeightDiv, PiecesDiv)
+    rowDiv4.append(PaymentDiv, shipmentDiv,WeightDiv, PiecesDiv)
     
     final_div.append(rowDiv1, ShipperDetailsHeading, rowDiv2, RecieverDetailsHeading, rowDiv3, ShipmentDetailsHeading, rowDiv4, DimensionsHeading, rowDiv5, InvoiceDetailsHeading, rowDiv6)
     return final_div
@@ -323,16 +324,17 @@ function placeDataintoForm(form_id, data, quillbot_fields = [], hidden_fields = 
                     for(const[invoicedetailKey, invoicedetailValue] of Object.entries(innerValue)){
 
                         var row1 = createInputRow(_id = 'create_id_hs_title', _name = 'hs_title', _type = 'text', _placeholder = 'Enter HS title', _class = 'col-3 ', _title = 'HS Title', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.hs_title)
-                        var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-3', _title = 'Quantity', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.quantity)
+                        var row2 = createInputRow(_id = 'create_id_quantity', _name = 'quantity', _type = 'number', _placeholder = 'Enter Quantity', _class = 'col-2', _title = 'Quantity', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.quantity)
                         var row3 = createInputRow(_id = 'create_id_price', _name = 'price', _type = 'number', _placeholder = 'Enter Price', _class = 'col-2', _title = 'Price', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.price)
                         var row4 = createInputRow(_id = 'create_id_total', _name = 'total', _type = 'number', _placeholder = 'Enter Total', _class = 'col-2', _title = 'Total', _delete = 'invoicedetail' + invoicedetailKey, _value=invoicedetailValue.total)
+                        var row5 = createInputRow(_id = 'create_id_hs_code', _name = 'hs_code', _type = 'text', _placeholder = 'Enter HS code', _class = 'col-2', _title = 'HS code', _delete = 'invoicedetail' + invoicedetailKey,_value=invoicedetailValue.hs_code)
                         if(invoicedetailKey==1){
                             var MinusIcon = createPlusIcon(_data_invoice_details=true)
                         } else {
 
                             var MinusIcon = createMinusIcon(_class = 'col-1', _delete = 'invoicedetail' + invoicedetailKey)
                         }
-                        $("#invoiceDetailsdiv").closest('.row').append(row1, row2, row3, row4, MinusIcon)
+                        $("#invoiceDetailsdiv").closest('.row').append(row1,row5, row2, row3, row4, MinusIcon)
 
                     }
 
@@ -375,7 +377,7 @@ $("#update_billings_form_id").on('submit', function (e) {
     if ($("#update_billings_form_id").valid()) {
 
     var formData = $(this).serializeArray();
-    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title','quantity','price','total','width','length','height']);
+    const json_obj = convertSerializerArrToJson(formData, list_fiels_names = ['hs_title','hs_code','quantity','price','total','width','length','height']);
     var _data = transformObj(json_obj)
     const submit_url = $(this).data("url");
     const submit_method = $(this).data("method");

@@ -294,47 +294,21 @@ function termsAndConditions(){
 $(document).on('click', "#download_billing_details_button", function () {
     var billingDetailsId = $(this).attr('data-get-detail-id')
     var billinDetailsUrl = $(this).attr('data-url')
-    var trackingId = $(this).attr('data-tracking-id')
-    var { status, data } = sendRequest("POST", billinDetailsUrl, { "id": billingDetailsId });
-
-    var data_in_html = get_detail_billing_html_for_pdf_download(data);
-    var html = $(data_in_html);
-    
-    var carouselItemsArray = html
+    var { status, data } = sendRequest("GET", billinDetailsUrl, { "id": billingDetailsId });
+    var container = document.createElement("div");
+    container.innerHTML = data;
 
     window.jsPDF = window.jspdf.jsPDF;
-    var doc = new jsPDF(
-        {
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'tabloid',
-                lineHeight: 2.5,
-                putOnlyUsedFonts:false
-               }
-    );
-    var totalstr = "";
-    for (var i = 0; i < carouselItemsArray.length; i++) {
-        totalstr += "<br><br><br>" + carouselItemsArray[i].innerHTML + "<br><br><br>";
-    }
-    // totalstr = totalstr.replace(/(<strong>|<b>)(.*?)<\/(strong|b)>/g, function(match, p1, p2, p3) {
-    //     return p1 + p2.replace(/ /g, '&nbsp;') + '</' + p3 + '>';
-        
-    // });
-    var termsContent = termsAndConditions();
-    totalstr += termsContent[0].outerHTML;
     
-    doc.html(totalstr, {
-        callback: () => {
-            doc.save(trackingId + '.pdf');
-        },
-        
-        margin: [15, 0, 15, 10],
-        padding:[20,0,15,20],
-        width: 230,
-        autoPaging: 'text',
-        windowWidth: 960,
-        
+    html2canvas(container).then(canvas => {
+        // Create a PDF document
+        const pdf = new jsPDF();
+
+        // Add the canvas content to the PDF
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0);
+
+        // Save or download the PDF
+        pdf.save('downloaded.pdf');
     });
     
-    // $(this).show();
 })

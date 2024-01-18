@@ -21,11 +21,11 @@ class BillingsForm(forms.Form):
     shipper_address = forms.CharField(max_length=255, required=True)
     shipper_state = forms.CharField(max_length=255, required=True)
     shipper_city = forms.CharField(max_length=255, required=True)
-    shipper_post_code = forms.IntegerField(required=True)
+    shipper_post_code = forms.CharField(required=False,max_length=255)
     shipper_mobile_number = forms.CharField(max_length=20,required=True)
     shipper_phone_number = forms.CharField(max_length=20,required=True)
     shipper_ntn_cnic = forms.CharField(max_length=255, required=True)
-    shipper_email_address = forms.EmailField(max_length=255, required=True)
+    # shipper_email_address = forms.EmailField(max_length=255, required=True)
 
     # Reciever table
     reciever_company_name = forms.CharField(max_length=255, required=True)
@@ -34,17 +34,18 @@ class BillingsForm(forms.Form):
     reciever_country = forms.CharField(max_length=255, required=True)
     reciever_state = forms.CharField(max_length=255, required=True)
     reciever_city = forms.CharField(max_length=255, required=True)
-    reciever_post_code = forms.IntegerField(required=True)
+    reciever_post_code = forms.CharField(required=False,max_length=255)
     reciever_mobile_number = forms.CharField(max_length=20,required=True)
     reciever_phone_number = forms.CharField(max_length=20,required=True)
     reciever_email = forms.EmailField(max_length=255, required=True)
-    reciever_fax = forms.CharField(max_length=255, required=True)
+    eori_number = forms.CharField(max_length=255, required=False)
+    # reciever_fax = forms.CharField(max_length=255, required=True)
 
     # Shipment Details
     payment_id = forms.ChoiceField(choices=[])
     shipment_id = forms.ChoiceField(choices = [])
 
-    fedex_number = forms.CharField(max_length=255, required=True)
+    # fedex_number = forms.CharField(max_length=255, required=True)
     weight = forms.IntegerField(required=True)
     pieces = forms.IntegerField(required=True)
 
@@ -126,13 +127,11 @@ class BillingsUpdateForm(forms.Form):
     shipper_address = forms.CharField(max_length=255, required=True)
     shipper_state = forms.CharField(max_length=255, required=True)
     shipper_city = forms.CharField(max_length=255, required=True)
-    shipper_post_code = forms.IntegerField(required=True)
-    # shipper_mobile_number = forms.IntegerField(required=True)
-    # shipper_phone_number = forms.IntegerField(required=True)
+    shipper_post_code = forms.CharField(required=False,max_length=255)
     shipper_mobile_number = forms.CharField(max_length=20,required=True)
     shipper_phone_number = forms.CharField(max_length=20,required=True)
     shipper_ntn_cnic = forms.CharField(max_length=255, required=True)
-    shipper_email_address = forms.EmailField(max_length=255, required=True)
+    # shipper_email_address = forms.EmailField(max_length=255, required=True)
 
     # Reciever table
     reciever_company_name = forms.CharField(max_length=255, required=True)
@@ -141,19 +140,18 @@ class BillingsUpdateForm(forms.Form):
     reciever_country = forms.CharField(max_length=255, required=True)
     reciever_state = forms.CharField(max_length=255, required=True)
     reciever_city = forms.CharField(max_length=255, required=True)
-    reciever_post_code = forms.IntegerField(required=True)
-    # reciever_mobile_number = forms.IntegerField(required=True)
-    # reciever_phone_number = forms.IntegerField(required=True)
+    reciever_post_code = forms.CharField(required=False,max_length=255)
     reciever_mobile_number = forms.CharField(max_length=20,required=True)
     reciever_phone_number = forms.CharField(max_length=20,required=True)
     reciever_email = forms.EmailField(max_length=255, required=True)
-    reciever_fax = forms.CharField(max_length=255, required=True)
+    eori_number = forms.CharField(max_length=255, required=False)
+    # reciever_fax = forms.CharField(max_length=255, required=True)
 
     # Shipment Details
     payment_id = forms.ChoiceField(choices=Payment.objects.all())
     shipment_id = forms.ChoiceField(choices = ShipmentType.objects.all())
 
-    fedex_number = forms.CharField(max_length=255, required=True)
+    # fedex_number = forms.CharField(max_length=255, required=True)
     weight = forms.IntegerField(required=True)
     pieces = forms.IntegerField(required=True)
 

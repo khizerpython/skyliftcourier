@@ -32,7 +32,7 @@ var vaildationrules = {
             required: true,
         },
         shipper_post_code: {
-            required: true,
+            required: false,
         },
         shipper_mobile_number: {
             required: true,
@@ -66,7 +66,7 @@ var vaildationrules = {
             required: true,
         },
         reciever_post_code: {
-            required: true,
+            required: false,
         },
         reciever_mobile_number: {
             required: true,

@@ -115,7 +115,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_shipper_post_code">Postal Code</label>
-                <input type="number" name="shipper_post_code" class="form-control" id="create_id_shipper_post_code"
+                <input type="text" name="shipper_post_code" class="form-control" id="create_id_shipper_post_code"
                   placeholder="Enter Shipper State Postal Code">
                 <div></div>
               </div>
@@ -152,14 +152,14 @@
             </div>
 
             <!--Shipper Person Email Address -->
-            <div class="col-12">
+            <!-- <div class="col-12">
               <div class="form-group">
                 <label for="create_id_shipper_email_address">Email Address</label>
                 <input type="text" name="shipper_email_address" class="form-control"
                   id="create_id_shipper_email_address" placeholder="Enter Email Address">
                 <div></div>
               </div>
-            </div>
+            </div> -->
 
 
           </div>
@@ -238,7 +238,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="create_id_reciever_post_code">Postal Code</label>
-                <input type="number" name="reciever_post_code" class="form-control" id="create_id_reciever_post_code"
+                <input type="text" name="reciever_post_code" class="form-control" id="create_id_reciever_post_code"
                   placeholder="Enter Reciever State Postal Code">
                 <div></div>
               </div>
@@ -275,15 +275,24 @@
             </div>
 
 
-            <!--Reciever Person Fax -->
+            <!--Reciever Person EORI NUMBER -->
             <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_eori_number">EORI Number</label>
+                <input type="text" name="eori_number" class="form-control" id="create_id_eori_number"
+                  placeholder="Enter EORI Number">
+                <div></div>
+              </div>
+            </div>
+            <!--Reciever Person Fax -->
+            <!-- <div class="col-6">
               <div class="form-group">
                 <label for="create_id_reciever_fax">Fax</label>
                 <input type="fax" name="reciever_fax" class="form-control" id="create_id_reciever_fax"
                   placeholder="Enter Reciever Fax">
                 <div></div>
               </div>
-            </div>
+            </div> -->
 
 
 
@@ -328,14 +337,14 @@
             </div>
 
             <!-- FEDEX number -->
-            <div class="col-6">
+            <!-- <div class="col-6">
               <div class="form-group">
                 <label for="create_id_fedex_number">FedEx No</label>
                 <input type="text" name="fedex_number" class="form-control" id="create_id_fedex_number"
                   placeholder="Enter FedEx Number">
                 <div></div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Weight -->
             <div class="col-6">
@@ -420,8 +429,17 @@
                 <div></div>
               </div>
             </div>
+            
+            <div class="col-2">
+              <div class="form-group">
+                <label for="create_id_hs_code">HS code</label>
+                <input type="text" name="hs_code" class="form-control" id="create_id_hs_code"
+                  placeholder="Enter HS code">
+                <div></div>
+              </div>
+            </div>
 
-            <div class="col-3">
+            <div class="col-2">
               <div class="form-group">
                 <label for="create_id_quantity">Quantity</label>
                 <input type="number" name="quantity" class="form-control" id="create_id_quantity"
@@ -619,7 +637,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="update_id_shipper_post_code">Postal Code</label>
-                <input type="number" name="shipper_post_code" class="form-control" id="update_id_shipper_post_code"
+                <input type="text" name="shipper_post_code" class="form-control" id="update_id_shipper_post_code"
                   placeholder="Enter Shipper State Postal Code">
                 <div></div>
               </div>
@@ -656,14 +674,14 @@
             </div>
 
             <!--Shipper Person Email Address -->
-            <div class="col-12">
+            <!-- <div class="col-12">
               <div class="form-group">
                 <label for="update_id_shipper_email_address">Email Address</label>
                 <input type="text" name="shipper_email_address" class="form-control"
                   id="update_id_shipper_email_address" placeholder="Enter Email Address">
                 <div></div>
               </div>
-            </div>
+            </div> -->
 
 
           </div>
@@ -742,7 +760,7 @@
             <div class="col-6">
               <div class="form-group">
                 <label for="update_id_reciever_post_code">Postal Code</label>
-                <input type="number" name="reciever_post_code" class="form-control" id="update_id_reciever_post_code"
+                <input type="text" name="reciever_post_code" class="form-control" id="update_id_reciever_post_code"
                   placeholder="Enter Reciever State Postal Code">
                 <div></div>
               </div>
@@ -778,16 +796,26 @@
               </div>
             </div>
 
+            <!--Reciever Person EORI NUMBER -->
+            <div class="col-6">
+              <div class="form-group">
+                <label for="create_id_eori_number">EORI Number</label>
+                <input type="text" name="eori_number" class="form-control" id="create_id_eori_number"
+                  placeholder="Enter EORI Number">
+                <div></div>
+              </div>
+            </div>
+
 
             <!--Reciever Person Fax -->
-            <div class="col-6">
+            <!-- <div class="col-6">
               <div class="form-group">
                 <label for="update_id_reciever_fax">Fax</label>
                 <input type="fax" name="reciever_fax" class="form-control" id="update_id_reciever_fax"
                   placeholder="Enter Reciever Fax">
                 <div></div>
               </div>
-            </div>
+            </div> -->
 
 
 
@@ -832,14 +860,14 @@
             </div>
 
             <!-- FEDEX number -->
-            <div class="col-6">
+            <!-- <div class="col-6">
               <div class="form-group">
                 <label for="update_id_fedex_number">FedEx No</label>
                 <input type="text" name="fedex_number" class="form-control" id="update_id_fedex_number"
                   placeholder="Enter FedEx Number">
                 <div></div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Weight -->
             <div class="col-6">

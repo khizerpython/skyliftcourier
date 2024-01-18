@@ -30,33 +30,16 @@ class AirwayBillView(View):
     
     def post(self,request):
         data=json.loads(request.body)
-        print(data)
         dimension = data.get('dimensions')
-        print("the dimensions are :",dimension)
         invoice_details = data.get('invoice_details')
-        print("the invoice_details are :",invoice_details)
         form_validation = BillingsForm(data)
         if form_validation.is_valid():
-
             form_validation.cleaned_data['data'] = {'dimensions': dimension, 'invoice_details': invoice_details}
-
             form_validation.cleaned_data['user_id'] = self.request.user
-
             tracking_number = form_validation.cleaned_data.get('tracking_number')
-
-            # AirwayBill.objects.create(**form_validation.cleaned_data)
-            airway_bill = AirwayBill(**form_validation.cleaned_data)
-            try:
-                airway_bill.full_clean()
-                airway_bill.save()
-                # Continue with success handling
-            except ValidationError as e:
-                # Handle validation errors here
-                print(f"Validation Error: {e}")
-            print('air way bill created')
+            obj = AirwayBill.objects.create(**form_validation.cleaned_data)
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} has been initiated successfully"}, status=200)
         else:
-            print("the errors are form_validation.errors",form_validation.errors)
             return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "initiate_"}, status=401)
 
 class UpdateAirwayBillView(View):
@@ -69,7 +52,6 @@ class UpdateAirwayBillView(View):
         
         form_validation = BillingsUpdateForm(data)
         if form_validation.is_valid():
-            print("yes update billing form is valid")
             obj = AirwayBill.objects.get(id=id)
             tracking_number = obj.tracking_number
             if obj:
@@ -86,7 +68,7 @@ class UpdateAirwayBillView(View):
                 obj.shipper_mobile_number = form_validation.cleaned_data.get('shipper_mobile_number')
                 obj.shipper_phone_number = form_validation.cleaned_data.get('shipper_phone_number')
                 obj.shipper_ntn_cnic = form_validation.cleaned_data.get('shipper_ntn_cnic')
-                obj.shipper_email_address = form_validation.cleaned_data.get('shipper_email_address')
+                # obj.shipper_email_address = form_validation.cleaned_data.get('shipper_email_address')
                 # reciever
                 obj.reciever_company_name = form_validation.cleaned_data.get('reciever_company_name')
                 obj.reciever_contact_person = form_validation.cleaned_data.get('reciever_contact_person')
@@ -98,10 +80,11 @@ class UpdateAirwayBillView(View):
                 obj.reciever_mobile_number = form_validation.cleaned_data.get('reciever_mobile_number')
                 obj.reciever_phone_number = form_validation.cleaned_data.get('reciever_phone_number')
                 obj.reciever_email = form_validation.cleaned_data.get('reciever_email')
-                obj.reciever_fax = form_validation.cleaned_data.get('reciever_fax')
+                obj.eori_number = form_validation.cleaned_data.get('eori_number')
+                # obj.reciever_fax = form_validation.cleaned_data.get('reciever_fax')
                 obj.payment_id = form_validation.cleaned_data.get('payment_id')
                 obj.shipment_id = form_validation.cleaned_data.get('shipment_id')
-                obj.fedex_number = form_validation.cleaned_data.get('fedex_number')
+                # obj.fedex_number = form_validation.cleaned_data.get('fedex_number')
                 obj.weight = form_validation.cleaned_data.get('weight')
                 obj.pieces = form_validation.cleaned_data.get('pieces')
                 obj.save()
@@ -110,7 +93,6 @@ class UpdateAirwayBillView(View):
             else:
                 return JsonResponse({"detail": f"Air way bill with tracking ID {tracking_number} not found"}, status=401)
         else:
-            print("in update form the errors are :",form_validation.errors)
             return JsonResponse({"detail": f"Air way bill with tracking ID {id} can not initiated","errors": dict(form_validation.errors.items()), "errors_div": "update_"}, status=401)
 
 
