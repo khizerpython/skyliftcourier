@@ -1,0 +1,103 @@
+{% extends 'default/index.html' %}
+{% load static %}
+
+{% block main_body %}
+<!-- <div class="col-12">
+
+    <img src="{% static '/image/front_page_images/claudio-schwarz-FLLKq3yDnfI-unsplash.jpg' %}" alt=""width="100%" height="100%">
+</div> -->
+<!-- card-with-background -->
+
+<div class="container-fluid" style="background-color: #f5af66;">
+    <h5 class="text-center display-4">Track Your Shipment</h5>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form data-method="POST" id="show_home_billing_location" data-url="{% url 'home' %}">
+                <div class="input-group">
+                    <input type="text" name="tracking_number" class="form-control form-control-lg"
+                        placeholder="Enter your tracking number Here">
+                    <div class="input-group-append">
+                        <button class="btn btn-lg btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12 ">
+
+        <div class="card m-4" style="background-color: antiquewhite; font-family: serif;">
+            <div class="card-body">
+                <h3 class=" text-center">Welcome to Skylift Couriers</h3>
+                
+                <!-- <p><b>Connecting Karachi to the World, One Flight at a Time</b></p> -->
+                <hr>
+                <h4>Skylift Couriers is an established, highly regarded, and dependable provider of air cargo solutions,
+                    not only in Karachi but also across other regions.
+                    With over ten years of proven track record of excellence,
+                    we have earned the trust and loyalty of numerous individuals and businesses alike.
+                    Our unwavering commitment to safety and efficiency permeates every aspect of our operations,
+                    ensuring that your cargo is transported securely and timely to its intended destination.
+                    When you choose Skylift Couriers, you are guaranteed unparalleled service and satisfaction,
+                    making us the preferred choice for all your air cargo needs.
+                    Trust us to handle your cargo with utmost care and reliability.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<!-- Images Row -->
+<div class="row m-2">
+    <div class="col-12 col-sm-12 col-md-4">
+        <div class="card border-warning" >
+            <div class="card-body">
+                <img src="{% static '/image/front_page_images/frontpagecardimages/aboutusimg.jpg' %}" alt=""
+                class="card-img-top">
+                <button class="btn m-4" style="background-color: #fd7e14; align-self: center;"><a style="color: #ffff;" href="{% url 'aboutus' %}">About Us</a></button>    
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-4">
+        <div class="card border-warning">
+            <div class="card-body">
+                <img src="{% static '/image/front_page_images/frontpagecardimages/trackrecordimg.jpg' %}" alt=""
+                class="card-img-top">
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p> -->
+                <button class="btn m-4" style="background-color: #fd7e14;"><a style="color: #ffff;" href="{% url 'ourtrackrecord' %}">Our Track Record</a> </button>    
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-4">
+        <div class="card border-warning">
+            <div class="card-body">
+                <img src="{% static '/image/front_page_images/frontpagecardimages/contactusimg.jpg' %}" alt=""
+                class="card-img-top">
+                <button class="btn m-4" style="background-color: #fd7e14;"><a style="color: #ffff;" href="{% url 'contactus' %}">Contact Us</a></button>        
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'others/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block "extra_scripts" %}
+
+<script src="{% static '/custom-js/home/home.js' %}"></script>
+
+{% endblock %}

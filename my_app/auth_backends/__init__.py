@@ -1,0 +1,1 @@
+from my_app.auth_backends.custom_auth_backend import *
