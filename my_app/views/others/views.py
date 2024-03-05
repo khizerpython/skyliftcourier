@@ -1,57 +1,50 @@
 from django.shortcuts import render
 from django.views import View
-import json
 from my_app.models import *
-
-from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
-from django.core import serializers
 
 # Create your views here.
 
-# def home(request):
-#     return render(request,template_name="home.html")
-
 class HomeView(View):
     def get(self, request):
-        # <view logic>
         return render(request,template_name='home.html')
-    
+
+class LocationView(View):
     def post(self,request):
-        obj = json.loads(request.body)
-        try:
-            airway_bill_instance  = AirwayBill.objects.get(tracking_number=obj.get('tracking_number'))
-            locations= airway_bill_instance.locations.all()
-            json_obj = json.loads(serializers.serialize("json", locations ))
-            return JsonResponse(data=json_obj, status=200, safe=False)
-        except ObjectDoesNotExist:
-             return JsonResponse({'message': 'AirwayBill not found for the given tracking number'})    
-        
+            try:
+                airway_bill_instance = AirwayBill.objects.get(tracking_number=request.POST.get('tracking_number'))
+                location = airway_bill_instance.locations.all().order_by('-created_at')
+                context = {
+                    "obj":airway_bill_instance,
+                    "locations":location
+                }
+                return render(request,template_name='locations.html',context=context)
+            except ObjectDoesNotExist:
+             context = {
+                    "not_found":"Invalid Tracking Id",
+                }
+             return render(request,template_name='locations.html',context=context)
 
             
 class AboutUsView(View):
 
     def get(self, request):
-        # <view logic>
         return render(request,template_name='aboutus.html')
     
 
 class ContactUsView(View):
 
     def get(self, request):
-        # <view logic>
         return render(request,template_name='contactus.html')
     
 
 class OurServicesView(View):
 
     def get(self, request):
-        # <view logic>
         return render(request,template_name='ourservices.html')
 
 
 class OurTrackRecordView(View):
 
     def get(self, request):
-        # <view logic>
         return render(request,template_name='ourtrackrecord.html')

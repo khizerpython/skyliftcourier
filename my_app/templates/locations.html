@@ -1,0 +1,126 @@
+{% extends 'default/index.html' %}
+{% load static %}
+{% load tz %}
+{% block main_body %}
+
+<head>
+    <title>Skylift courier Tracking Shipment</title>
+</head>
+
+<body>
+    {% if not_found %}
+    <div class="row-12" style="text-align: center;">
+        <h1 style="margin-top: 10%; margin-bottom: 10%;"><b>{{not_found}}</b></h1>
+        
+        
+    <!-- </div> -->
+    {% else %}
+
+
+    <div class="container " style="border: 2px solid #f5af66; margin-top: 2px;">
+        <table class="table table-responsive-sm">
+            <thead>
+                <h3 class="mt-2" style="background-color: #f5af66;">Summary</h3>
+                <tr style="background-color: #f5af66;">
+                    <th scope="col">AirWay Bill No</th>
+                    <th scope="col">Execution Date</th>
+                    <th scope="col">Shipper</th>
+                    <th scope="col">Reciever</th>
+                    <th scope="col">Pcs</th>
+                    <th scope="col">Actual Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>{{obj.tracking_number}}</td>
+                    <td>{{obj.created_at}}</td>
+                    <td>{{obj.shipper_city}}/Pakistan</td>
+                    <td>{{obj.reciever_city}}/{{obj.reciever_country}}</td>
+                    <td>{{obj.pieces}}</td>
+                    <td>{{obj.weight}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container " style="border: 2px solid #f5af66; margin-top: 2px; margin-bottom: 2px;">
+
+        <table class="table table-responsive-sm">
+            <thead>
+                <h3 class="mt-2" style="background-color: #f5af66;">AirWay Bill Details</h3>
+                <tr style="background-color: #f5af66;">
+                    <th scope="col">AirWay Bill No</th>
+                    <th scope="col">Shipper</th>
+                    <th scope="col">Reciever</th>
+                    <th scope="col">Shipment Type</th>
+                    <th scope="col">Actual Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>{{obj.tracking_number}}</td>
+                    <td>{{obj.shipper_city}}/Pakistan</td>
+                    <td>{{obj.reciever_city}}/{{obj.reciever_country}}</td>
+                    <td>{{obj.shipment_id}}</td>
+                    <td>{{obj.weight}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <!-- Locations -->
+        <table class="table table-responsive-sm">
+            <thead>
+                <h3 class="mt-2" style="background-color: #f5af66;"></h3>
+                <tr style="background-color: #f5af66;">
+                    <th scope="col">Location</th>
+                    <th scope="col">Date Time</th>
+                </tr>
+            </thead>
+            <div class="row" style="margin-bottom: 1px;">
+
+
+                <img style="margin-left: 11px; height: 6vh; width: auto; background: {% if obj.locations.all|length == 1 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                    src="{% static '/image/location_page_images/people.png' %}" alt="">
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length == 2 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                    src="{% static '/image/location_page_images/airplane.png' %}" alt="">
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length == 3 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                    src="{% static '/image/location_page_images/man-with-box.png' %}" alt="">
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length == 4 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                    src="{% static '/image/location_page_images/van.png' %}" alt="">
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length >= 5 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                    src="{% static '/image/location_page_images/box.png' %}" alt="">
+                <!-- #a99c8a -->
+            </div>
+            <tbody>
+                {% for c in locations %}
+                <tr>
+                    <td>{{c.name|upper}}</td>
+                    <td>
+                        {% timezone "Asia/Karachi" %}
+                        {{c.created_at}}/Pakistan
+                        {% endtimezone %}
+                    </td>
+
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+    {% endif %}
+    <!-- <h1>Hello, world!</h1> -->
+
+
+
+    {% include 'others/footer.html' %}
+    {% endblock %}

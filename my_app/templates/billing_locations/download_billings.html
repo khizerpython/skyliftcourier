@@ -78,7 +78,7 @@
                         {{bill.shipper_post_code}}<br />
                         {{bill.shipper_state}}<br />
                         {{bill.shipper_city}}<br />
-                        {{bill.shipper_contact_person}}<br />
+                        {{bill.shipper_ntn_cnic}}<br />
                         <b>Tel: </b>{{bill.shipper_phone_number}}<br />
                         <b>Mob: </b>{{bill.shipper_mobile_number}}<br />
 
@@ -140,7 +140,7 @@
                         {{bill.reciever_city}}<br>
                         {{bill.reciever_state}}<br>
                         {{bill.reciever_country}}<br>
-                        {{bill.reciever_contact_person}}<br>
+                        <b>{{bill.reciever_post_code}}</b><br>
                         <b>Tel: </b>{{bill.reciever_phone_number}}<br />
                         <b>Mob: </b>{{bill.reciever_mobile_number}}<br />
 
@@ -154,10 +154,11 @@
                         <div class="row">
                             <strong>DECLARED VALUE FOR CUSTOMS</strong>
                         </div>
-                        <div class="row">
-                            {% for key, invoice_detail in bill.data.invoice_details.items %}
+                        <div class="row" style="margin-left: 2%;">
+                            {{total_price}}
+                            <!-- {% for key, invoice_detail in bill.data.invoice_details.items %}
                             <b>{{ invoice_detail.price }} $</b><br>
-                            {% endfor %}
+                            {% endfor %} -->
                         </div>
                     </div>
                 </div>
