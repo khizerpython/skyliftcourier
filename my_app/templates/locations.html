@@ -26,8 +26,8 @@
                     <th scope="col">Execution Date</th>
                     <th scope="col">Shipper</th>
                     <th scope="col">Reciever</th>
-                    <th scope="col">Pcs</th>
-                    <th scope="col">Actual Weight</th>
+                    <!-- <th scope="col">Pcs</th>
+                    <th scope="col">Actual Weight</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -37,8 +37,8 @@
                     <td>{{obj.created_at}}</td>
                     <td>{{obj.shipper_city}}/Pakistan</td>
                     <td>{{obj.reciever_city}}/{{obj.reciever_country}}</td>
-                    <td>{{obj.pieces}}</td>
-                    <td>{{obj.weight}}</td>
+                    <!-- <td>{{obj.pieces}}</td>
+                    <td>{{obj.weight}}</td> -->
                 </tr>
 
             </tbody>
@@ -55,7 +55,7 @@
                     <th scope="col">Shipper</th>
                     <th scope="col">Reciever</th>
                     <th scope="col">Shipment Type</th>
-                    <th scope="col">Actual Weight</th>
+                    <!-- <th scope="col">Actual Weight</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +65,7 @@
                     <td>{{obj.shipper_city}}/Pakistan</td>
                     <td>{{obj.reciever_city}}/{{obj.reciever_country}}</td>
                     <td>{{obj.shipment_id}}</td>
-                    <td>{{obj.weight}}</td>
+                    <!-- <td>{{obj.weight}}</td> -->
                 </tr>
 
             </tbody>
@@ -77,20 +77,22 @@
                 <tr style="background-color: #f5af66;">
                     <th scope="col">Location</th>
                     <th scope="col">Date Time</th>
+                    <th scope="col">Activity</th>
                 </tr>
             </thead>
             <div class="row" style="margin-bottom: 1px;">
+                <!-- {{ locations.0.position }} -->
 
 
-                <img style="margin-left: 11px; height: 6vh; width: auto; background: {% if obj.locations.all|length == 1 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="margin-left: 11px; height: 6vh; width: auto; background: {% if locations.0.position == 1 %} #a99c8a {% else %}antiquewhite{% endif %};"
                     src="{% static '/image/location_page_images/people.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length == 2 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 2 %} #a99c8a {% else %}antiquewhite{% endif %};"
                     src="{% static '/image/location_page_images/airplane.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length == 3 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 3 %} #a99c8a {% else %}antiquewhite{% endif %};"
                     src="{% static '/image/location_page_images/man-with-box.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length == 4 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 4 %} #a99c8a {% else %}antiquewhite{% endif %};"
                     src="{% static '/image/location_page_images/van.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if obj.locations.all|length >= 5 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position >= 5 %} #a99c8a {% else %}antiquewhite{% endif %};"
                     src="{% static '/image/location_page_images/box.png' %}" alt="">
                 <!-- #a99c8a -->
             </div>
@@ -103,6 +105,7 @@
                         {{c.created_at}}/Pakistan
                         {% endtimezone %}
                     </td>
+                    <td>{{c.description|upper}}</td>
 
 
                 </tr>

@@ -11,7 +11,11 @@
     <div class="card-body">
       <button class="btn btn-primary" id="display-form-id" data-display-form-id="create_billings_form_id" 
         data-hidden-table-id="bordered-pending" data-hidden-update-form-id="update_billings_form_id"
-        style="background: #fd7e14; border-color:#fd790e;font-size: large;"><a style="color: #f9fbd7;" href="{% url 'airway_bill' %}">Back</a></button>
+        style="background: #fd7e14; border-color:#fd790e;font-size: large;">
+        <a id="back-link" style="color: #f9fbd7;" href="{% url 'airway_bill' %}">
+          Back
+        </a>
+      </button>
       
 
       
@@ -123,6 +127,18 @@
 {% endblock %}
 
 {% block "extra_scripts" %}
+
+<script>
+  // Find the button and link elements
+  var button = document.getElementById("display-form-id");
+  var link = document.getElementById("back-link");
+
+  // Add an event listener to the button to redirect when clicked
+  button.addEventListener("click", function() {
+      // Simulate the click event on the link when the button is clicked
+      link.click();
+  });
+</script>
 
 <script src="{% static '/js/file-downloads/html2canvas.min.js' %}"></script>
 

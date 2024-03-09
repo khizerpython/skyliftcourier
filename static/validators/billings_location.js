@@ -3,6 +3,12 @@ $("#create_airway_bill_location_form").validate({
         name: {
             required: true,
         },
+        description: {
+            required: true,
+        },
+        position: {
+            required: true,
+        },
         
         
         
@@ -10,6 +16,14 @@ $("#create_airway_bill_location_form").validate({
     messages: {
         name: {
             required: "Location Name is required",
+            
+        },
+        description: {
+            required: "Location Description is required",
+            
+        },
+        position: {
+            required: "Location Position is required",
             
         },
 

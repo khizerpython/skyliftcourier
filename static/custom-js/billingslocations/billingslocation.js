@@ -3,12 +3,18 @@ function CreateForm(BILLID,URL){
     var formdiv =$("<form>").attr({"data-url":URL,"data-method":"POST",'id':'create_airway_bill_location_form'})
     var hiddenInput = $("<input>").attr("type","hidden").attr("value",BILLID).attr('name','airway_bill_id').text(BILLID)
     var div = $("<div>")
-    var outerDiv = div.clone().addClass("col-6")
-    var innerDiv = div.clone().addClass("form-group")
+    var outerDiv = div.clone().addClass("row")
+    var colDiv = div.clone().addClass("col-6")
+
+    var innerDiv = div.clone().addClass("form-group").css({"width":"100%"})
     var label = $("<label>").attr("for","name").text("Enter Location")
+    var descriptionLabel = $("<label>").attr("for","description").text("Enter Description")
+    var positionLabel = $("<label>").attr("for","position").text("Enter Position")
     var TextArea = $("<textarea>").addClass("form-control").attr({"name":"name","row":1,"id":"create_id_bill_location","placeholder":"Enter Location","required":true})
+    var DescriptionArea = $("<textarea>").addClass("form-control").attr({"name":"description","row":1,"id":"create_id_bill_description","placeholder":"Enter Description","required":true})
+    var PositionArea = $("<input>").addClass("form-control").attr({"type":"number","min":"1","max":"5", "name":"position","row":1,"id":"create_id_bill_position","placeholder":"Enter Position","required":true})
     var Button = $("<button>").addClass("btn btn-primary mt-2").text("Create Location").css({"background": "#7a3a05", "border-color":"#7f3f0b","font-size":"large"})
-    formdiv.append(hiddenInput,outerDiv.append(innerDiv.append(label,TextArea,div,Button)))
+    formdiv.append(hiddenInput,outerDiv.append(innerDiv.append(label,colDiv.clone().append(TextArea),div.clone(),descriptionLabel,colDiv.clone().append(DescriptionArea),div.clone(),positionLabel,colDiv.clone().append(PositionArea),div.clone(),Button)))
     return formdiv
 
      
@@ -42,11 +48,18 @@ function locationDetailsModal(data){
     
     for(const[key,value] of Object.entries(data)){
 
-        var locationDiv = colDiv.clone().addClass('col-8').append($("<p>").text(value.name))
+        var locationName = $("<b>").text("Location Name:");
+        var locationDescription = $("<b>").text("Location Description:");
+        var locationPosition = $("<b>").text("Location Position:");
+
+        var locationDiv = colDiv.clone().addClass('col-8').append($("<p>").append(locationName.clone()).append(value.name));
+        var descriptionDiv = colDiv.clone().addClass('col-8').append($("<p>").append(locationDescription.clone()).append(value.description));
+        var PositionDiv = colDiv.clone().addClass('col-8').append($("<p>").append(locationPosition.clone()).append(value.position));
+
         var ButtonDiv = colDiv.clone().addClass('col-2').append(button.clone().attr("data-id",key).attr('data-url',value.data_url))
         var _hr= $("<hr>")
         var _br= $("<br>")
-        rowDiv.append(locationDiv,ButtonDiv,_hr,_br)
+        rowDiv.append(locationDiv,descriptionDiv,PositionDiv,ButtonDiv,_hr,_br)
     }
     return rowDiv
 }

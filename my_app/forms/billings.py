@@ -203,6 +203,8 @@ class BillingsUpdateForm(forms.Form):
 
 class BillingLocationForm(forms.Form):
     name = forms.CharField(required=True)
+    description = forms.CharField(required=True)
+    position = forms.IntegerField(required=True)
     airway_bill_id = forms.ChoiceField(choices=[])
 
 

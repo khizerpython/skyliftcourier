@@ -86,17 +86,17 @@ class AirwayBillLocationDeleteView(View):
         def post(self, request, *args, **kwargs):
             return self._get(request, *args, **kwargs)
 
-class DownloadAirwayBillView(View):
+# class DownloadAirwayBillView(View):
 
-    def get(self, request, bill_id):
-        bill = AirwayBill.objects.get(id=bill_id)
-        context_dict = {
-            'bill':bill
-        }
-        html_content = render_to_string('billing_locations/download_billings.html', context_dict)
-        return JsonResponse({'html_content': html_content})
+#     def get(self, request, bill_id):
+#         bill = AirwayBill.objects.get(id=bill_id)
+#         context_dict = {
+#             'bill':bill
+#         }
+#         html_content = render_to_string('billing_locations/download_billings.html', context_dict)
+#         return JsonResponse({'html_content': html_content})
         
-        # return render(request,template_name='billing_locations/download_billings.html',context=context_dict)
+#         # return render(request,template_name='billing_locations/download_billings.html',context=context_dict)
 class DownloadAirwayBillView(View):
 
     def get(self, request, bill_id):

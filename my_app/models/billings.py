@@ -74,4 +74,6 @@ class AirwayBill(ModelUUIDField,CreatedAndUpdatedModelFields):
 
 class AirwayBillLocation(ModelUUIDField,CreatedAndUpdatedModelFields):
     name = models.CharField(max_length=400, blank=False)
+    description = models.CharField(max_length=400, blank=True, null=True, default='In progress')
+    position = models.IntegerField(blank=True, null=True, default=1)
     airway_bill_id = models.ForeignKey(AirwayBill, on_delete=models.SET_NULL, blank=True, null=True, related_name='locations')
