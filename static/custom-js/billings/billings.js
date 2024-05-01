@@ -182,7 +182,7 @@ function get_detail_billing_html(data, is_download = false) {
     // Shipper Details Heading
     var ShipperDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
     }).html("<h3><b>Shipper Details </b></h3>")
 
@@ -201,7 +201,7 @@ function get_detail_billing_html(data, is_download = false) {
     // Reciever Details
     var RecieverDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
     }).html("<h3><b>Reciever Details </b></h3>")
 
@@ -220,7 +220,7 @@ function get_detail_billing_html(data, is_download = false) {
     // Reciever Details
     var ShipmentDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
     }).html("<h3><b>Shipment Details </b></h3>")
 
@@ -233,14 +233,14 @@ function get_detail_billing_html(data, is_download = false) {
     // Dimensions and InvoiceDetails
     var DimensionsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
     }).html("<h3><b>Dimensions </b></h3>")
     
     
     var InvoiceDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
     }).html("<h3><b>Invoice Details </b></h3>")
     
@@ -399,7 +399,7 @@ $("#update_billings_form_id").on('submit', function (e) {
 function create_detail_button(key, value, datatable_id) {
     
     var temp_div = $("<button>").text('Details');
-    temp_div.css({'background':'#fd7e14', 'border-color':'#fd790e', 'font-size':'large'});
+    temp_div.css({'background':'#959595', 'border-color':'#fd790e', 'font-size':'large'});
     temp_div.addClass("btn btn-primary");
     // temp_div.attr("id", key)
     temp_div.attr("id", 'get_billing_details_button')

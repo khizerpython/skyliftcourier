@@ -8,17 +8,18 @@
 <!-- <div class="row"> -->
 <div class="col-lg-12 ">
 
-  <div class="card m-4" style="background-color: #f9fbd7; font-family: serif;">
+  <div class="card m-4 skylift-background-color" style="font-family: serif;">
     <div class="card-body">
-      <button class="btn btn-primary" id="display-form-id" data-display-form-id="create_billings_form_id"
+      <button class="btn btn-primary skylift-button-color" id="display-form-id" data-display-form-id="create_billings_form_id"
         data-hidden-table-id="bordered-pending" data-hidden-update-form-id="update_billings_form_id"
-        style="background: #fd7e14; border-color:#fd790e;font-size: large;">Create AirWay Bill</button>
-      <button class="btn btn-primary" id="display-table-id" data-display-table-id="bordered-pending"
+        style="font-size: large;">Create AirWay Bill</button>
+
+      <button class="btn btn-primary skylift-button-color" id="display-table-id" data-display-table-id="bordered-pending"
         data-hidden-form-id="create_billings_form_id" data-hidden-update-form-id="update_billings_form_id"
-        style="background: #fd7e14; border-color:#fd790e;font-size: large;">Show Data Table</button>
+        style="font-size: large;">Show Data Table</button>
       
-        <button class="btn btn-primary" id="location-page" href="{% url 'airway_bill_locations' %}"
-        style="background: #fd7e14; border-color:#fd790e;font-size: large;"><a style="color: #FFFFFF;" href="{% url 'airway_bill_locations' %}">Air Way Bill Locations</a></button>
+        <button class="btn btn-primary skylift-button-color" id="location-page" href="{% url 'airway_bill_locations' %}"
+        style="font-size: large;"><a style="color: #FFFFFF;" href="{% url 'airway_bill_locations' %}">Air Way Bill Locations</a></button>
 
 
       <!-- Create AirWay Bill -->
@@ -45,7 +46,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Shipper Details</h3>
             </div>
 
@@ -168,7 +169,7 @@
 
           <div class="row">
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Reciever Details</h3>
             </div>
 
@@ -302,7 +303,7 @@
 
           <div class="row">
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Shipment Details</h3>
             </div>
 
@@ -370,7 +371,7 @@
 
           <div class="row">
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Dimensions</h3>
             </div>
             <!-- Pieces -->
@@ -415,7 +416,7 @@
 
           <div class="row" id="invoice_details">
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Invoice Details</h3>
             </div>
 
@@ -476,7 +477,7 @@
           </div>
 
           <div class="card-footer" style="text-align-last: end">
-            <button class="btn btn-primary" style="background: #fd7e14; border-color:#fd790e;font-size: large;">Create
+            <button class="btn btn-primary skylift-button-color" style="font-size: large;">Create
               Air Way bill</button>
             <button class="btn btn-primary" id="reset_create_billing_form_id" type="reset"
               style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Reset</button>
@@ -524,9 +525,9 @@
                 <td>{{bill.payment_id}}</td>
                 <td>{{bill.shipment_id}}</td>
                 <td>
-                  <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
+                  <button class="btn btn-primary skylift-button-color" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
                     data-url="{% url 'airway_bill_detail' %}"
-                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button>
+                    style="font-size: large;">Details</button>
                 </td>
                 <td>
                   <button class="btn btn-primary" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
@@ -567,7 +568,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Shipper Details</h3>
             </div>
 
@@ -690,7 +691,7 @@
 
           <div class="row">
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Reciever Details</h3>
             </div>
 
@@ -825,7 +826,7 @@
 
           <div class="row">
 
-            <div class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Shipment Details</h3>
             </div>
 
@@ -893,7 +894,7 @@
 
           <div class="row">
 
-            <div id="dimensiondiv" class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div id="dimensiondiv" class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Dimensions</h3>
             </div>
            
@@ -907,13 +908,13 @@
 
           <div class="row" id="invoice_details">
 
-            <div id="invoiceDetailsdiv" class="col-12 mt-2 mb-2" style="background-color: #fd7e14; text-align: center;">
+            <div id="invoiceDetailsdiv" class="col-12 mt-2 mb-2 skylift-button-color" style="text-align: center;">
               <h3 style="margin-top: inherit;">Invoice Details</h3>
             </div>
           </div>
 
           <div class="card-footer" style="text-align-last: end">
-            <button class="btn btn-primary" style="background: #fd7e14; border-color:#fd790e;font-size: large;">Update
+            <button class="btn btn-primary skylift-button-color" style="font-size: large;">Update
               Air Way bill</button>
             <!-- <button class="btn btn-primary" id="reset_update_billing_form_id" type="reset"
               style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Reset</button> -->

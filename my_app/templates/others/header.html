@@ -1,79 +1,93 @@
 {% load static %}
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-orange navbar-light">
-  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto" style="margin-top: 15px;">
-      <li class="nav-item active" style="margin-right: 17px; margin-top: -11px;">
-        <img src="{% static '/logo/skyliftcourierlogo.png' %}" alt="Skylift Courier"
-          class="brand-image img-circle  elevation-3" style="height: 57px;margin-left: 27px;">
-      </li>
-    </ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
-        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Link</a> -->
-        <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Link</a> -->
-        <a href="{% url 'aboutus' %}" class="nav-link">About Us</a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Link</a> -->
-        <a href="{% url 'ourservices' %}" class="nav-link">Our Services</a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Link</a> -->
-        <a href="{% url 'ourtrackrecord' %}" class="nav-link">Our Track Record</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto">
-      {% if request.user.is_superuser %}
-      <li class="nav-item d-sm-inline-block">
-        <a href="{% url 'authuser_list' %}" class="nav-link">Create User</a>
-      </li>
-      {% endif %}
-      {% if request.user.is_authenticated %}
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'airway_bill' %}" class="nav-link">
-          Create Air Way Bill
-        </a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="{% url 'logout_url' %}" class="nav-link">
-          Logout
-        </a> -->
-        <form id="signout_form" action="{% url 'logout_url' %}" method="POST">
-          {% csrf_token %}
-          <a class="nav-link" href="#"
-            onclick="javascript: $('#signout_form').submit();">
-            <!-- <i class="bi bi-box-arrow-right"></i> -->
-            <span>Log Out</span>
-          </a>
-        </form>
-      </li>
-
-      {% else %}
-      <li class="nav-item">
-        <a href="{% url 'login_url' %}" class="nav-link" class="nav-link">
-          Login
-        </a>
-      </li>
-      {% endif %}
-    </ul>
+<div class="row">
+  <div class="col-lg-1 col-md-3 col-sm-3 skylift-background-color" style="text-align: center;">
+    <a href="{% url 'home' %}"><img
+      src="{% static '/logo/skyliftcourierlogo.png' %}" alt="Skylift Courier"
+      class="brand-image img-circle  elevation-3"
+      style="height: 47px;margin: 7%;aspect-ratio: 3/2;object-fit: contain;"></a>
   </div>
-</nav>
+
+  <div class="col-lg-11 col-md-9 col-sm-9 navbar-orange">
+    <nav class="navbar navbar-expand-lg navbar-orange navbar-light">
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- <ul class="navbar-nav mr-auto" style="margin-top: 15px;">
+          <li class="nav-item active" style="margin-right: 17px; margin-top: -11px;">
+            <img src="{% static '/logo/skyliftcourierlogo.png' %}" alt="Skylift Courier"
+              class="brand-image img-circle  elevation-3" style="height: 57px;margin-left: 27px;aspect-ratio: 3/2;object-fit: contain;mix-blend-mode: color-burn;">
+          </li>
+        </ul> -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Link</a> -->
+            <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Link</a> -->
+            <a href="{% url 'aboutus' %}" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Link</a> -->
+            <a href="{% url 'ourservices' %}" class="nav-link">Our Services</a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Link</a> -->
+            <a href="{% url 'ourtrackrecord' %}" class="nav-link">Our Track Record</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          {% if request.user.is_superuser %}
+          <li class="nav-item d-sm-inline-block">
+            <a href="{% url 'authuser_list' %}" class="nav-link">Create User</a>
+          </li>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'airway_bill' %}" class="nav-link">
+              Create Air Way Bill
+            </a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="{% url 'logout_url' %}" class="nav-link">
+              Logout
+            </a> -->
+            <form id="signout_form" action="{% url 'logout_url' %}" method="POST">
+              {% csrf_token %}
+              <a class="nav-link" href="#" onclick="javascript: $('#signout_form').submit();">
+                <!-- <i class="bi bi-box-arrow-right"></i> -->
+                <span>Log Out</span>
+              </a>
+            </form>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a href="{% url 'login_url' %}" class="nav-link" class="nav-link">
+              Login
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<br>
+
 <!-- /.navbar -->

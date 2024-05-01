@@ -105,7 +105,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     var parsed_data = JSON.parse(data)
     var WebHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
     }).html("<h3><b>Sky Lift Courier </b></h3>")
 
@@ -117,7 +117,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     // Shipper Details Heading
     var ShipperDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Shipper Details </b></h3>")
@@ -137,7 +137,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     // Reciever Details
     var RecieverDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Reciever Details </b></h3>")
@@ -157,7 +157,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     // Reciever Details
     var ShipmentDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Shipment Details </b></h3>")
@@ -171,7 +171,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     // Dimensions and InvoiceDetails
     var DimensionsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Dimensions </b></h3>")
@@ -179,7 +179,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     
     var InvoiceDetailsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Invoice Details </b></h3>")
@@ -210,7 +210,7 @@ function get_detail_billing_html_for_pdf_download(data, is_download = false) {
     }
     var termsAndConditionsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Terms and Conditions </b></h3>")
@@ -231,7 +231,7 @@ function termsAndConditions(){
     var rowDiv = $("<div>")
     var termsAndConditionsHeading = $("<div>").addClass('row-12').css({
         'text-align': 'center',
-        'background-color': '#fd7e14',
+        'background-color': '#959595',
         'margin': '23px',
         'letter-spacing':'0.04px'
     }).html("<h3><b>Terms and Conditions </b></h3>")

@@ -7,11 +7,11 @@
 <!-- <div class="row"> -->
 <div class="col-lg-12 ">
 
-  <div class="card m-4" style="background-color: #f9fbd7; font-family: serif;">
+  <div class="card m-4 skylift-background-color" style="font-family: serif;">
     <div class="card-body">
-      <button class="btn btn-primary" id="display-form-id" data-display-form-id="create_billings_form_id" 
+      <button class="btn btn-primary skylift-button-color" id="display-form-id" data-display-form-id="create_billings_form_id" 
         data-hidden-table-id="bordered-pending" data-hidden-update-form-id="update_billings_form_id"
-        style="background: #fd7e14; border-color:#fd790e;font-size: large;">
+        style="font-size: large;">
         <a id="back-link" style="color: #f9fbd7;" href="{% url 'airway_bill' %}">
           Back
         </a>
@@ -53,27 +53,27 @@
                 <td>{{bill.payment_id}}</td>
                 <!-- <td>{{bill.shipment_id}}</td> -->
                 <td>
-                  <button class="btn btn-primary" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
+                  <button class="btn btn-primary skylift-button-color" id="get_billing_details_button" data-get-detail-id="{{bill.id}}"
                     data-url="{% url 'airway_bill_detail' %}"
-                    style="background: #fd7e14; border-color:#fd790e;font-size: large;">Details</button>
+                    style="font-size: large;">Details</button>
                 </td>
                 <td>
-                  <button class="btn btn-primary" id="airway_bill_location_details_button" data-bill-id="{{bill.id}}" data-method="POST"
+                  <button class="btn btn-primary skylift-button-color" id="airway_bill_location_details_button" data-bill-id="{{bill.id}}" data-method="POST"
                     data-url="{% url 'airway_bill_locations_details' %}" data-tracking-number="{{bill.tracking_number}}"
-                    style="background: #cd6510; border-color:#dc6b0f;font-size: large;">Locations</button>
+                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Locations</button>
                 </td>
                 <td>
-                  <button class="btn btn-primary" id="add_airway_bill_location_button" data-bill-id="{{bill.id}}"
+                  <button class="btn btn-primary skylift-button-color " id="add_airway_bill_location_button" data-bill-id="{{bill.id}}"
                     data-url="{% url 'airway_bill_locations' %}" data-tracking-number="{{bill.tracking_number}}"
-                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Add Location</button>
+                    style="font-size: large;">Add Location</button>
                 </td>
                 <td>
                   <!-- <li><a href="{% url 'download_airway_bill' bill.id %}">Download</a></li> -->
                   <!-- <button class="btn btn-primary" id="download_billing_details_button" data-get-detail-id="{{bill.id}}" data-tracking-id="{{bill.tracking_number}}"
                     data-url="{% url 'download_airway_bill' bill.id %}"
                     style="background: #fd7e14; border-color:#fd790e;font-size: large;">Download</button> -->
-                  <button class="btn btn-primary" 
-                    style="background: #fd7e14; border-color:#fd790e;font-size: large;"><a href="{% url 'download_airway_bill' bill.id %}" target="_blank" style="color: white;">Download</a></button>
+                  <button class="btn btn-primary skylift-button-color" 
+                    style="background: #7a3a05; border-color:#7f3f0b;font-size: large;"><a href="{% url 'download_airway_bill' bill.id %}" target="_blank" style="color: white;">Download</a></button>
                 </td>
                 
               </tr>
