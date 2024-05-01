@@ -17,11 +17,11 @@
     {% else %}
 
 
-    <div class="container " style="border: 2px solid #f5af66; margin-top: 2px;">
+    <div class="container skylift-background-color" style="border: 1px solid darkslategray; margin-top: 2px;">
         <table class="table table-responsive-sm">
             <thead>
-                <h3 class="mt-2" style="background-color: #f5af66;">Summary</h3>
-                <tr style="background-color: #f5af66;">
+                <h3 class="mt-2 skylift-background-color" style="background-color: grey;">Summary</h3>
+                <tr class="skylift-background-color" tyle="background-color: #f5af66;">
                     <th scope="col">AirWay Bill No</th>
                     <th scope="col">Execution Date</th>
                     <th scope="col">Shipper</th>
@@ -45,12 +45,12 @@
         </table>
     </div>
 
-    <div class="container " style="border: 2px solid #f5af66; margin-top: 2px; margin-bottom: 2px;">
+    <div class="container skylift-background-color" style="margin-top: 2px; margin-bottom: 2px;border: 1px solid darkslategray;">
 
         <table class="table table-responsive-sm">
             <thead>
-                <h3 class="mt-2" style="background-color: #f5af66;">AirWay Bill Details</h3>
-                <tr style="background-color: #f5af66;">
+                <h3 class="mt-2 skylift-background-color" style="background-color: grey;">AirWay Bill Details</h3>
+                <tr class="skylift-background-color">
                     <th scope="col">AirWay Bill No</th>
                     <th scope="col">Shipper</th>
                     <th scope="col">Reciever</th>
@@ -73,8 +73,8 @@
         <!-- Locations -->
         <table class="table table-responsive-sm">
             <thead>
-                <h3 class="mt-2" style="background-color: #f5af66;"></h3>
-                <tr style="background-color: #f5af66;">
+                <h3 class="mt-2 skylift-background-color"></h3>
+                <tr class="skylift-background-color">
                     <th scope="col">Location</th>
                     <th scope="col">Date Time</th>
                     <th scope="col">Activity</th>
@@ -84,15 +84,15 @@
                 <!-- {{ locations.0.position }} -->
 
 
-                <img style="margin-left: 11px; height: 6vh; width: auto; background: {% if locations.0.position == 1 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="margin-left: 11px; height: 6vh; width: auto; background: {% if locations.0.position == 1 %} #808080 {% else %}#dfdada{% endif %};"
                     src="{% static '/image/location_page_images/people.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 2 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 2 %} #808080 {% else %}#dfdada{% endif %};"
                     src="{% static '/image/location_page_images/airplane.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 3 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 3 %} #808080 {% else %}#dfdada{% endif %};"
                     src="{% static '/image/location_page_images/man-with-box.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 4 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position == 4 %} #808080 {% else %}#dfdada{% endif %};"
                     src="{% static '/image/location_page_images/van.png' %}" alt="">
-                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position >= 5 %} #a99c8a {% else %}antiquewhite{% endif %};"
+                <img style="height: 6vh;margin-left: 3px; width: auto; background: {% if locations.0.position >= 5 %} #808080 {% else %}#dfdada{% endif %};"
                     src="{% static '/image/location_page_images/box.png' %}" alt="">
                 <!-- #a99c8a -->
             </div>
