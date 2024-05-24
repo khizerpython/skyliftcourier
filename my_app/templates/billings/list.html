@@ -511,6 +511,7 @@
                 <th>Shipment Type</th>
                 <th>Details</th>
                 <th>Update</th>
+                <th>Label</th>
 
 
               </tr>
@@ -533,6 +534,15 @@
                   <button class="btn btn-primary" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
                     data-url="{% url 'get_specific_bill_to_update' %}" data-update-form-id="update_billings_form_id"
                     style="background: #7a3a05; border-color:#7f3f0b;font-size: large;">Update</button>
+                </td>
+                <!-- <td>
+                  <button class="btn btn-primary skylift-button-color" id="update_airway_bill_button" data-get-update-bill-id="{{bill.id}}"
+                    data-url="{% url 'get_specific_bill_to_update' %}" data-update-form-id="update_billings_form_id"
+                    style="font-size: large;">Create Label</button>
+                </td> -->
+                <td>
+                  <button class="btn btn-primary skylift-button-color" 
+                    style="font-size: large;"><a href="{% url 'create_airway_bill_label' bill.id %}" target="_blank" style="color: white;">Create Invoice</a></button>
                 </td>
               </tr>
 

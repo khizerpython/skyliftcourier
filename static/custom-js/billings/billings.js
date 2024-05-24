@@ -424,6 +424,22 @@ function create_update_button(key, value, datatable_id) {
     return temp_div;
 }                    
 
+function create_invoice_button(key, value, datatable_id) {
+
+    var temp_div = $("<button>");
+    temp_div.addClass("btn btn-primary skylift-button-color");
+    temp_div.css({'font-size':'large'});
+    
+    var temp_a = $("<a>").text('Create Invoice');
+    temp_a.css({'color': 'white'});
+    // temp_div.attr("id", key)
+    temp_a.attr("href", value.label_url)
+    temp_a.attr("target", "_blank")
+    temp_div.append(temp_a)
+    return temp_div;
+}       
+
+
 
 
 function reconstruct_pending_workflow_table(datatable_id, obj) {
@@ -439,6 +455,7 @@ function reconstruct_pending_workflow_table(datatable_id, obj) {
         temp_tr.append(temp_td.clone().append(value.shipment_id))
         temp_tr.append(temp_td.clone().append(create_detail_button(key, value, datatable_id)))
         temp_tr.append(temp_td.clone().append(create_update_button(key, value, datatable_id)))
+        temp_tr.append(temp_td.clone().append(create_invoice_button(key, value, datatable_id)))
         
         $("#"+datatable_id).DataTable().row.add(temp_tr).draw();
         

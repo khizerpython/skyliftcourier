@@ -17,8 +17,10 @@
             counter-reset: item;
             padding: 0;
         }
+
         .custom-start {
-            counter-reset: item 8; /* Set the starting value for the second column */
+            counter-reset: item 8;
+            /* Set the starting value for the second column */
         }
 
         li {
@@ -30,6 +32,11 @@
             content: counter(item);
             font-weight: bold;
             margin-right: 5px;
+        }
+
+        .billing_p {
+            font-size: x-large;
+            margin-bottom: auto;
         }
     </style>
 
@@ -46,7 +53,8 @@
                     class="brand-image img-circle  elevation-3" style="height: 152px;margin-left: 82px;">
             </div>
             <div class="col-4" style="text-align:center;margin-top: 87px; background-color: black; color: white;">
-                <h4 style="margin-top: 27px;"><b>{% if bill.shipment_id.name == 'Document'%} DOX {% else %} WPX{% endif %}</b></h4>
+                <h4 style="margin-top: 27px;"><b>
+                        {% if bill.shipment_id.name == 'Document'%} DOX {% else %} WPX{% endif%}</b></h4>
             </div>
         </div>
 
@@ -65,7 +73,9 @@
                             <div class="col-12"><b>{{bill.tracking_number}}</b></div> -->
                         </div>
                     </div>
-                    <div class="col-4" style="border: 2px solid black;"><h3><b>{{bill.payment_id}}</b></h3></div>
+                    <div class="col-4" style="border: 2px solid black;">
+                        <h3><b>{{bill.payment_id}}</b></h3>
+                    </div>
                 </div>
                 <div class="row" style="letter-spacing:1.27px">
                     <div class="col-1"
@@ -73,14 +83,14 @@
                         <b>SHIPPER</b>
                     </div>
                     <div class="col-11">
-                        {{bill.shipper_contact_person}}<br />
-                        {{bill.shipper_address}}<br />
-                        {{bill.shipper_post_code}}<br />
-                        {{bill.shipper_state}}<br />
-                        {{bill.shipper_city}}<br />
-                        {{bill.shipper_ntn_cnic}}<br />
-                        <b>Tel: </b>{{bill.shipper_phone_number}}<br />
-                        <b>Mob: </b>{{bill.shipper_mobile_number}}<br />
+                        <p class="billing_p">{{bill.shipper_contact_person}}</p>
+                        <p class="billing_p">{{bill.shipper_address}}</p>
+                        <p class="billing_p">{{bill.shipper_post_code}}</p>
+                        <p class="billing_p">{{bill.shipper_state}}</p>
+                        <p class="billing_p">{{bill.shipper_city}}</p>
+                        <p class="billing_p">{{bill.shipper_ntn_cnic}}</p>
+                        <p class="billing_p"><b>Tel: </b>{{bill.shipper_phone_number}}</p>
+                        <p class="billing_p"><b>Mob: </b>{{bill.shipper_mobile_number}}</p>
 
                     </div>
                 </div>
@@ -119,7 +129,9 @@
                     <div class="col-4" style="border: 2px solid black;">
                         <h3><b>KHI</b></h3>
                     </div>
-                    <div class="col-8" style="border: 2px solid black;"> <h3><b>{{bill.tracking_number}}</b></h3></div>
+                    <div class="col-8" style="border: 2px solid black;">
+                        <h3><b>{{bill.tracking_number}}</b></h3>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-1"
@@ -135,14 +147,14 @@
                         </div>
                     </div>
                     <div class="col-11" style="letter-spacing:2.27px">
-                        {{bill.reciever_contact_person}}<br>
-                        {{bill.reciever_address}}<br>
-                        {{bill.reciever_city}}<br>
-                        {{bill.reciever_state}}<br>
-                        {{bill.reciever_country}}<br>
-                        <b>{{bill.reciever_post_code}}</b><br>
-                        <b>Tel: </b>{{bill.reciever_phone_number}}<br />
-                        <b>Mob: </b>{{bill.reciever_mobile_number}}<br />
+                        <p class="billing_p">{{bill.reciever_contact_person}}</p>
+                        <p class="billing_p">{{bill.reciever_address}}</p>
+                        <p class="billing_p">{{bill.reciever_city}}</p>
+                        <p class="billing_p">{{bill.reciever_state}}</p>
+                        <p class="billing_p">{{bill.reciever_country}}</p>
+                        <p class="billing_p"><b>{{bill.reciever_post_code}}</b></p>
+                        <p class="billing_p"></p><b>Tel: </b>{{bill.reciever_phone_number}}</p>
+                        <p class="billing_p"></p><b>Mob: </b>{{bill.reciever_mobile_number}}</p>
 
                     </div>
                 </div>
@@ -150,12 +162,13 @@
                     <div class="col-3" style="border: 2px darkgray; background-color: darkgray;">
                         <h4><b>*DAP*</b></h4>
                     </div>
-                    <div class="col-9" style="border-bottom: 3px solid darkgray;border-top: 3px solid darkgray; letter-spacing: 2.27px;">
+                    <div class="col-9"
+                        style="border-bottom: 3px solid darkgray;border-top: 3px solid darkgray; letter-spacing: 2.27px;">
                         <div class="row">
                             <strong>DECLARED VALUE FOR CUSTOMS</strong>
                         </div>
                         <div class="row" style="margin-left: 2%;">
-                            {{total_price}}
+                            <p class="billing_p"><b>{{total_price}}</b></p>
                             <!-- {% for key, invoice_detail in bill.data.invoice_details.items %}
                             <b>{{ invoice_detail.price }} $</b><br>
                             {% endfor %} -->
@@ -175,7 +188,8 @@
             </div>
             <!-- Third Col -->
             <div class="col-4" style="border: 2px solid black;letter-spacing:1.27px">
-                <div class="row" style="background-color: darkgray; text-align: center;"><b>CUSTOMER REFERRENCE</b></div>
+                <div class="row" style="background-color: darkgray; text-align: center;"><b>CUSTOMER REFERRENCE</b>
+                </div>
                 <div class="row" style="margin-left: 0px;"><b>{{bill.shipper_contact_person}}</b></div>
 
                 <div class="row" style="background-color: darkgray;">
@@ -335,12 +349,12 @@
     </div>
 
 
-<script src="{% static '/js/jquery.min.js' %}"></script>
-<script src="{% static '/js/file-downloads/jspdf.umd.min.js' %}"></script>
-<script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>        
-<script src="{% static '/js/file-downloads/html2canvas.min.js' %}"></script>
-<script src="{% static '/js/file-downloads/purify.min.js' %}"></script>
-<script> 
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/file-downloads/jspdf.umd.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/js/file-downloads/html2canvas.min.js' %}"></script>
+    <script src="{% static '/js/file-downloads/purify.min.js' %}"></script>
+    <script> 
  $(document).ready(function() {
     setTimeout(function() {
     var html = $("#download_bill");
@@ -379,7 +393,6 @@
 }, 1000);
 });
 </script>
- </script>
 
 </body>
 

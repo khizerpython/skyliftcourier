@@ -23,3 +23,7 @@ def get_value_list_in_qs(queryset, key_cast):
 
     _filtered_uuids =  queryset.values_list(key, flat=True)
     return [str(uuid) for uuid in _filtered_uuids]
+
+
+
+
