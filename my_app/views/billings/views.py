@@ -176,7 +176,7 @@ class ListOfAirwayBillsJsonFormat(View):
            
             return_data[obj_id]["detail_url"] = reverse("airway_bill_detail")
             return_data[obj_id]["update_url"] = reverse("get_specific_bill_to_update")
-            return_data[obj_id]["label_url"] = reverse("create_airway_bill_label", kwargs={'bill_id': bill_id})
+            return_data[obj_id]["label_url"] = reverse("create_airway_bill_label", kwargs={'bill_id': obj_id})
 
         for obj_from_list in data:
             obj_id: str = obj_from_list.get("pk", "")
