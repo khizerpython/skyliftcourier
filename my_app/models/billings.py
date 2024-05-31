@@ -63,7 +63,7 @@ class AirwayBill(ModelUUIDField,CreatedAndUpdatedModelFields):
     shipment_id = models.ForeignKey(ShipmentType, on_delete=models.SET_NULL, blank=True,null=True)
 
     # fedex_number = models.CharField(max_length=255, blank=False)
-    weight = models.IntegerField(blank=False)
+    weight = models.CharField(blank=False,max_length=100)
     pieces = models.IntegerField(blank=False)
 
     # Dimensions and invoice details

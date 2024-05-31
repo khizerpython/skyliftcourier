@@ -46,7 +46,7 @@ class BillingsForm(forms.Form):
     shipment_id = forms.ChoiceField(choices = [])
 
     # fedex_number = forms.CharField(max_length=255, required=True)
-    weight = forms.IntegerField(required=True)
+    weight = forms.CharField(required=True)
     pieces = forms.IntegerField(required=True)
 
     def __init__(self, *args, **kwargs):
@@ -152,7 +152,7 @@ class BillingsUpdateForm(forms.Form):
     shipment_id = forms.ChoiceField(choices = ShipmentType.objects.all())
 
     # fedex_number = forms.CharField(max_length=255, required=True)
-    weight = forms.IntegerField(required=True)
+    weight = forms.CharField(required=True)
     pieces = forms.IntegerField(required=True)
 
     def __init__(self, *args, **kwargs):
