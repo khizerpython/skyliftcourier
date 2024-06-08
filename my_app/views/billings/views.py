@@ -204,7 +204,7 @@ class CreateAirwayBillLabelView(View):
     def get(self, request, bill_id):
         bill = AirwayBill.objects.get(id=bill_id)
         # total_price = sum(int(detail.get('price')) for detail in bill.data.get('invoice_details').values())
-        total_price = sum(float(detail.get('price')) for detail in bill.data.get('invoice_details').values())
+        total_price = sum(float(detail.get('total')) for detail in bill.data.get('invoice_details').values())
 
         dimensions = bill.data.get('dimensions')
         volumetric_dimension = 0 
